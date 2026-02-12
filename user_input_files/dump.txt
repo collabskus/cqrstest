@@ -1,0 +1,3891 @@
+
+===============================================================================
+ASP.NET PROJECT EXPORT
+Generated: 02/10/2026 19:06:16
+Project Path: C:\Users\kushal\source\repos\MySandbox
+===============================================================================
+
+DIRECTORY STRUCTURE:
+===================
+
+Folder PATH listing
+Volume serial number is A455-497E
+C:\USERS\KUSHAL\SOURCE\REPOS\MYSANDBOX
+|   .gitignore
+|   Export.ps1
+|   MySandbox.slnx
+|   README.md
+|   
++---.github
+|   \---workflows
+|           build.yml
+|           
++---docs
+|   \---llm
+|           chatgpt.txt
+|           dump.txt
+|           
++---MySandbox.ClassLibrary
+|   |   BusinessRulesOptions.cs
+|   |   ICanDoStuff.cs
+|   |   ICanDoStuffA.cs
+|   |   ICanDoStuffB.cs
+|   |   IStuffRepository.cs
+|   |   MySandbox.ClassLibrary.csproj
+|   |   SeedDataOptions.cs
+|   |   StuffDbContext.cs
+|   |   StuffDoer.cs
+|   |   StuffItem.cs
+|   |   StuffRepository.cs
+|   |   
+|   +---bin
+|   |   \---Debug
+|   |       \---net10.0
+|   |               MySandbox.ClassLibrary.deps.json
+|   |               MySandbox.ClassLibrary.dll
+|   |               MySandbox.ClassLibrary.pdb
+|   |               
+|   \---obj
+|       |   MySandbox.ClassLibrary.csproj.nuget.dgspec.json
+|       |   MySandbox.ClassLibrary.csproj.nuget.g.props
+|       |   MySandbox.ClassLibrary.csproj.nuget.g.targets
+|       |   project.assets.json
+|       |   project.nuget.cache
+|       |   
+|       \---Debug
+|           \---net10.0
+|               |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|               |   MySandbox.ClassLibrary.AssemblyInfo.cs
+|               |   MySandbox.ClassLibrary.AssemblyInfoInputs.cache
+|               |   MySandbox.ClassLibrary.assets.cache
+|               |   MySandbox.ClassLibrary.csproj.AssemblyReference.cache
+|               |   MySandbox.ClassLibrary.csproj.CoreCompileInputs.cache
+|               |   MySandbox.ClassLibrary.csproj.FileListAbsolute.txt
+|               |   MySandbox.ClassLibrary.dll
+|               |   MySandbox.ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+|               |   MySandbox.ClassLibrary.GlobalUsings.g.cs
+|               |   MySandbox.ClassLibrary.pdb
+|               |   MySandbox.ClassLibrary.sourcelink.json
+|               |   
+|               +---ref
+|               |       MySandbox.ClassLibrary.dll
+|               |       
+|               \---refint
+|                       MySandbox.ClassLibrary.dll
+|                       
++---MySandbox.Console
+|   |   appsettings.json
+|   |   MySandbox.Console.csproj
+|   |   Program.cs
+|   |   
+|   +---bin
+|   |   \---Debug
+|   |       \---net10.0
+|   |           |   appsettings.json
+|   |           |   Microsoft.Data.Sqlite.dll
+|   |           |   Microsoft.EntityFrameworkCore.Abstractions.dll
+|   |           |   Microsoft.EntityFrameworkCore.dll
+|   |           |   Microsoft.EntityFrameworkCore.Relational.dll
+|   |           |   Microsoft.EntityFrameworkCore.Sqlite.dll
+|   |           |   Microsoft.Extensions.Caching.Abstractions.dll
+|   |           |   Microsoft.Extensions.Caching.Memory.dll
+|   |           |   Microsoft.Extensions.Configuration.Abstractions.dll
+|   |           |   Microsoft.Extensions.Configuration.Binder.dll
+|   |           |   Microsoft.Extensions.Configuration.dll
+|   |           |   Microsoft.Extensions.Configuration.FileExtensions.dll
+|   |           |   Microsoft.Extensions.Configuration.Json.dll
+|   |           |   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+|   |           |   Microsoft.Extensions.DependencyInjection.dll
+|   |           |   Microsoft.Extensions.DependencyModel.dll
+|   |           |   Microsoft.Extensions.FileProviders.Abstractions.dll
+|   |           |   Microsoft.Extensions.FileProviders.Physical.dll
+|   |           |   Microsoft.Extensions.FileSystemGlobbing.dll
+|   |           |   Microsoft.Extensions.Logging.Abstractions.dll
+|   |           |   Microsoft.Extensions.Logging.Configuration.dll
+|   |           |   Microsoft.Extensions.Logging.Console.dll
+|   |           |   Microsoft.Extensions.Logging.dll
+|   |           |   Microsoft.Extensions.Options.ConfigurationExtensions.dll
+|   |           |   Microsoft.Extensions.Options.dll
+|   |           |   Microsoft.Extensions.Primitives.dll
+|   |           |   MySandbox.ClassLibrary.dll
+|   |           |   MySandbox.ClassLibrary.pdb
+|   |           |   MySandbox.Console.deps.json
+|   |           |   MySandbox.Console.dll
+|   |           |   MySandbox.Console.exe
+|   |           |   MySandbox.Console.pdb
+|   |           |   MySandbox.Console.runtimeconfig.json
+|   |           |   SQLitePCLRaw.batteries_v2.dll
+|   |           |   SQLitePCLRaw.core.dll
+|   |           |   SQLitePCLRaw.provider.e_sqlite3.dll
+|   |           |   stuff.db
+|   |           |   
+|   |           \---runtimes
+|   |               +---browser-wasm
+|   |               |   \---nativeassets
+|   |               |       \---net9.0
+|   |               |               e_sqlite3.a
+|   |               |               
+|   |               +---linux-arm
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-arm64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-armel
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-mips64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-musl-arm
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-musl-arm64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-musl-riscv64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-musl-s390x
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-musl-x64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-ppc64le
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-riscv64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-s390x
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-x64
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---linux-x86
+|   |               |   \---native
+|   |               |           libe_sqlite3.so
+|   |               |           
+|   |               +---maccatalyst-arm64
+|   |               |   \---native
+|   |               |           libe_sqlite3.dylib
+|   |               |           
+|   |               +---maccatalyst-x64
+|   |               |   \---native
+|   |               |           libe_sqlite3.dylib
+|   |               |           
+|   |               +---osx-arm64
+|   |               |   \---native
+|   |               |           libe_sqlite3.dylib
+|   |               |           
+|   |               +---osx-x64
+|   |               |   \---native
+|   |               |           libe_sqlite3.dylib
+|   |               |           
+|   |               +---win-arm
+|   |               |   \---native
+|   |               |           e_sqlite3.dll
+|   |               |           
+|   |               +---win-arm64
+|   |               |   \---native
+|   |               |           e_sqlite3.dll
+|   |               |           
+|   |               +---win-x64
+|   |               |   \---native
+|   |               |           e_sqlite3.dll
+|   |               |           
+|   |               \---win-x86
+|   |                   \---native
+|   |                           e_sqlite3.dll
+|   |                           
+|   +---obj
+|   |   |   MySandbox.Console.csproj.nuget.dgspec.json
+|   |   |   MySandbox.Console.csproj.nuget.g.props
+|   |   |   MySandbox.Console.csproj.nuget.g.targets
+|   |   |   project.assets.json
+|   |   |   project.nuget.cache
+|   |   |   
+|   |   \---Debug
+|   |       \---net10.0
+|   |           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|   |           |   apphost.exe
+|   |           |   MySandbo.FECEBD9F.Up2Date
+|   |           |   MySandbox.Console.AssemblyInfo.cs
+|   |           |   MySandbox.Console.AssemblyInfoInputs.cache
+|   |           |   MySandbox.Console.assets.cache
+|   |           |   MySandbox.Console.csproj.AssemblyReference.cache
+|   |           |   MySandbox.Console.csproj.CoreCompileInputs.cache
+|   |           |   MySandbox.Console.csproj.FileListAbsolute.txt
+|   |           |   MySandbox.Console.dll
+|   |           |   MySandbox.Console.GeneratedMSBuildEditorConfig.editorconfig
+|   |           |   MySandbox.Console.genruntimeconfig.cache
+|   |           |   MySandbox.Console.GlobalUsings.g.cs
+|   |           |   MySandbox.Console.pdb
+|   |           |   MySandbox.Console.sourcelink.json
+|   |           |   
+|   |           +---ref
+|   |           |       MySandbox.Console.dll
+|   |           |       
+|   |           \---refint
+|   |                   MySandbox.Console.dll
+|   |                   
+|   \---Properties
+|           launchSettings.json
+|           
++---MySandbox.Tests
+|   |   DatabaseTestBase.cs
+|   |   IntegrationTests.cs
+|   |   LogEntry.cs
+|   |   MySandbox.Tests.csproj
+|   |   StuffDbContextTests.cs
+|   |   StuffDoerTests.cs
+|   |   StuffItemTests.cs
+|   |   StuffRepositoryTests.cs
+|   |   TestBusinessRulesOptions.cs
+|   |   TestLogger.cs
+|   |   TestSeedDataOptions.cs
+|   |   
+|   +---bin
+|   |   \---Debug
+|   |       \---net10.0
+|   |           |   .msCoverageSourceRootsMapping_MySandbox.Tests
+|   |           |   AwesomeAssertions.dll
+|   |           |   CoverletSourceRootsMapping_MySandbox.Tests
+|   |           |   Microsoft.ApplicationInsights.dll
+|   |           |   Microsoft.Bcl.AsyncInterfaces.dll
+|   |           |   Microsoft.Data.Sqlite.dll
+|   |           |   Microsoft.EntityFrameworkCore.Abstractions.dll
+|   |           |   Microsoft.EntityFrameworkCore.dll
+|   |           |   Microsoft.EntityFrameworkCore.Relational.dll
+|   |           |   Microsoft.EntityFrameworkCore.Sqlite.dll
+|   |           |   Microsoft.Extensions.Caching.Abstractions.dll
+|   |           |   Microsoft.Extensions.Caching.Memory.dll
+|   |           |   Microsoft.Extensions.Configuration.Abstractions.dll
+|   |           |   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+|   |           |   Microsoft.Extensions.DependencyInjection.dll
+|   |           |   Microsoft.Extensions.DependencyModel.dll
+|   |           |   Microsoft.Extensions.Logging.Abstractions.dll
+|   |           |   Microsoft.Extensions.Logging.dll
+|   |           |   Microsoft.Extensions.Options.dll
+|   |           |   Microsoft.Extensions.Primitives.dll
+|   |           |   Microsoft.Testing.Extensions.MSBuild.dll
+|   |           |   Microsoft.Testing.Extensions.Telemetry.dll
+|   |           |   Microsoft.Testing.Extensions.TrxReport.Abstractions.dll
+|   |           |   Microsoft.Testing.Platform.dll
+|   |           |   Microsoft.TestPlatform.CommunicationUtilities.dll
+|   |           |   Microsoft.TestPlatform.CoreUtilities.dll
+|   |           |   Microsoft.TestPlatform.CrossPlatEngine.dll
+|   |           |   Microsoft.TestPlatform.PlatformAbstractions.dll
+|   |           |   Microsoft.TestPlatform.Utilities.dll
+|   |           |   Microsoft.VisualStudio.CodeCoverage.Shim.dll
+|   |           |   Microsoft.VisualStudio.TestPlatform.Common.dll
+|   |           |   Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+|   |           |   MySandbox.ClassLibrary.dll
+|   |           |   MySandbox.ClassLibrary.pdb
+|   |           |   MySandbox.Tests.deps.json
+|   |           |   MySandbox.Tests.dll
+|   |           |   MySandbox.Tests.exe
+|   |           |   MySandbox.Tests.pdb
+|   |           |   MySandbox.Tests.runtimeconfig.json
+|   |           |   Newtonsoft.Json.dll
+|   |           |   SQLitePCLRaw.batteries_v2.dll
+|   |           |   SQLitePCLRaw.core.dll
+|   |           |   SQLitePCLRaw.provider.e_sqlite3.dll
+|   |           |   testhost.dll
+|   |           |   testhost.exe
+|   |           |   xunit.abstractions.dll
+|   |           |   xunit.runner.visualstudio.testadapter.dll
+|   |           |   xunit.v3.assert.dll
+|   |           |   xunit.v3.common.dll
+|   |           |   xunit.v3.core.dll
+|   |           |   xunit.v3.mtp-v1.dll
+|   |           |   xunit.v3.runner.common.dll
+|   |           |   xunit.v3.runner.inproc.console.dll
+|   |           |   xunit.v3.runner.utility.netcore.dll
+|   |           |   
+|   |           +---cs
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---de
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---es
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---fr
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---it
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---ja
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---ko
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---Log
+|   |           |       log_260206155939332.diag
+|   |           |       log_260206160235519.diag
+|   |           |       log_260206161038610.diag
+|   |           |       log_260206161440350.diag
+|   |           |       log_260206161635133.diag
+|   |           |       log_260206161637927.diag
+|   |           |       log_260206161710220.diag
+|   |           |       log_260206162022597.diag
+|   |           |       log_260206162313680.diag
+|   |           |       log_260206201744005.diag
+|   |           |       log_260206201744540.diag
+|   |           |       log_260206201746575.diag
+|   |           |       log_260206201837347.diag
+|   |           |       log_260206201840051.diag
+|   |           |       log_260206201841092.diag
+|   |           |       log_260206202657386.diag
+|   |           |       log_260206202941732.diag
+|   |           |       log_260206203056959.diag
+|   |           |       log_260206203207284.diag
+|   |           |       log_260206203210281.diag
+|   |           |       log_260206203211104.diag
+|   |           |       log_260206203319789.diag
+|   |           |       log_260206203320429.diag
+|   |           |       log_260206203338973.diag
+|   |           |       log_260206203346564.diag
+|   |           |       log_260206203454034.diag
+|   |           |       log_260206212010377.diag
+|   |           |       log_260206212012981.diag
+|   |           |       log_260207163958929.diag
+|   |           |       log_260207164753510.diag
+|   |           |       log_260207164755774.diag
+|   |           |       log_260207164915162.diag
+|   |           |       log_260207164915786.diag
+|   |           |       log_260207165112216.diag
+|   |           |       log_260207165115480.diag
+|   |           |       log_260207183550569.diag
+|   |           |       log_260207183738942.diag
+|   |           |       log_260207183743239.diag
+|   |           |       
+|   |           +---pl
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---pt-BR
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---ru
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---runtimes
+|   |           |   +---browser-wasm
+|   |           |   |   \---nativeassets
+|   |           |   |       \---net9.0
+|   |           |   |               e_sqlite3.a
+|   |           |   |               
+|   |           |   +---linux-arm
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-arm64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-armel
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-mips64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-musl-arm
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-musl-arm64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-musl-riscv64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-musl-s390x
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-musl-x64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-ppc64le
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-riscv64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-s390x
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-x64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---linux-x86
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.so
+|   |           |   |           
+|   |           |   +---maccatalyst-arm64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.dylib
+|   |           |   |           
+|   |           |   +---maccatalyst-x64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.dylib
+|   |           |   |           
+|   |           |   +---osx-arm64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.dylib
+|   |           |   |           
+|   |           |   +---osx-x64
+|   |           |   |   \---native
+|   |           |   |           libe_sqlite3.dylib
+|   |           |   |           
+|   |           |   +---win-arm
+|   |           |   |   \---native
+|   |           |   |           e_sqlite3.dll
+|   |           |   |           
+|   |           |   +---win-arm64
+|   |           |   |   \---native
+|   |           |   |           e_sqlite3.dll
+|   |           |   |           
+|   |           |   +---win-x64
+|   |           |   |   \---native
+|   |           |   |           e_sqlite3.dll
+|   |           |   |           
+|   |           |   \---win-x86
+|   |           |       \---native
+|   |           |               e_sqlite3.dll
+|   |           |               
+|   |           +---tr
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           +---zh-Hans
+|   |           |       Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |           |       Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |           |       Microsoft.Testing.Platform.resources.dll
+|   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |           |       
+|   |           \---zh-Hant
+|   |                   Microsoft.Testing.Extensions.MSBuild.resources.dll
+|   |                   Microsoft.Testing.Extensions.Telemetry.resources.dll
+|   |                   Microsoft.Testing.Platform.resources.dll
+|   |                   Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+|   |                   Microsoft.TestPlatform.CoreUtilities.resources.dll
+|   |                   Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+|   |                   Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+|   |                   Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+|   |                   
+|   \---obj
+|       |   MySandbox.Tests.csproj.nuget.dgspec.json
+|       |   MySandbox.Tests.csproj.nuget.g.props
+|       |   MySandbox.Tests.csproj.nuget.g.targets
+|       |   project.assets.json
+|       |   project.nuget.cache
+|       |   
+|       \---Debug
+|           \---net10.0
+|               |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|               |   apphost.exe
+|               |   MySandbo.7D7F7947.Up2Date
+|               |   MySandbox.Tests.AssemblyInfo.cs
+|               |   MySandbox.Tests.AssemblyInfoInputs.cache
+|               |   MySandbox.Tests.assets.cache
+|               |   MySandbox.Tests.csproj.AssemblyReference.cache
+|               |   MySandbox.Tests.csproj.BuildWithSkipAnalyzers
+|               |   MySandbox.Tests.csproj.CoreCompileInputs.cache
+|               |   MySandbox.Tests.csproj.FileListAbsolute.txt
+|               |   MySandbox.Tests.dll
+|               |   MySandbox.Tests.genautoregisteredextensionsinputcache.cache
+|               |   MySandbox.Tests.GeneratedMSBuildEditorConfig.editorconfig
+|               |   MySandbox.Tests.genruntimeconfig.cache
+|               |   MySandbox.Tests.gentestingplatformentrypointinputcache.cache
+|               |   MySandbox.Tests.GlobalUsings.g.cs
+|               |   MySandbox.Tests.pdb
+|               |   MySandbox.Tests.sourcelink.json
+|               |   MySandbox.Tests.xUnit.v3.EntryPoint.cache
+|               |   SelfRegisteredExtensions.cs
+|               |   XunitAutoGeneratedEntryPoint.cs
+|               |   
+|               +---ref
+|               |       MySandbox.Tests.dll
+|               |       
+|               \---refint
+|                       MySandbox.Tests.dll
+|                       
+\---TestResults
+
+
+FILE CONTENTS:
+==============
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\.github\workflows\build.yml
+SIZE: 7.94 KB
+MODIFIED: 02/07/2026 10:59:31
+================================================================================
+
+name: Build, Test, and Release
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_VERSION: '10.0.x'
+  PROJECT_NAME: 'MySandbox'
+  CONSOLE_PROJECT: 'MySandbox.Console/MySandbox.Console.csproj'
+  TEST_PROJECT: 'MySandbox.Tests/MySandbox.Tests.csproj'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test ${{ env.TEST_PROJECT }} --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: '**/test-results.trx'
+
+  publish-binaries:
+    name: Publish for ${{ matrix.platform }}
+    needs: build-and-test
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        include:
+          # Windows builds
+          - platform: 'win-x64'
+            os: 'windows-latest'
+            output_name: 'MySandbox-win-x64.exe'
+          - platform: 'win-x86'
+            os: 'windows-latest'
+            output_name: 'MySandbox-win-x86.exe'
+          - platform: 'win-arm64'
+            os: 'windows-latest'
+            output_name: 'MySandbox-win-arm64.exe'
+          
+          # Linux builds
+          - platform: 'linux-x64'
+            os: 'ubuntu-latest'
+            output_name: 'MySandbox-linux-x64'
+          - platform: 'linux-arm'
+            os: 'ubuntu-latest'
+            output_name: 'MySandbox-linux-arm'
+          - platform: 'linux-arm64'
+            os: 'ubuntu-latest'
+            output_name: 'MySandbox-linux-arm64'
+          - platform: 'linux-musl-x64'
+            os: 'ubuntu-latest'
+            output_name: 'MySandbox-linux-musl-x64'
+          - platform: 'linux-musl-arm64'
+            os: 'ubuntu-latest'
+            output_name: 'MySandbox-linux-musl-arm64'
+          
+          # macOS builds
+          - platform: 'osx-x64'
+            os: 'macos-latest'
+            output_name: 'MySandbox-osx-x64'
+          - platform: 'osx-arm64'
+            os: 'macos-latest'
+            output_name: 'MySandbox-osx-arm64'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Publish self-contained binary
+        shell: bash
+        run: |
+          dotnet publish ${{ env.CONSOLE_PROJECT }} \
+            --configuration Release \
+            --runtime ${{ matrix.platform }} \
+            --self-contained true \
+            --output ./publish/${{ matrix.platform }} \
+            -p:PublishSingleFile=true \
+            -p:PublishTrimmed=false \
+            -p:EnableCompressionInSingleFile=true \
+            -p:DebugType=None \
+            -p:DebugSymbols=false
+
+      - name: Create archive (Windows)
+        if: startsWith(matrix.platform, 'win-')
+        shell: pwsh
+        run: |
+          $outputPath = "./publish/${{ matrix.platform }}"
+          $archiveName = "MySandbox-${{ matrix.platform }}.zip"
+          
+          # Include the executable and appsettings.json
+          Compress-Archive -Path "$outputPath/*" -DestinationPath $archiveName -Force
+
+      - name: Create archive (Unix)
+        if: "!startsWith(matrix.platform, 'win-')"
+        run: |
+          cd ./publish/${{ matrix.platform }}
+          
+          # Make executable if it's not Windows
+          chmod +x MySandbox.Console 2>/dev/null || true
+          
+          # Create tar.gz archive
+          tar -czf ../../MySandbox-${{ matrix.platform }}.tar.gz *
+
+      - name: Upload Windows artifacts
+        if: startsWith(matrix.platform, 'win-')
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.platform }}
+          path: MySandbox-${{ matrix.platform }}.zip
+          retention-days: 90
+
+      - name: Upload Unix artifacts
+        if: "!startsWith(matrix.platform, 'win-')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.platform }}
+          path: MySandbox-${{ matrix.platform }}.tar.gz
+          retention-days: 90
+
+  create-release:
+    name: Create Release
+    needs: publish-binaries
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Display artifact structure
+        run: ls -R ./artifacts
+
+      - name: Generate build timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: build-${{ steps.timestamp.outputs.timestamp }}
+          name: Build ${{ steps.timestamp.outputs.timestamp }}
+          body: |
+            Automated build from commit ${{ github.sha }}
+            
+            **Commit Message:** ${{ github.event.head_commit.message }}
+            **Author:** ${{ github.event.head_commit.author.name }}
+            **Date:** ${{ github.event.head_commit.timestamp }}
+            
+            ## Platforms
+            
+            ### Windows
+            - win-x64 (64-bit)
+            - win-x86 (32-bit)
+            - win-arm64 (ARM 64-bit)
+            
+            ### Linux
+            - linux-x64 (64-bit)
+            - linux-arm (ARM 32-bit)
+            - linux-arm64 (ARM 64-bit)
+            - linux-musl-x64 (Alpine Linux 64-bit)
+            - linux-musl-arm64 (Alpine Linux ARM 64-bit)
+            
+            ### macOS
+            - osx-x64 (Intel 64-bit)
+            - osx-arm64 (Apple Silicon)
+            
+            All binaries are self-contained and do not require .NET runtime installation.
+          files: |
+            ./artifacts/binary-win-x64/*.zip
+            ./artifacts/binary-win-x86/*.zip
+            ./artifacts/binary-win-arm64/*.zip
+            ./artifacts/binary-linux-x64/*.tar.gz
+            ./artifacts/binary-linux-arm/*.tar.gz
+            ./artifacts/binary-linux-arm64/*.tar.gz
+            ./artifacts/binary-linux-musl-x64/*.tar.gz
+            ./artifacts/binary-linux-musl-arm64/*.tar.gz
+            ./artifacts/binary-osx-x64/*.tar.gz
+            ./artifacts/binary-osx-arm64/*.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  summary:
+    name: Build Summary
+    needs: [build-and-test, publish-binaries, create-release]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "## Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository:** ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** ${{ github.event.head_commit.author.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Jobs Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Build and Test: ${{ needs.build-and-test.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Publish Binaries: ${{ needs.publish-binaries.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Create Release: ${{ needs.create-release.result }}" >> $GITHUB_STEP_SUMMARY
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\.gitignore
+SIZE: 8.3 KB
+MODIFIED: 02/06/2026 15:35:54
+================================================================================
+
+## Ignore Visual Studio temporary files, build results, and
+## files generated by popular Visual Studio add-ons.
+##
+## Get latest from `dotnet new gitignore`
+
+# dotenv files
+.env
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Tye
+.tye/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+# but not Directory.Build.rsp, as it configures directory-level build defaults
+!Directory.Build.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah Test files
+_Chutzpah*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio Trace Files
+*.e2e
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# AxoCover is a Code Coverage Tool
+.axoCover/*
+!.axoCover/settings.json
+
+# Coverlet is a free, cross platform Code Coverage Tool
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Help/html
+
+# Click-Once directory
+publish/
+
+# Publish Web Output
+*.[Pp]ublish.xml
+*.azurePubxml
+# Note: Comment the next line if you want to checkin your web deploy settings,
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+PublishScripts/
+
+# NuGet Packages
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/[Pp]ackages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
+
+# Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# Including strong name files can present a security risk
+# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+#*.snk
+
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+*.rptproj.bak
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Visual Studio 6 build log
+*.plg
+
+# Visual Studio 6 workspace options file
+*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+*.dsw
+*.dsp
+
+# Visual Studio 6 technical files
+*.ncb
+*.aps
+
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# CodeRush personal settings
+.cr/personal
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# Cake - Uncomment if you are using it
+# tools/**
+# !tools/packages.config
+
+# Tabs Studio
+*.tss
+
+# Telerik's JustMock configuration file
+*.jmconfig
+
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# OpenCover UI analysis results
+OpenCover/
+
+# Azure Stream Analytics local run output
+ASALocalRun/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# NVidia Nsight GPU debugger configuration file
+*.nvuser
+
+# MFractors (Xamarin productivity tool) working folder
+.mfractor/
+
+# Local History for Visual Studio
+.localhistory/
+
+# Visual Studio History (VSHistory) files
+.vshistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
+
+# Fody - auto-generated XML schema
+FodyWeavers.xsd
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Windows Installer files from build outputs
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# JetBrains Rider
+*.sln.iml
+.idea/
+
+##
+## Visual studio for Mac
+##
+
+
+# globs
+Makefile.in
+*.userprefs
+*.usertasks
+config.make
+config.status
+aclocal.m4
+install-sh
+autom4te.cache/
+*.tar.gz
+tarballs/
+test-results/
+
+# content below from: https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# content below from: https://github.com/github/gitignore/blob/main/Global/Windows.gitignore
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Vim temporary swap files
+*.swp
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\BusinessRulesOptions.cs
+SIZE: 0.19 KB
+MODIFIED: 02/06/2026 11:28:36
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+public class BusinessRulesOptions
+{
+    public int DataRetentionDays { get; set; } = 30;
+    public string BatchOperationPrefix { get; set; } = "Batch-";
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\ICanDoStuff.cs
+SIZE: 0.16 KB
+MODIFIED: 02/07/2026 13:34:10
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+public interface ICanDoStuff
+{
+    Task DoStuffAsync();
+    Task ImportLargeDatasetAsync(int count = 1_000_000);
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\ICanDoStuffA.cs
+SIZE: 0.1 KB
+MODIFIED: 02/07/2026 13:34:23
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+public interface ICanDoStuffA
+{
+    Task DoStuffAAsync();
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\ICanDoStuffB.cs
+SIZE: 0.1 KB
+MODIFIED: 02/07/2026 13:34:33
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+public interface ICanDoStuffB
+{
+    Task DoStuffBAsync();
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\IStuffRepository.cs
+SIZE: 0.26 KB
+MODIFIED: 02/06/2026 11:02:10
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+// Repository interface
+public interface IStuffRepository
+{
+    Task AddAsync(string item);
+    Task<IEnumerable<StuffItem>> GetAllAsync();
+    Task<StuffItem?> GetByIdAsync(int id);
+    Task<bool> RemoveAsync(int id);
+}
+
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\MySandbox.ClassLibrary.csproj
+SIZE: 0.58 KB
+MODIFIED: 02/06/2026 11:30:53
+================================================================================
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- Needed: DbContext, DbContextOptions, UseSqlite extension -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
+
+		<!-- Needed: ILogger<T> interface only -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="10.0.2" />
+	</ItemGroup>
+</Project>
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\SeedDataOptions.cs
+SIZE: 0.12 KB
+MODIFIED: 02/07/2026 13:36:39
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+public class SeedDataOptions
+{
+    public List<string> Products { get; set; } = [];
+}
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\StuffDbContext.cs
+SIZE: 0.78 KB
+MODIFIED: 02/06/2026 11:02:05
+================================================================================
+
+using Microsoft.EntityFrameworkCore;
+
+namespace MySandbox.ClassLibrary;
+
+// DbContext
+public class StuffDbContext(DbContextOptions<StuffDbContext> options) : DbContext(options)
+{
+    public DbSet<StuffItem> StuffItems => Set<StuffItem>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<StuffItem>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(500); // Prevent unbounded string attacks
+            entity.Property(e => e.CreatedAt)
+                .IsRequired();
+            entity.HasIndex(e => e.CreatedAt); // Index for performance
+        });
+    }
+}
+
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\StuffDoer.cs
+SIZE: 4.58 KB
+MODIFIED: 02/07/2026 13:32:52
+================================================================================
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+namespace MySandbox.ClassLibrary;
+
+public class StuffDoer(
+    ILogger<StuffDoer> logger,
+    StuffDbContext dbContext,
+    IOptions<BusinessRulesOptions> businessRules,
+    IOptions<SeedDataOptions> seedData)
+    : ICanDoStuff, ICanDoStuffA, ICanDoStuffB
+{
+    private readonly ILogger<StuffDoer> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    private readonly StuffDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    private readonly BusinessRulesOptions _businessRules = businessRules?.Value ?? throw new ArgumentNullException(nameof(businessRules));
+    private readonly SeedDataOptions _seedData = seedData?.Value ?? throw new ArgumentNullException(nameof(seedData));
+
+    public async Task DoStuffAsync()
+    {
+        _logger.LogInformation("Generating daily report");
+        
+        // FIXED: Use database-side filtering instead of loading everything into memory
+        var today = DateTime.UtcNow.Date;
+        var tomorrow = today.AddDays(1);
+        
+        var todayCount = await _dbContext.StuffItems
+            .Where(x => x.CreatedAt >= today && x.CreatedAt < tomorrow)
+            .CountAsync();
+        
+        var totalCount = await _dbContext.StuffItems.CountAsync();
+
+        _logger.LogInformation(
+            "Daily Report: {TodayCount} items created today, {TotalCount} items total",
+            todayCount,
+            totalCount);
+    }
+
+    public async Task DoStuffAAsync()
+    {
+        _logger.LogInformation("Running cleanup process for items older than {Days} days",
+            _businessRules.DataRetentionDays);
+
+        // FIXED: Use ExecuteDeleteAsync for bulk deletion instead of loading into memory and deleting one-by-one
+        var cutoffDate = DateTime.UtcNow.AddDays(-_businessRules.DataRetentionDays);
+        
+        var deletedCount = await _dbContext.StuffItems
+            .Where(x => x.CreatedAt < cutoffDate)
+            .ExecuteDeleteAsync();
+
+        _logger.LogInformation("Cleanup completed: Removed {Count} old items", deletedCount);
+    }
+
+    public async Task DoStuffBAsync()
+    {
+        _logger.LogInformation("Importing sample data with prefix '{Prefix}'",
+            _businessRules.BatchOperationPrefix);
+
+        var sampleData = _seedData.Products;
+
+        // FIXED: Use database-side duplicate checking instead of loading all existing items
+        var newItemsAdded = 0;
+        var skippedCount = 0;
+
+        foreach (var item in sampleData)
+        {
+            var fullName = $"{_businessRules.BatchOperationPrefix}{item}";
+
+            // Check if item exists using a database query instead of in-memory collection
+            var exists = await _dbContext.StuffItems
+                .AnyAsync(x => x.Name == fullName);
+
+            if (!exists)
+            {
+                _dbContext.StuffItems.Add(new StuffItem
+                {
+                    Name = fullName,
+                    CreatedAt = DateTime.UtcNow
+                });
+                newItemsAdded++;
+            }
+            else
+            {
+                skippedCount++;
+            }
+        }
+
+        if (newItemsAdded > 0)
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+
+        _logger.LogInformation(
+            "Import completed: {NewCount} new items added, {SkippedCount} duplicates skipped",
+            newItemsAdded,
+            skippedCount);
+    }
+
+    public async Task ImportLargeDatasetAsync(int count = 1_000_000)
+    {
+        _logger.LogInformation("Importing {Count} items for performance testing", count);
+
+        const int batchSize = 10000;
+        var itemsAdded = 0;
+
+        for (var i = 0; i < count; i += batchSize)
+        {
+            var currentBatchSize = Math.Min(batchSize, count - i);
+            var items = new List<StuffItem>(currentBatchSize);
+
+            for (var j = 0; j < currentBatchSize; j++)
+            {
+                items.Add(new StuffItem
+                {
+                    Name = $"LoadTest-{i + j + 1}",
+                    CreatedAt = DateTime.UtcNow
+                });
+            }
+
+            await _dbContext.StuffItems.AddRangeAsync(items);
+            await _dbContext.SaveChangesAsync();
+            
+            itemsAdded += currentBatchSize;
+            
+            if (itemsAdded % 50000 == 0)
+            {
+                _logger.LogInformation("Progress: {ItemsAdded}/{TotalCount} items added", itemsAdded, count);
+            }
+        }
+
+        _logger.LogInformation("Large dataset import completed: {Count} items added", itemsAdded);
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\StuffItem.cs
+SIZE: 0.22 KB
+MODIFIED: 02/06/2026 11:02:00
+================================================================================
+
+namespace MySandbox.ClassLibrary;
+
+// Entity model
+public class StuffItem
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; }
+}
+
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.ClassLibrary\StuffRepository.cs
+SIZE: 2.94 KB
+MODIFIED: 02/06/2026 11:02:25
+================================================================================
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace MySandbox.ClassLibrary;
+
+// Repository implementation
+public class StuffRepository(ILogger<StuffRepository> logger, StuffDbContext dbContext) : IStuffRepository
+{
+    private readonly ILogger<StuffRepository> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    private readonly StuffDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+
+    public async Task AddAsync(string item)
+    {
+        // Input validation - OWASP best practice
+        if (string.IsNullOrWhiteSpace(item))
+        {
+            _logger.LogWarning("Attempted to add null or empty item");
+            throw new ArgumentException("Item name cannot be null or empty", nameof(item));
+        }
+
+        // Length validation - prevent DoS attacks
+        if (item.Length > 500)
+        {
+            _logger.LogWarning("Attempted to add item exceeding maximum length");
+            throw new ArgumentException("Item name cannot exceed 500 characters", nameof(item));
+        }
+
+        var stuffItem = new StuffItem
+        {
+            Name = item, // EF Core uses parameterized queries - SQL injection safe
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _dbContext.StuffItems.AddAsync(stuffItem);
+        await _dbContext.SaveChangesAsync();
+
+        _logger.LogInformation("Added item: {Item} with ID: {Id}", item, stuffItem.Id);
+    }
+
+    public async Task<IEnumerable<StuffItem>> GetAllAsync()
+    {
+        _logger.LogInformation("Getting all items");
+        // EF Core uses parameterized queries - SQL injection safe
+        return await _dbContext.StuffItems
+            .OrderBy(x => x.CreatedAt)
+            .ToListAsync();
+    }
+
+    public async Task<StuffItem?> GetByIdAsync(int id)
+    {
+        // Input validation
+        if (id <= 0)
+        {
+            _logger.LogWarning("Invalid ID requested: {Id}", id);
+            return null;
+        }
+
+        // EF Core uses parameterized queries - SQL injection safe
+        var item = await _dbContext.StuffItems.FindAsync(id);
+
+        if (item == null)
+        {
+            _logger.LogWarning("Item with id {Id} not found", id);
+        }
+
+        return item;
+    }
+
+    public async Task<bool> RemoveAsync(int id)
+    {
+        // Input validation
+        if (id <= 0)
+        {
+            _logger.LogWarning("Invalid ID for removal: {Id}", id);
+            return false;
+        }
+
+        var item = await _dbContext.StuffItems.FindAsync(id);
+
+        if (item == null)
+        {
+            _logger.LogWarning("Cannot remove - item with id {Id} not found", id);
+            return false;
+        }
+
+        _dbContext.StuffItems.Remove(item);
+        await _dbContext.SaveChangesAsync();
+
+        _logger.LogInformation("Removed item: {Item} with ID: {Id}", item.Name, item.Id);
+        return true;
+    }
+}
+
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Console\appsettings.json
+SIZE: 21.6 KB
+MODIFIED: 02/07/2026 11:41:18
+================================================================================
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information"
+    }
+  },
+  "BusinessRules": {
+    "DataRetentionDays": 30,
+    "BatchOperationPrefix": "Batch-"
+  },
+  "SeedData": {
+    "Products": [
+      "Product 1",
+      "Product 2",
+      "Product 3",
+      "Product 4",
+      "Product 5",
+      "Product 6",
+      "Product 7",
+      "Product 8",
+      "Product 9",
+      "Product 10",
+      "Product 11",
+      "Product 12",
+      "Product 13",
+      "Product 14",
+      "Product 15",
+      "Product 16",
+      "Product 17",
+      "Product 18",
+      "Product 19",
+      "Product 20",
+      "Product 21",
+      "Product 22",
+      "Product 23",
+      "Product 24",
+      "Product 25",
+      "Product 26",
+      "Product 27",
+      "Product 28",
+      "Product 29",
+      "Product 30",
+      "Product 31",
+      "Product 32",
+      "Product 33",
+      "Product 34",
+      "Product 35",
+      "Product 36",
+      "Product 37",
+      "Product 38",
+      "Product 39",
+      "Product 40",
+      "Product 41",
+      "Product 42",
+      "Product 43",
+      "Product 44",
+      "Product 45",
+      "Product 46",
+      "Product 47",
+      "Product 48",
+      "Product 49",
+      "Product 50",
+      "Product 51",
+      "Product 52",
+      "Product 53",
+      "Product 54",
+      "Product 55",
+      "Product 56",
+      "Product 57",
+      "Product 58",
+      "Product 59",
+      "Product 60",
+      "Product 61",
+      "Product 62",
+      "Product 63",
+      "Product 64",
+      "Product 65",
+      "Product 66",
+      "Product 67",
+      "Product 68",
+      "Product 69",
+      "Product 70",
+      "Product 71",
+      "Product 72",
+      "Product 73",
+      "Product 74",
+      "Product 75",
+      "Product 76",
+      "Product 77",
+      "Product 78",
+      "Product 79",
+      "Product 80",
+      "Product 81",
+      "Product 82",
+      "Product 83",
+      "Product 84",
+      "Product 85",
+      "Product 86",
+      "Product 87",
+      "Product 88",
+      "Product 89",
+      "Product 90",
+      "Product 91",
+      "Product 92",
+      "Product 93",
+      "Product 94",
+      "Product 95",
+      "Product 96",
+      "Product 97",
+      "Product 98",
+      "Product 99",
+      "Product 100",
+      "Product 101",
+      "Product 102",
+      "Product 103",
+      "Product 104",
+      "Product 105",
+      "Product 106",
+      "Product 107",
+      "Product 108",
+      "Product 109",
+      "Product 110",
+      "Product 111",
+      "Product 112",
+      "Product 113",
+      "Product 114",
+      "Product 115",
+      "Product 116",
+      "Product 117",
+      "Product 118",
+      "Product 119",
+      "Product 120",
+      "Product 121",
+      "Product 122",
+      "Product 123",
+      "Product 124",
+      "Product 125",
+      "Product 126",
+      "Product 127",
+      "Product 128",
+      "Product 129",
+      "Product 130",
+      "Product 131",
+      "Product 132",
+      "Product 133",
+      "Product 134",
+      "Product 135",
+      "Product 136",
+      "Product 137",
+      "Product 138",
+      "Product 139",
+      "Product 140",
+      "Product 141",
+      "Product 142",
+      "Product 143",
+      "Product 144",
+      "Product 145",
+      "Product 146",
+      "Product 147",
+      "Product 148",
+      "Product 149",
+      "Product 150",
+      "Product 151",
+      "Product 152",
+      "Product 153",
+      "Product 154",
+      "Product 155",
+      "Product 156",
+      "Product 157",
+      "Product 158",
+      "Product 159",
+      "Product 160",
+      "Product 161",
+      "Product 162",
+      "Product 163",
+      "Product 164",
+      "Product 165",
+      "Product 166",
+      "Product 167",
+      "Product 168",
+      "Product 169",
+      "Product 170",
+      "Product 171",
+      "Product 172",
+      "Product 173",
+      "Product 174",
+      "Product 175",
+      "Product 176",
+      "Product 177",
+      "Product 178",
+      "Product 179",
+      "Product 180",
+      "Product 181",
+      "Product 182",
+      "Product 183",
+      "Product 184",
+      "Product 185",
+      "Product 186",
+      "Product 187",
+      "Product 188",
+      "Product 189",
+      "Product 190",
+      "Product 191",
+      "Product 192",
+      "Product 193",
+      "Product 194",
+      "Product 195",
+      "Product 196",
+      "Product 197",
+      "Product 198",
+      "Product 199",
+      "Product 200",
+      "Product 201",
+      "Product 202",
+      "Product 203",
+      "Product 204",
+      "Product 205",
+      "Product 206",
+      "Product 207",
+      "Product 208",
+      "Product 209",
+      "Product 210",
+      "Product 211",
+      "Product 212",
+      "Product 213",
+      "Product 214",
+      "Product 215",
+      "Product 216",
+      "Product 217",
+      "Product 218",
+      "Product 219",
+      "Product 220",
+      "Product 221",
+      "Product 222",
+      "Product 223",
+      "Product 224",
+      "Product 225",
+      "Product 226",
+      "Product 227",
+      "Product 228",
+      "Product 229",
+      "Product 230",
+      "Product 231",
+      "Product 232",
+      "Product 233",
+      "Product 234",
+      "Product 235",
+      "Product 236",
+      "Product 237",
+      "Product 238",
+      "Product 239",
+      "Product 240",
+      "Product 241",
+      "Product 242",
+      "Product 243",
+      "Product 244",
+      "Product 245",
+      "Product 246",
+      "Product 247",
+      "Product 248",
+      "Product 249",
+      "Product 250",
+      "Product 251",
+      "Product 252",
+      "Product 253",
+      "Product 254",
+      "Product 255",
+      "Product 256",
+      "Product 257",
+      "Product 258",
+      "Product 259",
+      "Product 260",
+      "Product 261",
+      "Product 262",
+      "Product 263",
+      "Product 264",
+      "Product 265",
+      "Product 266",
+      "Product 267",
+      "Product 268",
+      "Product 269",
+      "Product 270",
+      "Product 271",
+      "Product 272",
+      "Product 273",
+      "Product 274",
+      "Product 275",
+      "Product 276",
+      "Product 277",
+      "Product 278",
+      "Product 279",
+      "Product 280",
+      "Product 281",
+      "Product 282",
+      "Product 283",
+      "Product 284",
+      "Product 285",
+      "Product 286",
+      "Product 287",
+      "Product 288",
+      "Product 289",
+      "Product 290",
+      "Product 291",
+      "Product 292",
+      "Product 293",
+      "Product 294",
+      "Product 295",
+      "Product 296",
+      "Product 297",
+      "Product 298",
+      "Product 299",
+      "Product 300",
+      "Product 301",
+      "Product 302",
+      "Product 303",
+      "Product 304",
+      "Product 305",
+      "Product 306",
+      "Product 307",
+      "Product 308",
+      "Product 309",
+      "Product 310",
+      "Product 311",
+      "Product 312",
+      "Product 313",
+      "Product 314",
+      "Product 315",
+      "Product 316",
+      "Product 317",
+      "Product 318",
+      "Product 319",
+      "Product 320",
+      "Product 321",
+      "Product 322",
+      "Product 323",
+      "Product 324",
+      "Product 325",
+      "Product 326",
+      "Product 327",
+      "Product 328",
+      "Product 329",
+      "Product 330",
+      "Product 331",
+      "Product 332",
+      "Product 333",
+      "Product 334",
+      "Product 335",
+      "Product 336",
+      "Product 337",
+      "Product 338",
+      "Product 339",
+      "Product 340",
+      "Product 341",
+      "Product 342",
+      "Product 343",
+      "Product 344",
+      "Product 345",
+      "Product 346",
+      "Product 347",
+      "Product 348",
+      "Product 349",
+      "Product 350",
+      "Product 351",
+      "Product 352",
+      "Product 353",
+      "Product 354",
+      "Product 355",
+      "Product 356",
+      "Product 357",
+      "Product 358",
+      "Product 359",
+      "Product 360",
+      "Product 361",
+      "Product 362",
+      "Product 363",
+      "Product 364",
+      "Product 365",
+      "Product 366",
+      "Product 367",
+      "Product 368",
+      "Product 369",
+      "Product 370",
+      "Product 371",
+      "Product 372",
+      "Product 373",
+      "Product 374",
+      "Product 375",
+      "Product 376",
+      "Product 377",
+      "Product 378",
+      "Product 379",
+      "Product 380",
+      "Product 381",
+      "Product 382",
+      "Product 383",
+      "Product 384",
+      "Product 385",
+      "Product 386",
+      "Product 387",
+      "Product 388",
+      "Product 389",
+      "Product 390",
+      "Product 391",
+      "Product 392",
+      "Product 393",
+      "Product 394",
+      "Product 395",
+      "Product 396",
+      "Product 397",
+      "Product 398",
+      "Product 399",
+      "Product 400",
+      "Product 401",
+      "Product 402",
+      "Product 403",
+      "Product 404",
+      "Product 405",
+      "Product 406",
+      "Product 407",
+      "Product 408",
+      "Product 409",
+      "Product 410",
+      "Product 411",
+      "Product 412",
+      "Product 413",
+      "Product 414",
+      "Product 415",
+      "Product 416",
+      "Product 417",
+      "Product 418",
+      "Product 419",
+      "Product 420",
+      "Product 421",
+      "Product 422",
+      "Product 423",
+      "Product 424",
+      "Product 425",
+      "Product 426",
+      "Product 427",
+      "Product 428",
+      "Product 429",
+      "Product 430",
+      "Product 431",
+      "Product 432",
+      "Product 433",
+      "Product 434",
+      "Product 435",
+      "Product 436",
+      "Product 437",
+      "Product 438",
+      "Product 439",
+      "Product 440",
+      "Product 441",
+      "Product 442",
+      "Product 443",
+      "Product 444",
+      "Product 445",
+      "Product 446",
+      "Product 447",
+      "Product 448",
+      "Product 449",
+      "Product 450",
+      "Product 451",
+      "Product 452",
+      "Product 453",
+      "Product 454",
+      "Product 455",
+      "Product 456",
+      "Product 457",
+      "Product 458",
+      "Product 459",
+      "Product 460",
+      "Product 461",
+      "Product 462",
+      "Product 463",
+      "Product 464",
+      "Product 465",
+      "Product 466",
+      "Product 467",
+      "Product 468",
+      "Product 469",
+      "Product 470",
+      "Product 471",
+      "Product 472",
+      "Product 473",
+      "Product 474",
+      "Product 475",
+      "Product 476",
+      "Product 477",
+      "Product 478",
+      "Product 479",
+      "Product 480",
+      "Product 481",
+      "Product 482",
+      "Product 483",
+      "Product 484",
+      "Product 485",
+      "Product 486",
+      "Product 487",
+      "Product 488",
+      "Product 489",
+      "Product 490",
+      "Product 491",
+      "Product 492",
+      "Product 493",
+      "Product 494",
+      "Product 495",
+      "Product 496",
+      "Product 497",
+      "Product 498",
+      "Product 499",
+      "Product 500",
+      "Product 501",
+      "Product 502",
+      "Product 503",
+      "Product 504",
+      "Product 505",
+      "Product 506",
+      "Product 507",
+      "Product 508",
+      "Product 509",
+      "Product 510",
+      "Product 511",
+      "Product 512",
+      "Product 513",
+      "Product 514",
+      "Product 515",
+      "Product 516",
+      "Product 517",
+      "Product 518",
+      "Product 519",
+      "Product 520",
+      "Product 521",
+      "Product 522",
+      "Product 523",
+      "Product 524",
+      "Product 525",
+      "Product 526",
+      "Product 527",
+      "Product 528",
+      "Product 529",
+      "Product 530",
+      "Product 531",
+      "Product 532",
+      "Product 533",
+      "Product 534",
+      "Product 535",
+      "Product 536",
+      "Product 537",
+      "Product 538",
+      "Product 539",
+      "Product 540",
+      "Product 541",
+      "Product 542",
+      "Product 543",
+      "Product 544",
+      "Product 545",
+      "Product 546",
+      "Product 547",
+      "Product 548",
+      "Product 549",
+      "Product 550",
+      "Product 551",
+      "Product 552",
+      "Product 553",
+      "Product 554",
+      "Product 555",
+      "Product 556",
+      "Product 557",
+      "Product 558",
+      "Product 559",
+      "Product 560",
+      "Product 561",
+      "Product 562",
+      "Product 563",
+      "Product 564",
+      "Product 565",
+      "Product 566",
+      "Product 567",
+      "Product 568",
+      "Product 569",
+      "Product 570",
+      "Product 571",
+      "Product 572",
+      "Product 573",
+      "Product 574",
+      "Product 575",
+      "Product 576",
+      "Product 577",
+      "Product 578",
+      "Product 579",
+      "Product 580",
+      "Product 581",
+      "Product 582",
+      "Product 583",
+      "Product 584",
+      "Product 585",
+      "Product 586",
+      "Product 587",
+      "Product 588",
+      "Product 589",
+      "Product 590",
+      "Product 591",
+      "Product 592",
+      "Product 593",
+      "Product 594",
+      "Product 595",
+      "Product 596",
+      "Product 597",
+      "Product 598",
+      "Product 599",
+      "Product 600",
+      "Product 601",
+      "Product 602",
+      "Product 603",
+      "Product 604",
+      "Product 605",
+      "Product 606",
+      "Product 607",
+      "Product 608",
+      "Product 609",
+      "Product 610",
+      "Product 611",
+      "Product 612",
+      "Product 613",
+      "Product 614",
+      "Product 615",
+      "Product 616",
+      "Product 617",
+      "Product 618",
+      "Product 619",
+      "Product 620",
+      "Product 621",
+      "Product 622",
+      "Product 623",
+      "Product 624",
+      "Product 625",
+      "Product 626",
+      "Product 627",
+      "Product 628",
+      "Product 629",
+      "Product 630",
+      "Product 631",
+      "Product 632",
+      "Product 633",
+      "Product 634",
+      "Product 635",
+      "Product 636",
+      "Product 637",
+      "Product 638",
+      "Product 639",
+      "Product 640",
+      "Product 641",
+      "Product 642",
+      "Product 643",
+      "Product 644",
+      "Product 645",
+      "Product 646",
+      "Product 647",
+      "Product 648",
+      "Product 649",
+      "Product 650",
+      "Product 651",
+      "Product 652",
+      "Product 653",
+      "Product 654",
+      "Product 655",
+      "Product 656",
+      "Product 657",
+      "Product 658",
+      "Product 659",
+      "Product 660",
+      "Product 661",
+      "Product 662",
+      "Product 663",
+      "Product 664",
+      "Product 665",
+      "Product 666",
+      "Product 667",
+      "Product 668",
+      "Product 669",
+      "Product 670",
+      "Product 671",
+      "Product 672",
+      "Product 673",
+      "Product 674",
+      "Product 675",
+      "Product 676",
+      "Product 677",
+      "Product 678",
+      "Product 679",
+      "Product 680",
+      "Product 681",
+      "Product 682",
+      "Product 683",
+      "Product 684",
+      "Product 685",
+      "Product 686",
+      "Product 687",
+      "Product 688",
+      "Product 689",
+      "Product 690",
+      "Product 691",
+      "Product 692",
+      "Product 693",
+      "Product 694",
+      "Product 695",
+      "Product 696",
+      "Product 697",
+      "Product 698",
+      "Product 699",
+      "Product 700",
+      "Product 701",
+      "Product 702",
+      "Product 703",
+      "Product 704",
+      "Product 705",
+      "Product 706",
+      "Product 707",
+      "Product 708",
+      "Product 709",
+      "Product 710",
+      "Product 711",
+      "Product 712",
+      "Product 713",
+      "Product 714",
+      "Product 715",
+      "Product 716",
+      "Product 717",
+      "Product 718",
+      "Product 719",
+      "Product 720",
+      "Product 721",
+      "Product 722",
+      "Product 723",
+      "Product 724",
+      "Product 725",
+      "Product 726",
+      "Product 727",
+      "Product 728",
+      "Product 729",
+      "Product 730",
+      "Product 731",
+      "Product 732",
+      "Product 733",
+      "Product 734",
+      "Product 735",
+      "Product 736",
+      "Product 737",
+      "Product 738",
+      "Product 739",
+      "Product 740",
+      "Product 741",
+      "Product 742",
+      "Product 743",
+      "Product 744",
+      "Product 745",
+      "Product 746",
+      "Product 747",
+      "Product 748",
+      "Product 749",
+      "Product 750",
+      "Product 751",
+      "Product 752",
+      "Product 753",
+      "Product 754",
+      "Product 755",
+      "Product 756",
+      "Product 757",
+      "Product 758",
+      "Product 759",
+      "Product 760",
+      "Product 761",
+      "Product 762",
+      "Product 763",
+      "Product 764",
+      "Product 765",
+      "Product 766",
+      "Product 767",
+      "Product 768",
+      "Product 769",
+      "Product 770",
+      "Product 771",
+      "Product 772",
+      "Product 773",
+      "Product 774",
+      "Product 775",
+      "Product 776",
+      "Product 777",
+      "Product 778",
+      "Product 779",
+      "Product 780",
+      "Product 781",
+      "Product 782",
+      "Product 783",
+      "Product 784",
+      "Product 785",
+      "Product 786",
+      "Product 787",
+      "Product 788",
+      "Product 789",
+      "Product 790",
+      "Product 791",
+      "Product 792",
+      "Product 793",
+      "Product 794",
+      "Product 795",
+      "Product 796",
+      "Product 797",
+      "Product 798",
+      "Product 799",
+      "Product 800",
+      "Product 801",
+      "Product 802",
+      "Product 803",
+      "Product 804",
+      "Product 805",
+      "Product 806",
+      "Product 807",
+      "Product 808",
+      "Product 809",
+      "Product 810",
+      "Product 811",
+      "Product 812",
+      "Product 813",
+      "Product 814",
+      "Product 815",
+      "Product 816",
+      "Product 817",
+      "Product 818",
+      "Product 819",
+      "Product 820",
+      "Product 821",
+      "Product 822",
+      "Product 823",
+      "Product 824",
+      "Product 825",
+      "Product 826",
+      "Product 827",
+      "Product 828",
+      "Product 829",
+      "Product 830",
+      "Product 831",
+      "Product 832",
+      "Product 833",
+      "Product 834",
+      "Product 835",
+      "Product 836",
+      "Product 837",
+      "Product 838",
+      "Product 839",
+      "Product 840",
+      "Product 841",
+      "Product 842",
+      "Product 843",
+      "Product 844",
+      "Product 845",
+      "Product 846",
+      "Product 847",
+      "Product 848",
+      "Product 849",
+      "Product 850",
+      "Product 851",
+      "Product 852",
+      "Product 853",
+      "Product 854",
+      "Product 855",
+      "Product 856",
+      "Product 857",
+      "Product 858",
+      "Product 859",
+      "Product 860",
+      "Product 861",
+      "Product 862",
+      "Product 863",
+      "Product 864",
+      "Product 865",
+      "Product 866",
+      "Product 867",
+      "Product 868",
+      "Product 869",
+      "Product 870",
+      "Product 871",
+      "Product 872",
+      "Product 873",
+      "Product 874",
+      "Product 875",
+      "Product 876",
+      "Product 877",
+      "Product 878",
+      "Product 879",
+      "Product 880",
+      "Product 881",
+      "Product 882",
+      "Product 883",
+      "Product 884",
+      "Product 885",
+      "Product 886",
+      "Product 887",
+      "Product 888",
+      "Product 889",
+      "Product 890",
+      "Product 891",
+      "Product 892",
+      "Product 893",
+      "Product 894",
+      "Product 895",
+      "Product 896",
+      "Product 897",
+      "Product 898",
+      "Product 899",
+      "Product 900",
+      "Product 901",
+      "Product 902",
+      "Product 903",
+      "Product 904",
+      "Product 905",
+      "Product 906",
+      "Product 907",
+      "Product 908",
+      "Product 909",
+      "Product 910",
+      "Product 911",
+      "Product 912",
+      "Product 913",
+      "Product 914",
+      "Product 915",
+      "Product 916",
+      "Product 917",
+      "Product 918",
+      "Product 919",
+      "Product 920",
+      "Product 921",
+      "Product 922",
+      "Product 923",
+      "Product 924",
+      "Product 925",
+      "Product 926",
+      "Product 927",
+      "Product 928",
+      "Product 929",
+      "Product 930",
+      "Product 931",
+      "Product 932",
+      "Product 933",
+      "Product 934",
+      "Product 935",
+      "Product 936",
+      "Product 937",
+      "Product 938",
+      "Product 939",
+      "Product 940",
+      "Product 941",
+      "Product 942",
+      "Product 943",
+      "Product 944",
+      "Product 945",
+      "Product 946",
+      "Product 947",
+      "Product 948",
+      "Product 949",
+      "Product 950",
+      "Product 951",
+      "Product 952",
+      "Product 953",
+      "Product 954",
+      "Product 955",
+      "Product 956",
+      "Product 957",
+      "Product 958",
+      "Product 959",
+      "Product 960",
+      "Product 961",
+      "Product 962",
+      "Product 963",
+      "Product 964",
+      "Product 965",
+      "Product 966",
+      "Product 967",
+      "Product 968",
+      "Product 969",
+      "Product 970",
+      "Product 971",
+      "Product 972",
+      "Product 973",
+      "Product 974",
+      "Product 975",
+      "Product 976",
+      "Product 977",
+      "Product 978",
+      "Product 979",
+      "Product 980",
+      "Product 981",
+      "Product 982",
+      "Product 983",
+      "Product 984",
+      "Product 985",
+      "Product 986",
+      "Product 987",
+      "Product 988",
+      "Product 989",
+      "Product 990",
+      "Product 991",
+      "Product 992",
+      "Product 993",
+      "Product 994",
+      "Product 995",
+      "Product 996",
+      "Product 997",
+      "Product 998",
+      "Product 999",
+      "Product 1000"
+    ]
+  }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Console\MySandbox.Console.csproj
+SIZE: 1.37 KB
+MODIFIED: 02/06/2026 11:30:52
+================================================================================
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- Needed: ServiceCollection, ServiceProvider, AddDbContext extension -->
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+
+		<!-- Needed: AddLogging extension method -->
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+
+		<!-- Needed: AddConsole() extension method -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.2" />
+
+		<!-- Needed: AddDbContext extension method (transitive from class lib isn't enough) -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
+
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.2" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MySandbox.ClassLibrary\MySandbox.ClassLibrary.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+</Project>
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Console\Program.cs
+SIZE: 5.01 KB
+MODIFIED: 02/07/2026 13:33:07
+================================================================================
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MySandbox.ClassLibrary;
+
+namespace MySandbox.Console;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        // Build configuration
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+
+        // Set up dependency injection
+        var serviceCollection = new ServiceCollection();
+        ConfigureServices(serviceCollection, configuration);
+
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        // Ensure database is created and migrated
+        await EnsureDatabaseCreatedAsync(serviceProvider);
+
+        // Check for load test flag
+        var isLoadTest = args.Contains("--load-test") || args.Contains("-l");
+        var loadTestCount = GetLoadTestCount(args);
+
+        if (isLoadTest)
+        {
+            System.Console.WriteLine($"Running load test with {loadTestCount:N0} items...\n");
+            var stuffDoer = serviceProvider.GetRequiredService<ICanDoStuff>();
+            await stuffDoer.ImportLargeDatasetAsync(loadTestCount);
+            
+            System.Console.WriteLine("\nPress any key to exit...");
+            System.Console.ReadKey();
+            return;
+        }
+
+        // Resolve and use services for normal operation
+        var stuffDoerService = serviceProvider.GetRequiredService<ICanDoStuff>();
+        var stuffDoerA = serviceProvider.GetRequiredService<ICanDoStuffA>();
+        var stuffDoerB = serviceProvider.GetRequiredService<ICanDoStuffB>();
+
+        // Execute some operations
+        System.Console.WriteLine("Starting operations...\n");
+
+        await stuffDoerA.DoStuffAAsync();
+        await stuffDoerB.DoStuffBAsync();
+        await stuffDoerService.DoStuffAsync();
+
+        // Demonstrate retrieval by querying database directly (no repository loading everything)
+        var dbContext = serviceProvider.GetRequiredService<StuffDbContext>();
+        var totalCount = await dbContext.StuffItems.CountAsync();
+
+        System.Console.WriteLine($"\nTotal items in database: {totalCount}");
+        
+        // Only show items if count is reasonable
+        if (totalCount <= 100)
+        {
+            var items = await dbContext.StuffItems
+                .OrderBy(x => x.CreatedAt)
+                .ToListAsync();
+                
+            foreach (var item in items)
+            {
+                System.Console.WriteLine($"  - {item.Name} (ID: {item.Id}, Created: {item.CreatedAt:yyyy-MM-dd HH:mm:ss})");
+            }
+        }
+        else
+        {
+            System.Console.WriteLine("(Too many items to display - use database queries to explore data)");
+        }
+
+        System.Console.WriteLine("\nPress any key to exit...");
+        System.Console.ReadKey();
+    }
+
+    private static int GetLoadTestCount(string[] args)
+    {
+        for (int i = 0; i < args.Length - 1; i++)
+        {
+            if ((args[i] == "--load-test" || args[i] == "-l") && int.TryParse(args[i + 1], out var count))
+            {
+                return count;
+            }
+        }
+        return 1_000_000; // Default to 1 million
+    }
+
+    private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    {
+        // Configure logging
+        services.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.SetMinimumLevel(LogLevel.Information);
+        });
+
+        // Configure business rules from appsettings.json
+        services.Configure<BusinessRulesOptions>(configuration.GetSection("BusinessRules"));
+        services.Configure<SeedDataOptions>(configuration.GetSection("SeedData"));
+
+        // Configure DbContext with SQLite
+        services.AddDbContext<StuffDbContext>(options =>
+        {
+            options.UseSqlite("Data Source=stuff.db");
+#if DEBUG
+            options.EnableSensitiveDataLogging();
+#endif
+        });
+
+        // Register repository (kept for backward compatibility, but direct DbContext usage is preferred)
+        services.AddScoped<IStuffRepository, StuffRepository>();
+
+        // Register StuffDoer for all three interfaces
+        services.AddScoped<StuffDoer>();
+        services.AddScoped<ICanDoStuff>(sp => sp.GetRequiredService<StuffDoer>());
+        services.AddScoped<ICanDoStuffA>(sp => sp.GetRequiredService<StuffDoer>());
+        services.AddScoped<ICanDoStuffB>(sp => sp.GetRequiredService<StuffDoer>());
+    }
+
+    private static async Task EnsureDatabaseCreatedAsync(IServiceProvider serviceProvider)
+    {
+        using var scope = serviceProvider.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<StuffDbContext>();
+
+        await dbContext.Database.EnsureCreatedAsync();
+
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogInformation("Database initialized successfully");
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Console\Properties\launchSettings.json
+SIZE: 0.12 KB
+MODIFIED: 02/07/2026 17:10:00
+================================================================================
+
+{
+  "profiles": {
+    "MySandbox.Console": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\DatabaseTestBase.cs
+SIZE: 0.77 KB
+MODIFIED: 02/07/2026 13:33:58
+================================================================================
+
+using Microsoft.EntityFrameworkCore;
+using MySandbox.ClassLibrary;
+
+namespace MySandbox.Tests;
+
+public class DatabaseTestBase : IDisposable
+{
+    protected StuffDbContext DbContext { get; }
+    private readonly string _databaseName;
+
+    public DatabaseTestBase()
+    {
+        _databaseName = $"TestDb_{Guid.NewGuid()}";
+        var options = new DbContextOptionsBuilder<StuffDbContext>()
+            .UseSqlite($"Data Source={_databaseName};Mode=Memory;Cache=Shared")
+            .Options;
+
+        DbContext = new StuffDbContext(options);
+        DbContext.Database.OpenConnection();
+        DbContext.Database.EnsureCreated();
+    }
+
+    public void Dispose()
+    {
+        DbContext.Database.CloseConnection();
+        DbContext.Dispose();
+        GC.SuppressFinalize(this);
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\IntegrationTests.cs
+SIZE: 4.07 KB
+MODIFIED: 02/07/2026 13:36:15
+================================================================================
+
+using AwesomeAssertions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using MySandbox.ClassLibrary;
+using Xunit;
+
+namespace MySandbox.Tests;
+
+public class IntegrationTests : DatabaseTestBase
+{
+    [Fact]
+    public async Task FullWorkflow_AddMultipleItemsAndRetrieve()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var repositoryLogger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(repositoryLogger, DbContext);
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Act
+        await stuffDoer.DoStuffBAsync(); // Imports Batch-Alpha, Batch-Beta, Batch-Gamma
+        await repository.AddAsync("Custom Item");
+        await stuffDoer.DoStuffAsync(); // Generate report
+
+        // Assert
+        var allItems = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        allItems.Count.Should().Be(4);
+        allItems.Should().Contain(x => x.Name == "Batch-Alpha");
+        allItems.Should().Contain(x => x.Name == "Batch-Beta");
+        allItems.Should().Contain(x => x.Name == "Batch-Gamma");
+        allItems.Should().Contain(x => x.Name == "Custom Item");
+    }
+
+    [Fact]
+    public async Task DatabasePersistence_ItemsSavedAndRetrieved()
+    {
+        // Arrange
+        var repositoryLogger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(repositoryLogger, DbContext);
+
+        // Act
+        await repository.AddAsync("Persistent Item");
+        var itemsBeforeSave = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        var itemId = itemsBeforeSave.First().Id;
+
+        var newRepository = new StuffRepository(new TestLogger<StuffRepository>(), DbContext);
+        var retrievedItem = await newRepository.GetByIdAsync(itemId);
+
+        // Assert
+        retrievedItem.Should().NotBeNull();
+        retrievedItem!.Name.Should().Be("Persistent Item");
+    }
+
+    [Fact]
+    public async Task ConcurrentOperations_AllSucceed()
+    {
+        // Arrange
+        var repositoryLogger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(repositoryLogger, DbContext);
+
+        // Act
+        var tasks = Enumerable.Range(1, 10)
+            .Select(i => repository.AddAsync($"Concurrent Item {i}"))
+            .ToList();
+
+        await Task.WhenAll(tasks);
+
+        // Assert
+        var allItems = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        allItems.Count.Should().Be(10);
+    }
+
+    [Fact]
+    public async Task CleanupWithLargeDataset_PerformsEfficiently()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create(dataRetentionDays: 30);
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Add 1000 old items
+        var oldItems = Enumerable.Range(1, 1000).Select(i => new StuffItem
+        {
+            Name = $"Old-{i}",
+            CreatedAt = DateTime.UtcNow.AddDays(-31)
+        }).ToList();
+        
+        DbContext.StuffItems.AddRange(oldItems);
+        
+        // Add 100 recent items
+        var recentItems = Enumerable.Range(1, 100).Select(i => new StuffItem
+        {
+            Name = $"Recent-{i}",
+            CreatedAt = DateTime.UtcNow
+        }).ToList();
+        
+        DbContext.StuffItems.AddRange(recentItems);
+        await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+
+        // Act
+        await stuffDoer.DoStuffAAsync();
+
+        // Assert
+        var remainingCount = await DbContext.StuffItems.CountAsync(TestContext.Current.CancellationToken);
+        remainingCount.Should().Be(100);
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Removed 1000 old items"));
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\LogEntry.cs
+SIZE: 0.23 KB
+MODIFIED: 02/06/2026 11:44:24
+================================================================================
+
+using Microsoft.Extensions.Logging;
+
+namespace MySandbox.Tests;
+
+public class LogEntry
+{
+    public LogLevel LogLevel { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public Exception? Exception { get; set; }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\MySandbox.Tests.csproj
+SIZE: 1.37 KB
+MODIFIED: 02/06/2026 11:39:11
+================================================================================
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.4">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="AwesomeAssertions" Version="9.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="10.0.2" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="xunit.v3" Version="3.2.2" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MySandbox.ClassLibrary\MySandbox.ClassLibrary.csproj" />
+	</ItemGroup>
+</Project>
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\StuffDbContextTests.cs
+SIZE: 1.5 KB
+MODIFIED: 02/06/2026 15:10:11
+================================================================================
+
+using AwesomeAssertions;
+using Microsoft.EntityFrameworkCore;
+using MySandbox.ClassLibrary;
+using Xunit;
+
+namespace MySandbox.Tests;
+
+public class StuffDbContextTests : DatabaseTestBase
+{
+    [Fact]
+    public async Task DbContext_StuffItems_IsAccessible()
+    {
+        // Act
+        var stuffItems = DbContext.StuffItems;
+
+        // Assert
+        stuffItems.Should().NotBeNull();
+        var count = await stuffItems.CountAsync(TestContext.Current.CancellationToken);
+        count.Should().Be(0);
+    }
+
+    [Fact]
+    public async Task DbContext_EntityConfiguration_EnforcesConstraints()
+    {
+        // Arrange
+        var item = new StuffItem
+        {
+            Name = "Test",
+            CreatedAt = DateTime.UtcNow
+        };
+
+        // Act
+        DbContext.StuffItems.Add(item);
+        await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+
+        // Assert
+        var savedItem = await DbContext.StuffItems.FirstAsync(TestContext.Current.CancellationToken);
+        savedItem.Id.Should().BeGreaterThan(0);
+        savedItem.Name.Should().Be("Test");
+    }
+
+    [Fact]
+    public async Task DbContext_RequiredName_EnforcedByDatabase()
+    {
+        // Arrange
+        var item = new StuffItem
+        {
+            Name = null!,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        // Act & Assert
+        DbContext.StuffItems.Add(item);
+        await Assert.ThrowsAsync<DbUpdateException>(async () => await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken));
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\StuffDoerTests.cs
+SIZE: 6.76 KB
+MODIFIED: 02/07/2026 13:36:28
+================================================================================
+
+using AwesomeAssertions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using MySandbox.ClassLibrary;
+using Xunit;
+
+namespace MySandbox.Tests;
+
+public class StuffDoerTests : DatabaseTestBase
+{
+    [Fact]
+    public async Task DoStuffAsync_GeneratesDailyReport()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        DbContext.StuffItems.Add(new StuffItem { Name = "Today Item 1", CreatedAt = DateTime.UtcNow });
+        DbContext.StuffItems.Add(new StuffItem { Name = "Today Item 2", CreatedAt = DateTime.UtcNow });
+        await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+
+        // Act
+        await stuffDoer.DoStuffAsync();
+
+        // Assert
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Generating daily report"));
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("2 items created today"));
+    }
+
+    [Fact]
+    public async Task DoStuffAAsync_CleansUpOldItems()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create(dataRetentionDays: 30);
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Add old item
+        var oldItem = new StuffItem
+        {
+            Name = "Old Item",
+            CreatedAt = DateTime.UtcNow.AddDays(-31)
+        };
+        DbContext.StuffItems.Add(oldItem);
+        
+        // Add recent item
+        var recentItem = new StuffItem
+        {
+            Name = "Recent Item",
+            CreatedAt = DateTime.UtcNow
+        };
+        DbContext.StuffItems.Add(recentItem);
+        await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+
+        // Act
+        await stuffDoer.DoStuffAAsync();
+
+        // Assert
+        var remainingItems = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        remainingItems.Should().ContainSingle().Which.Name.Should().Be("Recent Item");
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Removed 1 old items"));
+    }
+
+    [Fact]
+    public async Task DoStuffBAsync_ImportsDataWithPrefix()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create(batchOperationPrefix: "Test-");
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Act
+        await stuffDoer.DoStuffBAsync();
+
+        // Assert
+        var items = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        items.Select(x => x.Name).Should().BeEquivalentTo("Test-Alpha", "Test-Beta", "Test-Gamma");
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("3 new items added"));
+    }
+
+    [Fact]
+    public async Task DoStuffBAsync_SkipsDuplicates()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Pre-add one item
+        DbContext.StuffItems.Add(new StuffItem { Name = "Batch-Alpha", CreatedAt = DateTime.UtcNow });
+        await DbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+
+        // Act
+        await stuffDoer.DoStuffBAsync();
+
+        // Assert
+        var items = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        items.Should().HaveCount(3)
+            .And.Subject.Select(x => x.Name)
+            .Should().Contain(["Batch-Beta", "Batch-Gamma"]);
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("2 new items added") &&
+            x.Message.Contains("1 duplicates skipped"));
+    }
+
+    [Fact]
+    public void Constructor_NullLogger_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new StuffDoer(null!, DbContext, businessRules, seedData));
+    }
+
+    [Fact]
+    public void Constructor_NullDbContext_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new StuffDoer(stuffDoerLogger, null!, businessRules, seedData));
+    }
+
+    [Fact]
+    public void Constructor_NullBusinessRules_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var seedData = TestSeedDataOptions.Create();
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new StuffDoer(stuffDoerLogger, DbContext, null!, seedData));
+    }
+
+    [Fact]
+    public void Constructor_NullSeedData_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create();
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new StuffDoer(stuffDoerLogger, DbContext, businessRules, null!));
+    }
+
+    [Fact]
+    public async Task ImportLargeDatasetAsync_CreatesSpecifiedNumberOfItems()
+    {
+        // Arrange
+        var stuffDoerLogger = new TestLogger<StuffDoer>();
+        var businessRules = TestBusinessRulesOptions.Create();
+        var seedData = TestSeedDataOptions.Create();
+        var stuffDoer = new StuffDoer(stuffDoerLogger, DbContext, businessRules, seedData);
+
+        // Act - Import a small number for testing
+        await stuffDoer.ImportLargeDatasetAsync(100);
+
+        // Assert
+        var count = await DbContext.StuffItems.CountAsync(TestContext.Current.CancellationToken);
+        count.Should().Be(100);
+
+        stuffDoerLogger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Large dataset import completed"));
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\StuffItemTests.cs
+SIZE: 0.89 KB
+MODIFIED: 02/06/2026 15:31:58
+================================================================================
+
+using MySandbox.ClassLibrary;
+using Xunit;
+using AwesomeAssertions;
+
+namespace MySandbox.Tests;
+
+public class StuffItemTests
+{
+    [Fact]
+    public void StuffItem_DefaultValues_AreCorrect()
+    {
+        // Act
+        var item = new StuffItem();
+
+        // Assert
+        item.Should().BeEquivalentTo(new
+        {
+            Id = 0,
+            Name = string.Empty,
+            CreatedAt = default(DateTime)
+        });
+    }
+
+    [Fact]
+    public void StuffItem_SetProperties_WorksCorrectly()
+    {
+        // Arrange
+        var now = DateTime.UtcNow;
+
+        // Act
+        var item = new StuffItem
+        {
+            Id = 42,
+            Name = "Test",
+            CreatedAt = now
+        };
+
+        // Assert
+        item.Should().BeEquivalentTo(new
+        {
+            Id = 42,
+            Name = "Test",
+            CreatedAt = now
+        });
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\StuffRepositoryTests.cs
+SIZE: 7.73 KB
+MODIFIED: 02/06/2026 15:33:13
+================================================================================
+
+using AwesomeAssertions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using MySandbox.ClassLibrary;
+using Xunit;
+
+namespace MySandbox.Tests;
+
+public class StuffRepositoryTests : DatabaseTestBase
+{
+    [Fact]
+    public async Task AddAsync_ValidItem_AddsToDatabase()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+        var itemName = "Test Item";
+
+        // Act 
+        await repository.AddAsync(itemName);
+
+        // Assert
+        var items = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+
+        // Chain the count check, the name check, and the date check together
+        items.Should().ContainSingle()
+            .Which.Name.Should().Be(itemName);
+
+        // Use .And.Subject to stay on the same item for the date check
+        items.First().CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(5));
+
+        // Clean logger assertion
+        logger.LogEntries.Should().ContainSingle(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains($"Added item: {itemName}"));
+    }
+
+    [Fact]
+    public async Task AddAsync_NullItem_ThrowsArgumentException()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () => await repository.AddAsync(null!));
+
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("null or empty"));
+    }
+
+    [Fact]
+    public async Task AddAsync_EmptyItem_ThrowsArgumentException()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () => await repository.AddAsync("   "));
+    }
+
+    [Fact]
+    public async Task AddAsync_ItemExceedingMaxLength_ThrowsArgumentException()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+        var longItem = new string('A', 501);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () => await repository.AddAsync(longItem));
+
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("exceeding maximum length"));
+    }
+
+    [Fact]
+    public async Task AddAsync_MaxLengthItem_Succeeds()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+        var maxLengthItem = new string('A', 500);
+
+        // Act
+        await repository.AddAsync(maxLengthItem);
+
+        // Assert
+        var items = await DbContext.StuffItems.ToListAsync(TestContext.Current.CancellationToken);
+        items.Should().ContainSingle()
+            .Which.Name.Should().Be(maxLengthItem);
+    }
+
+    [Fact]
+    public async Task GetAllAsync_EmptyDatabase_ReturnsEmptyCollection()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act
+        var result = await repository.GetAllAsync();
+
+        // Assert
+        result.Should().BeEmpty();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Getting all items"));
+    }
+
+    [Fact]
+    public async Task GetAllAsync_WithItems_ReturnsAllItemsOrderedByCreatedAt()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        await repository.AddAsync("Item 1");
+        await Task.Delay(10, TestContext.Current.CancellationToken);
+        await repository.AddAsync("Item 2");
+        await Task.Delay(10, TestContext.Current.CancellationToken);
+        await repository.AddAsync("Item 3");
+
+        // Act
+        var result = await repository.GetAllAsync();
+
+        // Assert
+        var items = result.ToList();
+        items.Count.Should().Be(3);
+        items[0].Name.Should().Be("Item 1");
+        items[1].Name.Should().Be("Item 2");
+        items[2].Name.Should().Be("Item 3");
+        items[0].CreatedAt.Should().BeBefore(items[1].CreatedAt);
+        items[1].CreatedAt.Should().BeBefore(items[2].CreatedAt);
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_ExistingId_ReturnsItem()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+        await repository.AddAsync("Test Item");
+        var allItems = await repository.GetAllAsync();
+        var itemId = allItems.First().Id;
+
+        // Act
+        var result = await repository.GetByIdAsync(itemId);
+
+        // Assert
+        result.Should().NotBeNull();
+        result!.Name.Should().Be("Test Item");
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_NonExistingId_ReturnsNull()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act
+        var result = await repository.GetByIdAsync(999);
+
+        // Assert
+        result.Should().BeNull();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("not found"));
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_InvalidId_ReturnsNull()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act
+        var result = await repository.GetByIdAsync(-1);
+
+        // Assert
+        result.Should().BeNull();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("Invalid ID"));
+    }
+
+    [Fact]
+    public async Task RemoveAsync_ExistingId_RemovesItemAndReturnsTrue()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+        await repository.AddAsync("Item to Remove");
+        var allItems = await repository.GetAllAsync();
+        var itemId = allItems.First().Id;
+
+        // Act
+        var result = await repository.RemoveAsync(itemId);
+
+        // Assert
+        result.Should().BeTrue();
+        var remainingItems = await repository.GetAllAsync();
+        remainingItems.Should().BeEmpty();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Information &&
+            x.Message.Contains("Removed item"));
+    }
+
+    [Fact]
+    public async Task RemoveAsync_NonExistingId_ReturnsFalse()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act
+        var result = await repository.RemoveAsync(999);
+
+        // Assert
+        result.Should().BeFalse();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("Cannot remove"));
+    }
+
+    [Fact]
+    public async Task RemoveAsync_InvalidId_ReturnsFalse()
+    {
+        // Arrange
+        var logger = new TestLogger<StuffRepository>();
+        var repository = new StuffRepository(logger, DbContext);
+
+        // Act
+        var result = await repository.RemoveAsync(0);
+
+        // Assert
+        result.Should().BeFalse();
+        logger.LogEntries.Should().Contain(x =>
+            x.LogLevel == LogLevel.Warning &&
+            x.Message.Contains("Invalid ID for removal"));
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\TestBusinessRulesOptions.cs
+SIZE: 0.47 KB
+MODIFIED: 02/06/2026 11:44:24
+================================================================================
+
+using Microsoft.Extensions.Options;
+using MySandbox.ClassLibrary;
+
+namespace MySandbox.Tests;
+
+public class TestBusinessRulesOptions
+{
+    public static IOptions<BusinessRulesOptions> Create(
+        int dataRetentionDays = 30,
+        string batchOperationPrefix = "Batch-")
+    {
+        return Options.Create(new BusinessRulesOptions
+        {
+            DataRetentionDays = dataRetentionDays,
+            BatchOperationPrefix = batchOperationPrefix
+        });
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\TestLogger.cs
+SIZE: 0.63 KB
+MODIFIED: 02/06/2026 11:44:24
+================================================================================
+
+using Microsoft.Extensions.Logging;
+
+namespace MySandbox.Tests;
+
+public class TestLogger<T> : ILogger<T>
+{
+    public List<LogEntry> LogEntries { get; } = [];
+
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
+
+    public bool IsEnabled(LogLevel logLevel) => true;
+
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+    {
+        LogEntries.Add(new LogEntry
+        {
+            LogLevel = logLevel,
+            Message = formatter(state, exception),
+            Exception = exception
+        });
+    }
+}
+
+
+
+================================================================================
+FILE: :\Users\kushal\source\repos\MySandbox\MySandbox.Tests\TestSeedDataOptions.cs
+SIZE: 0.36 KB
+MODIFIED: 02/07/2026 13:36:40
+================================================================================
+
+using Microsoft.Extensions.Options;
+using MySandbox.ClassLibrary;
+
+namespace MySandbox.Tests;
+
+public class TestSeedDataOptions
+{
+    public static IOptions<SeedDataOptions> Create(
+        List<string>? products = null)
+    {
+        return Options.Create(new SeedDataOptions
+        {
+            Products = products ?? ["Alpha", "Beta", "Gamma"]
+        });
+    }
+}
+
+
+
+===============================================================================
+EXPORT COMPLETED: 02/10/2026 19:06:23
+Total Files Exported: 28
+Output File: .\docs\llm\dump.txt
+===============================================================================
