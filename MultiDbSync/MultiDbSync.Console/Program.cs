@@ -32,6 +32,16 @@ class Program
 
             await InitializeDatabaseAsync();
 
+            // Check for automated mode (for CI/CD and testing)
+            if (args.Length > 0 && (args[0] == "--demo" || args[0] == "--automated" || args[0] == "--ci"))
+            {
+                System.Console.WriteLine("\n🤖 Running in AUTOMATED mode (non-interactive)\n");
+                await RunAllDemosAsync();
+                System.Console.WriteLine("\n✅ All demos completed successfully!");
+                return 0;
+            }
+
+            // Interactive mode
             await RunDemoAsync();
 
             return 0;
@@ -221,27 +231,26 @@ class Program
         var table = new Table();
         table.AddColumn("Node ID");
         table.AddColumn("Status");
-        table.AddColumn("Is Primary");
-        table.AddColumn("Health Score");
+        table.AddColumn("IsPrimary");
+        table.AddColumn("Priority");
 
         foreach (var node in nodes)
         {
             table.AddRow(
                 node.NodeId,
                 node.Status.ToString(),
-                node.IsPrimary ? "Yes" : "No",
-                $"{node.HealthScore:F1}%");
+                node.IsPrimary.ToString(),
+                node.Priority.ToString());
         }
 
         AnsiConsole.Write(table);
 
-        AnsiConsole.MarkupLine("\n[yellow]Forcing synchronization across all nodes...[/yellow]");
-        var syncResult = await syncService.GetSyncStatusAsync();
+        AnsiConsole.MarkupLine("\n[yellow]Getting sync status...[/yellow]");
+        var syncStatus = await syncService.GetSyncStatusAsync();
 
-        AnsiConsole.MarkupLine($"[green]Sync Status:[/green]");
-        AnsiConsole.MarkupLine($"  Total Nodes: {syncResult.TotalNodes}");
-        AnsiConsole.MarkupLine($"  Successful: {syncResult.SuccessfulNodes}");
-        AnsiConsole.MarkupLine($"  Failed: {syncResult.FailedNodes}");
+        AnsiConsole.MarkupLine($"Total Nodes: {syncStatus.TotalNodes}");
+        AnsiConsole.MarkupLine($"Successful Syncs: [green]{syncStatus.SuccessfulNodes}[/]");
+        AnsiConsole.MarkupLine($"Failed Syncs: [red]{syncStatus.FailedNodes}[/]");
 
         AnsiConsole.MarkupLine("\n[bold green]Synchronization Demo completed![/bold green]\n");
     }
@@ -252,25 +261,21 @@ class Program
 
         using var scope = _serviceProvider!.CreateScope();
         var quorumService = scope.ServiceProvider.GetRequiredService<IQuorumService>();
-        var nodeRepo = scope.ServiceProvider.GetRequiredService<IDatabaseNodeRepository>();
 
         var operationId = Guid.NewGuid();
-        var operationDescription = "Promote node to primary";
 
-        AnsiConsole.MarkupLine($"[yellow]Requesting vote for operation: {operationDescription}[/yellow]");
+        AnsiConsole.MarkupLine($"[yellow]Testing quorum consensus for operation: {operationId}[/yellow]");
 
-        var voteRequested = await quorumService.RequestVoteAsync(operationId, operationDescription);
+        var hasConsensus = await quorumService.HasConsensusAsync(operationId);
 
-        AnsiConsole.MarkupLine($"Vote requested: [{(voteRequested ? "green" : "red")}]{voteRequested}[/]");
+        AnsiConsole.MarkupLine($"Consensus achieved: [{(hasConsensus ? "green" : "red")}]{hasConsensus}[/]");
 
-        var result = await quorumService.GetQuorumResultAsync(operationId);
+        var quorumResult = await quorumService.GetQuorumResultAsync(operationId);
 
-        AnsiConsole.MarkupLine($"\n[green]Quorum Result:[/green]");
-        AnsiConsole.MarkupLine($"  Total Votes: {result.TotalVotes}");
-        AnsiConsole.MarkupLine($"  Yes Votes: {result.YesVotes}");
-        AnsiConsole.MarkupLine($"  No Votes: {result.NoVotes}");
-        AnsiConsole.MarkupLine($"  Has Consensus: [{(result.HasConsensus ? "green" : "red")}]{result.HasConsensus}[/]");
-        AnsiConsole.MarkupLine($"  Decision: {result.Decision}");
+        AnsiConsole.MarkupLine($"Total Votes: {quorumResult.TotalVotes}");
+        AnsiConsole.MarkupLine($"Approvals: [green]{quorumResult.Approvals}[/]");
+        AnsiConsole.MarkupLine($"Rejections: [red]{quorumResult.Rejections}[/]");
+        AnsiConsole.MarkupLine($"Required Votes: {quorumResult.RequiredVotes}");
 
         AnsiConsole.MarkupLine("\n[bold green]Quorum Demo completed![/bold green]\n");
     }
@@ -283,21 +288,14 @@ class Program
         var failoverService = scope.ServiceProvider.GetRequiredService<IFailoverService>();
         var nodeRepo = scope.ServiceProvider.GetRequiredService<IDatabaseNodeRepository>();
 
-        failoverService.FailoverOccurred += (sender, args) =>
-        {
-            AnsiConsole.MarkupLine($"[yellow]Failover Event: {args.FailedNodeId} -> {args.NewPrimaryNodeId}[/yellow]");
-        };
-
         var nodes = await nodeRepo.GetAllAsync();
         var primaryNode = nodes.FirstOrDefault(n => n.IsPrimary);
 
         if (primaryNode is { })
         {
-            AnsiConsole.MarkupLine($"[yellow]Current primary node: {primaryNode.NodeId}[/yellow]");
+            AnsiConsole.MarkupLine($"[yellow]Current Primary Node: {primaryNode.NodeId}[/yellow]");
 
-            AnsiConsole.MarkupLine("[yellow]Checking if failover is needed...[/yellow]");
             var isNeeded = await failoverService.IsFailoverNeededAsync();
-
             AnsiConsole.MarkupLine($"Failover needed: [{(isNeeded ? "green" : "yellow")}]{isNeeded}[/]");
 
             var optimalNode = await failoverService.GetOptimalNodeAsync();
