@@ -22,6 +22,13 @@ public class MultiDbContext(string connectionString) : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        foreach (var e in modelBuilder.Model.GetEntityTypes())
+        {
+            Console.WriteLine($"EF ENTITY: {e.Name}");
+        }
+
         modelBuilder.Entity<Product>(entity =>
         {
             entity.HasKey(e => e.Id);
