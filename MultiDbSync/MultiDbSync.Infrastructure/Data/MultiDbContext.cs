@@ -24,6 +24,11 @@ public class MultiDbContext(string connectionString) : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // HARD BLOCK VALUE OBJECTS FROM ENTITY DISCOVERY
+        modelBuilder.Ignore<Address>();
+        modelBuilder.Ignore<Money>();
+        modelBuilder.Ignore<EmailAddress>();
+
         foreach (var e in modelBuilder.Model.GetEntityTypes())
         {
             Console.WriteLine($"EF ENTITY: {e.Name}");
