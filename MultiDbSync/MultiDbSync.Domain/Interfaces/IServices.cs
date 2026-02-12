@@ -90,18 +90,11 @@ public record HealthStatus(
     double ResponseTimeMs,
     string? ErrorMessage);
 
-public class FailoverEventArgs : EventArgs
+public class FailoverEventArgs(string failedNodeId, string newPrimaryNodeId) : EventArgs
 {
-    public string FailedNodeId { get; }
-    public string NewPrimaryNodeId { get; }
-    public DateTime OccurredAt { get; }
-
-    public FailoverEventArgs(string failedNodeId, string newPrimaryNodeId)
-    {
-        FailedNodeId = failedNodeId;
-        NewPrimaryNodeId = newPrimaryNodeId;
-        OccurredAt = DateTime.UtcNow;
-    }
+    public string FailedNodeId { get; } = failedNodeId;
+    public string NewPrimaryNodeId { get; } = newPrimaryNodeId;
+    public DateTime OccurredAt { get; } = DateTime.UtcNow;
 }
 
 public enum QuorumDecision

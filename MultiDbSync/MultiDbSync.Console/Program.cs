@@ -15,7 +15,7 @@ namespace MultiDbSync.Console;
 class Program
 {
     private static IServiceProvider? _serviceProvider;
-    private static string _databasePath = Path.Combine(AppContext.BaseDirectory, "databases");
+    private static readonly string _databasePath = Path.Combine(AppContext.BaseDirectory, "databases");
 
     static async Task<int> Main(string[] args)
     {
@@ -275,7 +275,7 @@ class Program
         AnsiConsole.MarkupLine($"Total Votes: {quorumResult.TotalVotes}");
         AnsiConsole.MarkupLine($"Yes Votes: [green]{quorumResult.YesVotes}[/]");
         AnsiConsole.MarkupLine($"No Votes: [red]{quorumResult.NoVotes}[/]");
-        AnsiConsole.MarkupLine($"Decision: {quorumResult.Decision.ToString()}");
+        AnsiConsole.MarkupLine($"Decision: {quorumResult.Decision}");
 
         AnsiConsole.MarkupLine("\n[bold green]Quorum Demo completed![/bold green]\n");
     }
