@@ -8,9 +8,11 @@ on:
       - 'v*'
 
 env:
-  DOTNET_VERSION: '8.0.x'
+  DOTNET_VERSION: '10.0.x'
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
+  SOLUTION_PATH: 'MultiDbSync/MultiDbSync.sln'
+  CONSOLE_PROJECT: 'MultiDbSync/MultiDbSync.Console/MultiDbSync.Console.csproj'
 
 jobs:
   build-and-test:
@@ -23,19 +25,22 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Setup .NET
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
+      - name: Display .NET info
+        run: dotnet --info
+      
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
       
       - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
       
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
+        run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
       
       - name: Upload test results
         if: always()
@@ -54,6 +59,15 @@ jobs:
     name: Package Applications
     runs-on: ubuntu-latest
     needs: build-and-test
+    strategy:
+      matrix:
+        runtime: 
+          - linux-x64
+          - linux-arm64
+          - win-x64
+          - win-arm64
+          - osx-x64
+          - osx-arm64
     
     steps:
       - name: Checkout code
@@ -61,31 +75,40 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Setup .NET
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
-      - name: Publish applications
+      - name: Publish for ${{ matrix.runtime }}
         run: |
-          dotnet publish --configuration Release --output ./publish/linux-x64 --runtime linux-x64 --self-contained true
-          dotnet publish --configuration Release --output ./publish/win-x64 --runtime win-x64 --self-contained true
-          dotnet publish --configuration Release --output ./publish/osx-x64 --runtime osx-x64 --self-contained true
+          dotnet publish ${{ env.CONSOLE_PROJECT }} \
+            --configuration Release \
+            --runtime ${{ matrix.runtime }} \
+            --self-contained true \
+            --output ./publish/${{ matrix.runtime }} \
+            /p:PublishSingleFile=true \
+            /p:PublishTrimmed=false \
+            /p:DebugType=none \
+            /p:DebugSymbols=false
       
-      - name: Create distribution packages
+      - name: Create distribution package for ${{ matrix.runtime }}
         run: |
           cd publish
-          tar -czf linux-x64.tar.gz -C linux-x64 .
-          cd win-x64 && zip -r ../win-x64.zip . && cd ..
-          tar -czf osx-x64.tar.gz -C osx-x64 .
+          if [[ "${{ matrix.runtime }}" == win-* ]]; then
+            cd ${{ matrix.runtime }} && zip -r ../${{ matrix.runtime }}.zip . && cd ..
+          else
+            tar -czf ${{ matrix.runtime }}.tar.gz -C ${{ matrix.runtime }} .
+          fi
       
-      - name: Upload packages
+      - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: distribution-packages
+          name: package-${{ matrix.runtime }}
           path: |
             publish/*.tar.gz
             publish/*.zip
+          retention-days: 7
 
   release:
     name: Create Release
@@ -100,17 +123,23 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Download artifacts
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          name: distribution-packages
           path: ./artifacts
+          pattern: package-*
+          merge-multiple: true
+      
+      - name: List artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          ls -lah ./artifacts/
       
       - name: Generate version number
         id: version
         run: |
           # Use timestamp-based versioning for automatic releases
-          VERSION="1.0.$(date +'%Y%m%d-%H%M%S')"
+          VERSION="1.0.$(date +'%Y%m%d.%H%M%S')"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
           
@@ -127,40 +156,65 @@ jobs:
       - name: Generate release notes
         id: release_notes
         run: |
-          cat << EOF > release_notes.md
-          # Release ${{ steps.version.outputs.version }}
+          cat << 'EOF' > release_notes.md
+          # MultiDbSync Release ${{ steps.version.outputs.version }}
           
           ## Build Information
           - **Commit**: ${{ steps.version.outputs.commit_sha }}
           - **Author**: ${{ steps.version.outputs.author }}
           - **Branch**: ${GITHUB_REF#refs/heads/}
           - **Build Date**: $(date +'%Y-%m-%d %H:%M:%S UTC')
-          - **Workflow Run**: ${{ github.run_number }}
+          - **Workflow Run**: #${{ github.run_number }}
+          - **.NET Version**: 10.0
           
           ## Commit Message
-          \`\`\`
+          ```
           ${{ steps.version.outputs.commit_msg }}
-          \`\`\`
+          ```
           
-          ## Changes
-          $(git log --oneline -10 --pretty=format:'- %s (%h)')
+          ## Recent Changes
+          $(git log --oneline -10 --pretty=format:'- %s (%h)' || echo "- Initial release")
           
-          ## Artifacts
-          This release includes the following platform-specific builds:
-          - **Linux x64**: Self-contained executable for Linux systems
-          - **Windows x64**: Self-contained executable for Windows systems
-          - **macOS x64**: Self-contained executable for macOS systems
+          ## Platform Packages
+          
+          This release includes self-contained executables for multiple platforms:
+          
+          ### Linux
+          - **linux-x64.tar.gz** - Linux x64 (Intel/AMD 64-bit)
+          - **linux-arm64.tar.gz** - Linux ARM64 (Raspberry Pi 4+, ARM servers)
+          
+          ### Windows
+          - **win-x64.zip** - Windows x64 (Intel/AMD 64-bit)
+          - **win-arm64.zip** - Windows ARM64 (Surface Pro X, ARM PCs)
+          
+          ### macOS
+          - **osx-x64.tar.gz** - macOS Intel (Intel Macs)
+          - **osx-arm64.tar.gz** - macOS Apple Silicon (M1/M2/M3 Macs)
           
           ## Installation
-          1. Download the appropriate package for your platform
-          2. Extract the archive
-          3. Run the executable
           
-          All builds are self-contained and include the .NET runtime.
+          1. Download the appropriate package for your platform
+          2. Extract the archive:
+             - Linux/macOS: `tar -xzf <package>.tar.gz`
+             - Windows: Use built-in ZIP extractor or `Expand-Archive`
+          3. Run the executable:
+             - Linux/macOS: `./MultiDbSync.Console` (may need `chmod +x MultiDbSync.Console` first)
+             - Windows: `MultiDbSync.Console.exe`
+          
+          All builds are **self-contained** and include the .NET 10 runtime - no additional installation required!
+          
+          ## Project Structure
+          
+          This is a multi-database synchronization system built with CQRS pattern:
+          - **MultiDbSync.Domain** - Core domain entities and interfaces
+          - **MultiDbSync.Application** - CQRS commands, queries, and handlers
+          - **MultiDbSync.Infrastructure** - Data access and repository implementations
+          - **MultiDbSync.Console** - Console application entry point
+          - **MultiDbSync.Tests** - Unit tests
           EOF
       
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           name: Release ${{ steps.version.outputs.version }}
@@ -168,21 +222,25 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            artifacts/linux-x64.tar.gz
-            artifacts/win-x64.zip
-            artifacts/osx-x64.tar.gz
+            artifacts/*.tar.gz
+            artifacts/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Release Summary
         run: |
-          echo "## Release Created Successfully! 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎉 Release Created Successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Version**: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "**Tag**: ${{ steps.version.outputs.tag }}" >> $GITHUB_STEP_SUMMARY
           echo "**Commit**: ${{ steps.version.outputs.commit_sha }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Platform Packages" >> $GITHUB_STEP_SUMMARY
           echo "- linux-x64.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "- linux-arm64.tar.gz" >> $GITHUB_STEP_SUMMARY
           echo "- win-x64.zip" >> $GITHUB_STEP_SUMMARY
+          echo "- win-arm64.zip" >> $GITHUB_STEP_SUMMARY
           echo "- osx-x64.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "- osx-arm64.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 [View Release](https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.tag }})" >> $GITHUB_STEP_SUMMARY
