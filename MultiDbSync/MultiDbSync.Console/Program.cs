@@ -273,9 +273,9 @@ class Program
         var quorumResult = await quorumService.GetQuorumResultAsync(operationId);
 
         AnsiConsole.MarkupLine($"Total Votes: {quorumResult.TotalVotes}");
-        AnsiConsole.MarkupLine($"Approvals: [green]{quorumResult.Approvals}[/]");
-        AnsiConsole.MarkupLine($"Rejections: [red]{quorumResult.Rejections}[/]");
-        AnsiConsole.MarkupLine($"Required Votes: {quorumResult.RequiredVotes}");
+        AnsiConsole.MarkupLine($"Yes Votes: [green]{quorumResult.YesVotes}[/]");
+        AnsiConsole.MarkupLine($"No Votes: [red]{quorumResult.NoVotes}[/]");
+        AnsiConsole.MarkupLine($"Decision: {quorumResult.Decision.ToString()}");
 
         AnsiConsole.MarkupLine("\n[bold green]Quorum Demo completed![/bold green]\n");
     }
