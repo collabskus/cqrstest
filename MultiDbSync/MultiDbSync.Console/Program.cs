@@ -1,12 +1,10 @@
-using MediatR;
-using Microsoft.EntityFrameworkCore; // Required for EnsureCreatedAsync
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MultiDbSync.Application;
 using MultiDbSync.Application.Commands;
 using MultiDbSync.Application.Queries;
 using MultiDbSync.Domain.Entities;
-using MultiDbSync.Domain.Interfaces;
 using MultiDbSync.Domain.ValueObjects;
 using MultiDbSync.Infrastructure;
 using MultiDbSync.Infrastructure.Data;
@@ -14,24 +12,27 @@ using Spectre.Console;
 
 namespace MultiDbSync.Console;
 
-internal class Program
+internal sealed class Program(string[] args)
 {
-    private static IServiceProvider? _serviceProvider;
-    private static readonly string _databasePath = Path.Combine(AppContext.BaseDirectory, "databases");
-    private static bool _isAutomated = false;
+    private static readonly string DatabasePath = Path.Combine(AppContext.BaseDirectory, "databases");
+    private readonly bool _isAutomated = args.Any(a => a is "--demo" or "--automated" or "--ci");
 
     static async Task<int> Main(string[] args)
     {
-        _isAutomated = args.Any(a => a is "--demo" or "--automated" or "--ci");
+        var program = new Program(args);
+        return await program.RunAsync();
+    }
 
+    private async Task<int> RunAsync()
+    {
         System.Console.Title = "MultiDbSync Demo";
         AnsiConsole.Write(new FigletText("MultiDbSync").Color(Color.Cyan1));
 
         try
         {
-            if (!Directory.Exists(_databasePath))
+            if (!Directory.Exists(DatabasePath))
             {
-                Directory.CreateDirectory(_databasePath);
+                Directory.CreateDirectory(DatabasePath);
             }
 
             // 1. Setup Dependency Injection
@@ -40,24 +41,17 @@ internal class Program
             // Add Logging
             services.AddLogging(configure => configure.AddConsole().SetMinimumLevel(LogLevel.Warning));
 
-            // Add Layers (These extension methods are in your Infrastructure/Application projects)
-            services.AddInfrastructure();
-            services.AddApplication();
+            // Add Layers (using the actual extension methods from your Infrastructure/Application projects)
+            services.AddInfrastructureServices(DatabasePath);
+            services.AddApplicationServices();
 
-            _serviceProvider = services.BuildServiceProvider();
+            var serviceProvider = services.BuildServiceProvider();
 
             // 2. Initialize Databases
-            await InitializeDatabaseAsync();
+            await InitializeDatabaseAsync(serviceProvider);
 
             // 3. Run Demo
-            if (_isAutomated)
-            {
-                await RunCrudDemoAsync();
-            }
-            else
-            {
-                await RunCrudDemoAsync(); // Running just one demo for simplicity in this fix
-            }
+            await RunCrudDemoAsync(serviceProvider);
 
             return 0;
         }
@@ -68,12 +62,11 @@ internal class Program
         }
     }
 
-    private static async Task InitializeDatabaseAsync()
+    private static async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
     {
-        using var scope = _serviceProvider!.CreateScope();
+        using var scope = serviceProvider.CreateScope();
 
-        // FIX: Request the concrete MultiDbContextFactory, not the interface
-        // The interface IDbContextFactory doesn't have 'SetCurrentNodeId', but the concrete class does.
+        // Get the factory
         var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
 
         string[] nodes = ["node1", "node2", "node3"];
@@ -85,96 +78,107 @@ internal class Program
                 {
                     ctx.Status($"Creating [bold]{nodeId}[/]...");
 
-                    // FIX: This method exists on MultiDbContextFactory, not the interface
-                    factory.SetCurrentNodeId(nodeId);
-
-                    // We create a context *after* setting the node ID
-                    var context = factory.CreateDbContext();
+                    // Create a context for this specific node
+                    var context = factory.CreateDbContext(nodeId);
                     await context.Database.EnsureCreatedAsync();
 
                     if (!context.DatabaseNodes.Any())
                     {
                         var isPrimary = nodeId == "node1";
-                        var connectionString = $"Data Source={Path.Combine(_databasePath, $"{nodeId}.db")}";
+                        var connectionString = $"Data Source={Path.Combine(DatabasePath, $"{nodeId}.db")}";
 
-                        // FIX: Use the Constructor, not property setters (properties are private set)
+                        // Use the correct constructor signature: (nodeId, connectionString, priority, isPrimary)
                         var node = new DatabaseNode(
                             nodeId,
-                            isPrimary,
                             connectionString,
-                            priority: isPrimary ? 100 : 50
+                            isPrimary ? 100 : 50,
+                            isPrimary
                         );
 
                         context.DatabaseNodes.Add(node);
                         await context.SaveChangesAsync();
                     }
+
+                    await context.DisposeAsync();
                 }
             });
 
         AnsiConsole.MarkupLine("[green]Database nodes initialized successfully![/]");
     }
 
-    private static async Task RunCrudDemoAsync()
+    private async Task RunCrudDemoAsync(IServiceProvider serviceProvider)
     {
-        using var scope = _serviceProvider!.CreateScope();
-        var sender = scope.ServiceProvider.GetRequiredService<ISender>();
+        using var scope = serviceProvider.CreateScope();
         var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
 
-        // Ensure we are on the primary node
-        factory.SetCurrentNodeId("node1");
+        // Get the handler instances directly
+        var createProductHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
+        var updateStockHandler = scope.ServiceProvider.GetRequiredService<UpdateProductStockCommandHandler>();
+        var getAllProductsHandler = scope.ServiceProvider.GetRequiredService<GetAllProductsQueryHandler>();
+
+        // Use the primary node
+        await using var context = factory.CreateDbContext("node1");
 
         AnsiConsole.MarkupLine("[bold underline]CQRS Create & Read Demo[/]");
 
         // 1. Create Product
         var productName = "High-End Gaming Laptop";
 
-        // FIX: Use the 'Money' Value Object defined in your Domain, not raw decimals
-        var price = new Money(1500.00m, "USD");
-
-        // FIX: Match the constructor signature of CreateProductCommand
-        // (Name, Description, Sku, Price, WarehouseId)
+        // Match the constructor signature: (Name, Description, Price, Currency, StockQuantity, Category)
         var createCommand = new CreateProductCommand(
             productName,
             "Powerful Laptop",
-            "GAMING-001",
-            price,
-            "WH-NY-01"
+            1500.00m,
+            "USD",
+            50,
+            "Electronics"
         );
 
         AnsiConsole.MarkupLine($"Sending [cyan]CreateProductCommand[/]...");
-        var result = await sender.Send(createCommand);
+        var result = await createProductHandler.HandleAsync(createCommand);
 
-        if (result.IsSuccess)
+        if (result.IsSuccess && result.Data is not null)
         {
-            AnsiConsole.MarkupLine($"[green]Success![/] Product ID: {result.Value}");
+            AnsiConsole.MarkupLine($"[green]Success![/] Product ID: {result.Data.Id}");
+
+            // 2. Update Stock
+            var updateStockCommand = new UpdateProductStockCommand(
+                result.Data.Id,
+                75
+            );
+            await updateStockHandler.HandleAsync(updateStockCommand);
+
+            // 3. Read (Query)
+            var productsResult = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
+
+            if (productsResult.IsSuccess && productsResult.Data is not null)
+            {
+                var table = new Table();
+                table.AddColumn("Name");
+                table.AddColumn("Price");
+                table.AddColumn("Stock");
+                table.AddColumn("Category");
+
+                foreach (var p in productsResult.Data)
+                {
+                    table.AddRow(
+                        p.Name,
+                        $"{p.Price.Amount} {p.Price.Currency}",
+                        p.StockQuantity.ToString(),
+                        p.Category
+                    );
+                }
+
+                AnsiConsole.Write(table);
+            }
+            else
+            {
+                AnsiConsole.MarkupLine($"[red]Failed to get products:[/] {productsResult.ErrorMessage}");
+            }
         }
         else
         {
-            AnsiConsole.MarkupLine($"[red]Failed:[/] {result.Error}");
-            return;
+            AnsiConsole.MarkupLine($"[red]Failed:[/] {result.ErrorMessage}");
         }
-
-        // 2. Update Stock
-        // FIX: Ensure UpdateStockCommand parameters match (Guid, int, string)
-        await sender.Send(new UpdateStockCommand(result.Value, 50, "Initial Stock"));
-
-        // 3. Read (Query)
-        var products = await sender.Send(new GetAllProductsQuery());
-
-        var table = new Table();
-        table.AddColumn("Name");
-        table.AddColumn("Price");
-        table.AddColumn("Stock");
-
-        foreach (var p in products)
-        {
-            table.AddRow(
-                p.Name,
-                $"{p.Price.Amount} {p.Price.Currency}", // Access Money properties
-                p.StockQuantity.ToString()
-            );
-        }
-
-        AnsiConsole.Write(table);
     }
 }
