@@ -252,3 +252,64 @@ Press any key to close this window . . .
 
 
 
+this is good but now you have completely gotten rid of the usage of productcount from appsettings.json 
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.EntityFrameworkCore": "Warning",
+      "MultiDbSync.Infrastructure.Services.SynchronizationService": "Warning",
+      "MultiDbSync.Infrastructure.Services.NodeDiscoveryService": "Warning",
+      "MultiDbSync.Infrastructure.Services.HealthCheckService": "Warning"
+    },
+    "Console": {
+      "FormatterName": "simple",
+      "FormatterOptions": {
+        "SingleLine": false,
+        "IncludeScopes": true,
+        "TimestampFormat": "yyyy-MM-dd HH:mm:ss ",
+        "UseUtcTimestamp": true
+      }
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=multidbsync;Username=postgres;Password=postgres",
+    "SecondaryConnection": "Host=localhost;Port=5433;Database=multidbsync_secondary;Username=postgres;Password=postgres"
+  },
+  "Synchronization": {
+    "SyncIntervalSeconds": 30,
+    "InitialStartupDelaySeconds": 15,
+    "NoNodesRetryDelaySeconds": 30,
+    "MaxRetryAttempts": 3,
+    "BatchSize": 100,
+    "EnableConflictResolution": true
+  },
+  "Consul": {
+    "Address": "http://localhost:8500",
+    "ServiceName": "multidbsync",
+    "ServiceId": null,
+    "HealthCheckInterval": "00:00:10",
+    "DeregisterCriticalServiceAfter": "00:01:00"
+  },
+  "Database": {
+    "Provider": "PostgreSQL",
+    "CommandTimeout": 30,
+    "EnableSensitiveDataLogging": false,
+    "EnableDetailedErrors": false,
+    "MaxRetryCount": 3,
+    "MaxRetryDelay": "00:00:30"
+  },
+  "Demo": {
+    "ProductCount": 10000,
+    "StockUpdateCount": 50,
+    "PriceUpdateCount": 30,
+    "DeleteCount": 5,
+    "RandomSeed": 42
+  }
+}
+```
+remember we did some refactoring to clean up the code and make the program cs smaller. please don't introduce regressions 
