@@ -120,3 +120,135 @@ This approach:
 - ✅ Distributes reads across node1, node2, and node3
 
 The performance might be slightly different (more DbContext creation overhead), but it's thread-safe and properly demonstrates reading from replicas!
+
+  __  __           _   _     _   ____    _       ____
+ |  \/  |  _   _  | | | |_  (_) |  _ \  | |__   / ___|   _   _   _ __     ___
+ | |\/| | | | | | | | | __| | | | | | | | '_ \  \___ \  | | | | | '_ \   / __|
+ | |  | | | |_| | | | | |_  | | | |_| | | |_) |  ___) | | |_| | | | | | | (__
+ |_|  |_|  \__,_| |_|  \__| |_| |____/  |_.__/  |____/   \__, | |_| |_|  \___|
+                                                         |___/
+
+/ Creating node1...
+                   EF ENTITY: MultiDbSync.Domain.Entities.Customer
+EF ENTITY: MultiDbSync.Domain.Entities.DatabaseNode
+EF ENTITY: MultiDbSync.Domain.Entities.Order
+EF ENTITY: MultiDbSync.Domain.Entities.OrderItem
+√ Database nodes initialized successfully!
+
+CI Mode: CQRS Load Simulation with Concurrent Readers
+
+┌─Configuration──────────────────────────────────┐
+│ ┌──────────────────────┬─────────────────────┐ │
+│ │ Setting              │ Value               │ │
+│ ├──────────────────────┼─────────────────────┤ │
+│ │ Products to create   │ 100                 │ │
+│ │ Write threads        │ 3                   │ │
+│ │ Read threads         │ 5                   │ │
+│ │ Reads per write      │ 10                  │ │
+│ │ Expected total reads │ 1,000               │ │
+│ │ Read replicas        │ node1, node2, node3 │ │
+│ └──────────────────────┴─────────────────────┘ │
+└────────────────────────────────────────────────┘
+
+Writer 1: Progress 25 products created
+Writer 1: Completed 33 products
+Writer 2: Progress 25 products created
+Writer 0: Progress 25 products created
+Writer 2: Completed 33 products
+Writer 0: Completed 34 products
+
+√ All write operations completed
+Reader 4@node2: Progress 200 reads
+Reader 4@node2: Completed 200 reads
+Reader 2@node3: Progress 200 reads
+Reader 1@node2: Progress 200 reads
+Reader 1@node2: Completed 200 reads
+Reader 2@node3: Completed 200 reads
+Reader 3@node1: Progress 200 reads
+Reader 3@node1: Completed 200 reads
+Reader 0@node1: Progress 200 reads
+Reader 0@node1: Completed 200 reads
+√ All read operations completed
+
+──────────────────────────────────────────────── Performance Statistics ────────────────────────────────────────────────
+
+Total Execution Time: 3.65 seconds
+
+┌─Write Operations (Primary)─────────────┐
+│ ┌─────────────────┬──────────────────┐ │
+│ │ Metric          │ Value            │ │
+│ ├─────────────────┼──────────────────┤ │
+│ │ Total Writes    │ 100              │ │
+│ │ Expected Writes │ 100              │ │
+│ │ Average Latency │ 36.18 ms         │ │
+│ │ Min Latency     │ 1.69 ms          │ │
+│ │ Max Latency     │ 340.96 ms        │ │
+│ │ P95 Latency     │ 169.59 ms        │ │
+│ │ Throughput      │ 27.40 writes/sec │ │
+│ └─────────────────┴──────────────────┘ │
+└────────────────────────────────────────┘
+
+┌─Read Operations (Replicas)──────────────┐
+│ ┌──────────────────┬──────────────────┐ │
+│ │ Metric           │ Value            │ │
+│ ├──────────────────┼──────────────────┤ │
+│ │ Total Reads      │ 1,000            │ │
+│ │ Expected Reads   │ 1,000            │ │
+│ │ Read/Write Ratio │ 10.00:1          │ │
+│ │ Average Latency  │ 2.36 ms          │ │
+│ │ Min Latency      │ 0.21 ms          │ │
+│ │ Max Latency      │ 76.14 ms         │ │
+│ │ P95 Latency      │ 7.46 ms          │ │
+│ │ Throughput       │ 274.02 reads/sec │ │
+│ └──────────────────┴──────────────────┘ │
+└─────────────────────────────────────────┘
+
+┌─CQRS Benefits Demonstrated───────────────────────────────────────────┐
+│ ┌──────────────────────────────────────────────────────────────────┐ │
+│ │ √ Concurrent reads and writes executed simultaneously            │ │
+│ │ √ Read operations achieved 10.0x volume compared to writes       │ │
+│ │ √ Reads distributed across 3 replica nodes (node1, node2, node3) │ │
+│ │ √ Separate read/write databases enable independent scaling       │ │
+│ │ √ Read throughput: 274.02 ops/sec                                │ │
+│ │ √ Write throughput: 27.40 ops/sec                                │ │
+│ │ √ Read operations were 15.3x faster than writes on average       │ │
+│ └──────────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────┬─────────┬───────────┐
+│ Criterion          │ Result  │ Threshold │
+├────────────────────┼─────────┼───────────┤
+│ Write Success Rate │ 100.00% │ 95%       │
+│ Read Success Rate  │ 100.00% │ 95%       │
+└────────────────────┴─────────┴───────────┘
+
+┌────────────────────────────────┐
+│ √ CI Mode: SUCCESS             │
+│ All performance thresholds met │
+└────────────────────────────────┘
+
+D:\DEV\personal\cqrstest\MultiDbSync\MultiDbSync.Console\bin\Debug\net10.0\MultiDbSync.Console.exe (process 21848) exited with code 0 (0x0).
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
