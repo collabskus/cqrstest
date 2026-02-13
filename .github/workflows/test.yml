@@ -90,9 +90,11 @@ jobs:
         run: dotnet restore ${{ env.SOLUTION_PATH }}
       
       - name: 🔨 Build solution
+        shell: bash
         run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
       
       - name: 🧪 Run unit tests
+        shell: bash
         run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results-${{ matrix.runtime }}.trx"
       
       - name: 📤 Upload test results
