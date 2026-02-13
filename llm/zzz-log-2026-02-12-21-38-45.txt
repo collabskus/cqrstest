@@ -1,0 +1,2260 @@
+  __  __           _   _     _   ____    _       ____
+ |  \/  |  _   _  | | | |_  (_) |  _ \  | |__   / ___|   _   _   _ __     ___
+ | |\/| | | | | | | | | __| | | | | | | | '_ \  \___ \  | | | | | '_ \   / __|
+ | |  | | | |_| | | | | |_  | | | |_| | | |_) |  ___) | | |_| | | | | | | (__
+ |_|  |_|  \__,_| |_|  \__| |_| |____/  |_.__/  |____/   \__, | |_| |_|  \___|
+                                                         |___/
+
+\ Creating node1...
+                   EF ENTITY: MultiDbSync.Domain.Entities.Customer
+EF ENTITY: MultiDbSync.Domain.Entities.DatabaseNode
+EF ENTITY: MultiDbSync.Domain.Entities.Order
+EF ENTITY: MultiDbSync.Domain.Entities.OrderItem
+√ Database nodes initialized successfully!
+
+Automated CI/CD Demo - High Volume Data Operations
+
+
+Creating 100 products ----------------------------------------   0% --:--:-- \
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ----------------------------------------   9% 00:00:00 |
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ----------------------------------------  38% 00:00:00 /
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ----------------------------------------  63% 00:00:00 -
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ----------------------------------------  88% 00:00:00 \
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+                                                                              warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Creating 100 products ---------------------------------------- 100% 00:00:00
+
+√ Created 100 products
+
+┌─Database Statistics───────────────────────────┐
+│ ┌───────────────────────┬───────────────────┐ │
+│ │        Metric         │       Value       │ │
+│ ├───────────────────────┼───────────────────┤ │
+│ │    Total Products     │       33898       │ │
+│ │   Total Stock Units   │     8,442,387     │ │
+│ │       Avg Price       │     $1,011.55     │ │
+│ │ Total Inventory Value │ $8,510,947,438.19 │ │
+│ │      Categories       │         5         │ │
+│ └───────────────────────┴───────────────────┘ │
+└───────────────────────────────────────────────┘
+
+Products by Category:
+┌─────────────┬───────┬───────────────────┬───────────┐
+│ Category    │ Count │ Total Value       │ Avg Stock │
+├─────────────┼───────┼───────────────────┼───────────┤
+│ Accessories │ 6913  │ $1,724,633,178.62 │ 251       │
+│ Software    │ 6821  │ $1,703,115,975.88 │ 247       │
+│ Electronics │ 6759  │ $1,694,702,966.96 │ 247       │
+│ Components  │ 6730  │ $1,684,619,698.62 │ 248       │
+│ Peripherals │ 6675  │ $1,703,875,618.11 │ 253       │
+└─────────────┴───────┴───────────────────┴───────────┘
+
+Phase 3: Performing bulk stock updates...
+
+Updating stock levels ----------------------------------------   0%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------   4%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------   6%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  10%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  12%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  16%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  20%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  22%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  26%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  30%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  32%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  36%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  40%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  42%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  46%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  50%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  52%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  56%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  57%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  62%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  66%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  68%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  72%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  74%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  78%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  82%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  84%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  86%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  90%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  92%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Updating stock levels ----------------------------------------  96%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ----------------------------------------  98%
+                                                                   warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Updating stock levels ---------------------------------------- 100%
+
+√ Updated 50 product stock levels
+
+Phase 4: Adjusting prices...
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------   3%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  10%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  13%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  20%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  26%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  30%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  36%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  40%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  46%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  53%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  56%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  63%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  70%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  73%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  80%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  83%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+Applying price changes ----------------------------------------  86%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ----------------------------------------  93%
+                                                                    warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+
+Applying price changes ---------------------------------------- 100%
+
+√ Updated 30 product prices
+
+Phase 5: Removing discontinued products...
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+warn: MultiDbSync.Infrastructure.Services.SynchronizationService[0]
+      No healthy nodes available for synchronization
+√ Removed 5 discontinued products
+
+┌─Before & After Comparison───────────────────────────┐
+│ ┌────────────────┬───────────┬───────────┬────────┐ │
+│ │ Metric         │ Before    │ After     │ Change │ │
+│ ├────────────────┼───────────┼───────────┼────────┤ │
+│ │ Total Products │ 33898     │ 33893     │ -5     │ │
+│ │ Total Stock    │ 8,442,387 │ 8,442,387 │ +0     │ │
+│ └────────────────┴───────────┴───────────┴────────┘ │
+└─────────────────────────────────────────────────────┘
+
+Sample Products (Top 10 by Value):
+┌───────────────────────────┬─────────────┬───────────┬───────┬─────────────┐
+│ Name                      │ Category    │ Price     │ Stock │ Value       │
+├───────────────────────────┼─────────────┼───────────┼───────┼─────────────┤
+│ Budget Microphone 15585   │ Components  │ $1,985.39 │ 499   │ $990,709.61 │
+│ Professional Laptop 8635  │ Peripherals │ $2,008.55 │ 493   │ $990,215.15 │
+│ Compact Monitor 18661     │ Electronics │ $1,994.60 │ 494   │ $985,332.40 │
+│ Professional Webcam 25113 │ Electronics │ $2,005.68 │ 490   │ $982,783.20 │
+│ Gaming Keyboard 2777      │ Components  │ $1,996.38 │ 492   │ $982,218.96 │
+│ Premium Keyboard 16087    │ Peripherals │ $1,995.17 │ 492   │ $981,623.64 │
+│ Compact Cable 3209        │ Electronics │ $1,970.36 │ 498   │ $981,239.28 │
+│ Gaming Microphone 18027   │ Peripherals │ $1,980.16 │ 495   │ $980,179.20 │
+│ Ultra Headset 27093       │ Software    │ $2,005.62 │ 488   │ $978,742.56 │
+│ Budget Microphone 18187   │ Electronics │ $1,996.94 │ 490   │ $978,500.60 │
+└───────────────────────────┴─────────────┴───────────┴───────┴─────────────┘
+
+√ Automated demo completed successfully!
+All operations logged and synchronized across nodes.
+
+D:\DEV\personal\cqrstest\MultiDbSync\MultiDbSync.Console\bin\Debug\net10.0\MultiDbSync.Console.exe (process 6356) exited with code 0 (0x0).
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
