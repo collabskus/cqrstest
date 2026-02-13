@@ -15,6 +15,9 @@ internal sealed class Program(string[] args)
 {
     private static readonly string DatabasePath = Path.Combine(AppContext.BaseDirectory, "databases");
     private readonly bool _isAutomated = args.Any(a => a is "--demo" or "--automated" or "--ci");
+    internal static readonly string[] categoriesArray = ["Electronics", "Accessories", "Components", "Peripherals", "Software"];
+    internal static readonly string[] adjectivesArray = ["Premium", "Budget", "Professional", "Gaming", "Wireless", "RGB", "Compact", "Ultra"];
+    internal static readonly string[] productsArray = ["Laptop", "Monitor", "Keyboard", "Mouse", "Headset", "Webcam", "Microphone", "Cable"];
 
     static async Task<int> Main(string[] args)
     {
@@ -109,7 +112,7 @@ internal sealed class Program(string[] args)
         AnsiConsole.MarkupLine("[green]✓ Database nodes initialized successfully![/]\n");
     }
 
-    private async Task RunInteractiveDemoAsync(IServiceProvider serviceProvider)
+    private static async Task RunInteractiveDemoAsync(IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
         var createProductHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
@@ -144,7 +147,7 @@ internal sealed class Program(string[] args)
         await DisplayProductsAsync(getAllProductsHandler);
     }
 
-    private async Task RunAutomatedDemoAsync(IServiceProvider serviceProvider)
+    private static async Task RunAutomatedDemoAsync(IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
         var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
@@ -169,9 +172,9 @@ internal sealed class Program(string[] args)
                 new SpinnerColumn())
             .StartAsync(async ctx =>
             {
-                var categories = new[] { "Electronics", "Accessories", "Components", "Peripherals", "Software" };
-                var adjectives = new[] { "Premium", "Budget", "Professional", "Gaming", "Wireless", "RGB", "Compact", "Ultra" };
-                var products = new[] { "Laptop", "Monitor", "Keyboard", "Mouse", "Headset", "Webcam", "Microphone", "Cable" };
+                var categories = categoriesArray;
+                var adjectives = adjectivesArray;
+                var products = productsArray;
 
                 var createTask = ctx.AddTask("[yellow]Creating 100 products[/]", maxValue: 100);
 

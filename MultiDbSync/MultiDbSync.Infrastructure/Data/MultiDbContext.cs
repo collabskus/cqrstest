@@ -97,20 +97,11 @@ public class MultiDbContext(string connectionString) : DbContext
     }
 }
 
-public class MultiDbContextFactory
+public class MultiDbContextFactory(string databasePath)
 {
-    private readonly string _baseConnectionString;
-    private readonly string _databasePath;
-
-    public MultiDbContextFactory(string baseConnectionString, string databasePath)
-    {
-        _baseConnectionString = baseConnectionString;
-        _databasePath = databasePath;
-    }
-
     public MultiDbContext CreateDbContext(string nodeId)
     {
-        var dbPath = Path.Combine(_databasePath, $"{nodeId}.db");
+        var dbPath = Path.Combine(databasePath, $"{nodeId}.db");
         var connectionString = $"Data Source={dbPath}";
         return new MultiDbContext(connectionString);
     }

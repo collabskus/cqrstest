@@ -12,8 +12,8 @@ public sealed class QuorumService(
     private readonly IDatabaseNodeRepository _nodeRepository = nodeRepository;
     private readonly ILogger<QuorumService> _logger = logger;
 
-    private readonly Dictionary<Guid, List<QuorumVote>> _votes = new();
-    private readonly Dictionary<Guid, DateTime> _voteTimers = new();
+    private readonly Dictionary<Guid, List<QuorumVote>> _votes = [];
+    private readonly Dictionary<Guid, DateTime> _voteTimers = [];
     private readonly TimeSpan _voteTimeout = TimeSpan.FromSeconds(10);
 
     public async Task<bool> RequestVoteAsync(

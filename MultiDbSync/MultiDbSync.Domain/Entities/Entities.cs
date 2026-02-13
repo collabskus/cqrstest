@@ -87,7 +87,7 @@ public sealed class Order
     public DateTime? DeliveredAt { get; private set; }
     public byte[] Version { get; private set; } = [];
 
-    private readonly List<OrderItem> _items = new();
+    private readonly List<OrderItem> _items = [];
     public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
     private Order() { }
