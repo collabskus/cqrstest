@@ -6,88 +6,83 @@ namespace MultiDbSync.Infrastructure.Services;
 
 public sealed class QuorumService(
     IDatabaseNodeRepository nodeRepository,
-    ILogger<QuorumService> logger)
-    : IQuorumService
+    ILogger<QuorumService> logger) : IQuorumService
 {
-    private readonly IDatabaseNodeRepository _nodeRepository = nodeRepository;
-    private readonly ILogger<QuorumService> _logger = logger;
-
-    private readonly Dictionary<Guid, List<QuorumVote>> _votes = [];
-    private readonly Dictionary<Guid, DateTime> _voteTimers = [];
-    private readonly TimeSpan _voteTimeout = TimeSpan.FromSeconds(10);
+    private readonly Dictionary<Guid, QuorumVoting> _activeVotes = new();
 
     public async Task<bool> RequestVoteAsync(
         Guid operationId,
         string operationDescription,
         CancellationToken cancellationToken = default)
     {
-        var healthyNodes = await _nodeRepository.GetHealthyNodesAsync(cancellationToken);
-
-        if (healthyNodes.Count == 0)
+        try
         {
-            _logger.LogWarning("No healthy nodes available for quorum vote");
+            var healthyNodes = await nodeRepository.GetHealthyNodesAsync(cancellationToken);
+
+            if (healthyNodes.Count == 0)
+            {
+                logger.LogWarning("No healthy nodes available for quorum vote");
+                return false;
+            }
+
+            var voting = new QuorumVoting
+            {
+                OperationId = operationId,
+                Description = operationDescription,
+                TotalNodes = healthyNodes.Count,
+                StartedAt = DateTime.UtcNow
+            };
+
+            _activeVotes[operationId] = voting;
+
+            logger.LogInformation(
+                "Quorum vote requested for operation {OperationId}: {Description}",
+                operationId,
+                operationDescription);
+
+            // In a real implementation, this would contact each node for a vote
+            // For demo purposes, we'll simulate automatic approval
+            voting.YesVotes = healthyNodes.Count;
+            voting.NoVotes = 0;
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to request quorum vote for operation {OperationId}", operationId);
             return false;
         }
-
-        var votes = new List<QuorumVote>();
-        _votes[operationId] = votes;
-        _voteTimers[operationId] = DateTime.UtcNow.Add(_voteTimeout);
-
-        _logger.LogInformation("Requesting quorum vote for operation {OperationId}: {Description}",
-            operationId, operationDescription);
-
-        foreach (var node in healthyNodes)
-        {
-            try
-            {
-                var vote = await CastVoteAsync(operationId, node, cancellationToken);
-                votes.Add(vote);
-
-                _logger.LogDebug("Node {NodeId} voted {Vote} for operation {OperationId}",
-                    node.NodeId, vote.Vote ? "YES" : "NO", operationId);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to get vote from node {NodeId}", node.NodeId);
-            }
-        }
-
-        return await HasConsensusAsync(operationId, cancellationToken);
     }
 
-    public async Task<QuorumResult> GetQuorumResultAsync(
+    public Task<QuorumResult> GetQuorumResultAsync(
         Guid operationId,
         CancellationToken cancellationToken = default)
     {
-        if (!_votes.TryGetValue(operationId, out var votes))
+        if (!_activeVotes.TryGetValue(operationId, out var voting))
         {
-            var healthyNodes = await _nodeRepository.GetHealthyNodesAsync(cancellationToken);
-            return new QuorumResult(
+            logger.LogWarning("No quorum vote found for operation {OperationId}", operationId);
+            return Task.FromResult(new QuorumResult(
                 operationId,
-                healthyNodes.Count,
+                0,
                 0,
                 0,
                 false,
-                QuorumDecision.Pending);
+                QuorumDecision.Rejected));
         }
 
-        var yesVotes = votes.Count(v => v.Vote);
-        var noVotes = votes.Count(v => !v.Vote);
-        var totalVotes = votes.Count;
-
-        var hasConsensus = totalVotes > 0 && yesVotes > totalVotes / 2;
-
+        var requiredVotes = GetRequiredVotes(voting.TotalNodes);
+        var hasConsensus = voting.YesVotes >= requiredVotes;
         var decision = hasConsensus ? QuorumDecision.Approved :
-                      noVotes > totalVotes / 2 ? QuorumDecision.Rejected :
-                      QuorumDecision.Pending;
+                      voting.YesVotes + voting.NoVotes < voting.TotalNodes ? QuorumDecision.Pending :
+                      QuorumDecision.Rejected;
 
-        return new QuorumResult(
+        return Task.FromResult(new QuorumResult(
             operationId,
-            totalVotes,
-            yesVotes,
-            noVotes,
+            voting.TotalNodes,
+            voting.YesVotes,
+            voting.NoVotes,
             hasConsensus,
-            decision);
+            decision));
     }
 
     public async Task<bool> HasConsensusAsync(
@@ -100,22 +95,24 @@ public sealed class QuorumService(
 
     public int GetRequiredVotes()
     {
-        return 2;
+        // This would typically get the total number of nodes first
+        // For now, return a default
+        return GetRequiredVotes(3);
     }
 
-    private async Task<QuorumVote> CastVoteAsync(
-        Guid operationId,
-        DatabaseNode node,
-        CancellationToken cancellationToken)
+    private static int GetRequiredVotes(int totalNodes)
     {
-        await Task.Delay(50, cancellationToken);
+        // Require majority (more than half)
+        return (totalNodes / 2) + 1;
+    }
 
-        var vote = new QuorumVote(
-            operationId,
-            node.NodeId,
-            true,
-            "Node operational");
-
-        return vote;
+    private sealed class QuorumVoting
+    {
+        public required Guid OperationId { get; init; }
+        public required string Description { get; init; }
+        public required int TotalNodes { get; init; }
+        public int YesVotes { get; set; }
+        public int NoVotes { get; set; }
+        public required DateTime StartedAt { get; init; }
     }
 }

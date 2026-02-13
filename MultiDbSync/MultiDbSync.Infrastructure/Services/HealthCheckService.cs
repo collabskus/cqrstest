@@ -1,72 +1,71 @@
-using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using MultiDbSync.Domain.Entities;
 using MultiDbSync.Domain.Interfaces;
+using MultiDbSync.Infrastructure.Data;
 
 namespace MultiDbSync.Infrastructure.Services;
 
 public sealed class HealthCheckService(
-    IDatabaseNodeRepository nodeRepository,
-    ILogger<HealthCheckService> logger)
-    : IHealthCheckService
+    MultiDbContextFactory dbFactory,
+    ILogger<HealthCheckService> logger) : IHealthCheckService
 {
-    private readonly IDatabaseNodeRepository _nodeRepository = nodeRepository;
-    private readonly ILogger<HealthCheckService> _logger = logger;
-
     public async Task<HealthStatus> CheckNodeHealthAsync(
         string nodeId,
         CancellationToken cancellationToken = default)
     {
-        var node = await _nodeRepository.GetByIdAsync(nodeId, cancellationToken);
-
-        if (node is null)
-        {
-            return new HealthStatus(nodeId, false, 0, "Node not found");
-        }
-
-        var stopwatch = Stopwatch.StartNew();
+        var startTime = DateTime.UtcNow;
 
         try
         {
-            await Task.Delay(50, cancellationToken);
+            await using var context = dbFactory.CreateDbContext(nodeId);
 
-            stopwatch.Stop();
+            // Test database connectivity
+            await context.Database.CanConnectAsync(cancellationToken);
 
-            var isHealthy = node.IsAlive && node.Status != NodeStatus.Offline;
+            var responseTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
 
-            _logger.LogDebug("Health check for node {NodeId}: {IsHealthy} ({ResponseTime}ms)",
-                nodeId, isHealthy, stopwatch.ElapsedMilliseconds);
-
-            return new HealthStatus(
+            logger.LogDebug(
+                "Node {NodeId} health check passed in {ResponseTime}ms",
                 nodeId,
-                isHealthy,
-                stopwatch.ElapsedMilliseconds,
-                isHealthy ? null : "Node is not responding");
+                responseTime);
+
+            return new HealthStatus(nodeId, true, responseTime, null);
         }
         catch (Exception ex)
         {
-            stopwatch.Stop();
+            var responseTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
 
-            _logger.LogError(ex, "Health check failed for node {NodeId}", nodeId);
-
-            return new HealthStatus(
+            logger.LogWarning(
+                ex,
+                "Node {NodeId} health check failed after {ResponseTime}ms",
                 nodeId,
-                false,
-                stopwatch.ElapsedMilliseconds,
-                ex.Message);
+                responseTime);
+
+            return new HealthStatus(nodeId, false, responseTime, ex.Message);
         }
     }
 
     public async Task<IReadOnlyDictionary<string, HealthStatus>> CheckAllNodesAsync(
         CancellationToken cancellationToken = default)
     {
-        var nodes = await _nodeRepository.GetAllAsync(cancellationToken);
         var results = new Dictionary<string, HealthStatus>();
 
-        foreach (var node in nodes)
+        try
         {
-            var health = await CheckNodeHealthAsync(node.NodeId, cancellationToken);
-            results[node.NodeId] = health;
+            // Get list of known nodes from the primary database
+            await using var primaryContext = dbFactory.CreateDbContext("node1");
+            var nodes = await primaryContext.DatabaseNodes.AsAsyncEnumerable()
+                .ToListAsync(cancellationToken);
+
+            foreach (var node in nodes)
+            {
+                var health = await CheckNodeHealthAsync(node.NodeId, cancellationToken);
+                results[node.NodeId] = health;
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to check all nodes");
         }
 
         return results;

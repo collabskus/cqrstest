@@ -12,20 +12,24 @@ public static class DependencyInjection
         this IServiceCollection services,
         string databasePath)
     {
+        // Register the factory as singleton
         services.AddSingleton(_ => new MultiDbContextFactory(databasePath));
 
+        // Register primary context for default operations
         services.AddSingleton<MultiDbContext>(sp =>
         {
             var factory = sp.GetRequiredService<MultiDbContextFactory>();
-            return factory.CreateDbContext("primary");
+            return factory.CreateDbContext("node1");
         });
 
+        // Register repositories as scoped
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IDatabaseNodeRepository, DatabaseNodeRepository>();
         services.AddScoped<ISyncOperationRepository, SyncOperationRepository>();
 
+        // Register services as singletons
         services.AddSingleton<IHealthCheckService, HealthCheckService>();
         services.AddSingleton<IQuorumService, QuorumService>();
         services.AddSingleton<ISynchronizationService, SynchronizationService>();

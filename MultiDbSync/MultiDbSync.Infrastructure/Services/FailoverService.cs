@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using MultiDbSync.Domain.Entities;
 using MultiDbSync.Domain.Interfaces;
 
 namespace MultiDbSync.Infrastructure.Services;
@@ -6,195 +7,156 @@ namespace MultiDbSync.Infrastructure.Services;
 public sealed class FailoverService(
     IDatabaseNodeRepository nodeRepository,
     IHealthCheckService healthCheckService,
-    IQuorumService quorumService,
-    ILogger<FailoverService> logger)
-    : IFailoverService
+    ILogger<FailoverService> logger) : IFailoverService
 {
-    private readonly IDatabaseNodeRepository _nodeRepository = nodeRepository;
-    private readonly IHealthCheckService _healthCheckService = healthCheckService;
-    private readonly IQuorumService _quorumService = quorumService;
-    private readonly ILogger<FailoverService> _logger = logger;
-
-    private readonly object _failoverLock = new();
-    private CancellationTokenSource? _monitoringCts;
-
     public event EventHandler<FailoverEventArgs>? FailoverOccurred;
 
     public async Task<bool> TriggerFailoverAsync(
         string failedNodeId,
         CancellationToken cancellationToken = default)
     {
-        lock (_failoverLock)
-        {
-            if (string.IsNullOrEmpty(failedNodeId))
-            {
-                _logger.LogWarning("No failed node ID provided");
-                return false;
-            }
-        }
-
         try
         {
-            _logger.LogInformation("Triggering failover for failed node {FailedNodeId}", failedNodeId);
+            logger.LogWarning("Triggering failover for failed node {NodeId}", failedNodeId);
 
-            var failedNode = await _nodeRepository.GetByIdAsync(failedNodeId, cancellationToken);
-            if (failedNode is null)
+            var failedNode = await nodeRepository.GetByIdAsync(failedNodeId, cancellationToken);
+            if (failedNode == null)
             {
-                _logger.LogWarning("Failed node {FailedNodeId} not found", failedNodeId);
+                logger.LogError("Failed node {NodeId} not found in repository", failedNodeId);
                 return false;
             }
 
-            var healthyNodes = await _nodeRepository.GetHealthyNodesAsync(cancellationToken);
-            var nonPrimaryNodes = healthyNodes.Where(n => !n.IsPrimary).ToList();
+            // Mark the failed node as offline
+            failedNode.MarkAsOffline();
+            await nodeRepository.UpdateAsync(failedNode, cancellationToken);
 
-            if (nonPrimaryNodes.Count == 0)
+            // Find a new primary if the failed node was primary
+            if (failedNode.IsPrimary)
             {
-                _logger.LogError("No healthy non-primary nodes available for failover");
-                return false;
+                var newPrimaryId = await GetOptimalNodeAsync(cancellationToken);
+
+                if (newPrimaryId == null)
+                {
+                    logger.LogError("No suitable replacement node found for failed primary {NodeId}", failedNodeId);
+                    return false;
+                }
+
+                var newPrimary = await nodeRepository.GetByIdAsync(newPrimaryId, cancellationToken);
+                if (newPrimary != null)
+                {
+                    newPrimary.PromoteToPrimary();
+                    await nodeRepository.UpdateAsync(newPrimary, cancellationToken);
+
+                    logger.LogInformation(
+                        "Promoted node {NewNodeId} to primary after failure of {FailedNodeId}",
+                        newPrimaryId,
+                        failedNodeId);
+
+                    FailoverOccurred?.Invoke(this, new FailoverEventArgs(failedNodeId, newPrimaryId));
+                }
             }
-
-            var newPrimary = nonPrimaryNodes
-                .OrderByDescending(n => n.Priority)
-                .ThenByDescending(n => n.HealthScore)
-                .First();
-
-            var hasConsensus = await _quorumService.HasConsensusAsync(
-                Guid.NewGuid(),
-                cancellationToken);
-
-            if (!hasConsensus)
-            {
-                _logger.LogWarning("No quorum consensus for failover");
-                return false;
-            }
-
-            var allNodes = await _nodeRepository.GetAllAsync(cancellationToken);
-            foreach (var node in allNodes.Where(n => n.IsPrimary))
-            {
-                node.DemoteFromPrimary();
-                await _nodeRepository.UpdateAsync(node, cancellationToken);
-            }
-
-            newPrimary.PromoteToPrimary();
-            await _nodeRepository.UpdateAsync(newPrimary, cancellationToken);
-
-            failedNode.MarkUnhealthy();
-            await _nodeRepository.UpdateAsync(failedNode, cancellationToken);
-
-            _logger.LogInformation(
-                "Failover completed: {FailedNodeId} -> {NewPrimaryNodeId}",
-                failedNodeId,
-                newPrimary.NodeId);
-
-            FailoverOccurred?.Invoke(
-                this,
-                new FailoverEventArgs(failedNodeId, newPrimary.NodeId));
 
             return true;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failover failed for node {FailedNodeId}", failedNodeId);
+            logger.LogError(ex, "Failed to trigger failover for node {NodeId}", failedNodeId);
             return false;
         }
     }
 
-    public async Task<string?> GetOptimalNodeAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<string?> GetOptimalNodeAsync(CancellationToken cancellationToken = default)
     {
-        var healthyNodes = await _nodeRepository.GetHealthyNodesAsync(cancellationToken);
+        try
+        {
+            var healthyNodes = await nodeRepository.GetHealthyNodesAsync(cancellationToken);
 
-        if (healthyNodes.Count == 0)
+            if (healthyNodes.Count == 0)
+            {
+                logger.LogWarning("No healthy nodes available for selection");
+                return null;
+            }
+
+            // Select node with highest priority
+            var optimalNode = healthyNodes
+                .OrderByDescending(n => n.Priority)
+                .ThenBy(n => n.NodeId)
+                .FirstOrDefault();
+
+            return optimalNode?.NodeId;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to get optimal node");
             return null;
-
-        var optimalNode = healthyNodes
-            .OrderByDescending(n => n.Priority)
-            .ThenByDescending(n => n.HealthScore)
-            .First();
-
-        return optimalNode.NodeId;
+        }
     }
 
-    public async Task<bool> IsFailoverNeededAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<bool> IsFailoverNeededAsync(CancellationToken cancellationToken = default)
     {
-        var primaryNodes = await _nodeRepository.GetPrimaryNodesAsync(cancellationToken);
-
-        foreach (var primary in primaryNodes)
+        try
         {
-            var health = await _healthCheckService.CheckNodeHealthAsync(
-                primary.NodeId,
-                cancellationToken);
+            var primaryNodes = await nodeRepository.GetPrimaryNodesAsync(cancellationToken);
 
-            if (!health.IsHealthy)
-                return true;
+            // Check if primary nodes are healthy
+            foreach (var primaryNode in primaryNodes)
+            {
+                var isHealthy = await healthCheckService.IsNodeHealthyAsync(
+                    primaryNode.NodeId,
+                    cancellationToken);
+
+                if (!isHealthy)
+                {
+                    logger.LogWarning("Primary node {NodeId} is unhealthy - failover needed", primaryNode.NodeId);
+                    return true;
+                }
+            }
+
+            return false;
         }
-
-        return false;
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to check if failover is needed");
+            return false;
+        }
     }
 
     public async Task MonitorNodesAsync(CancellationToken cancellationToken = default)
     {
-        _monitoringCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-
-        _logger.LogInformation("Starting node monitoring");
-
         try
         {
-            while (!_monitoringCts.Token.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                try
-                {
-                    var allNodes = await _nodeRepository.GetAllAsync(_monitoringCts.Token);
+                var isFailoverNeeded = await IsFailoverNeededAsync(cancellationToken);
 
-                    foreach (var node in allNodes)
+                if (isFailoverNeeded)
+                {
+                    var primaryNodes = await nodeRepository.GetPrimaryNodesAsync(cancellationToken);
+
+                    foreach (var primaryNode in primaryNodes)
                     {
-                        var health = await _healthCheckService.CheckNodeHealthAsync(
-                            node.NodeId,
-                            _monitoringCts.Token);
+                        var isHealthy = await healthCheckService.IsNodeHealthyAsync(
+                            primaryNode.NodeId,
+                            cancellationToken);
 
-                        if (health.IsHealthy)
+                        if (!isHealthy)
                         {
-                            node.MarkHealthy();
+                            await TriggerFailoverAsync(primaryNode.NodeId, cancellationToken);
                         }
-                        else
-                        {
-                            node.MarkUnhealthy();
-
-                            if (node.IsPrimary)
-                            {
-                                _logger.LogWarning(
-                                    "Primary node {NodeId} is unhealthy, triggering failover",
-                                    node.NodeId);
-
-                                await TriggerFailoverAsync(node.NodeId, _monitoringCts.Token);
-                            }
-                        }
-
-                        await _nodeRepository.UpdateAsync(node, _monitoringCts.Token);
                     }
+                }
 
-                    await Task.Delay(TimeSpan.FromSeconds(5), _monitoringCts.Token);
-                }
-                catch (OperationCanceledException)
-                {
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error during node monitoring");
-                    await Task.Delay(TimeSpan.FromSeconds(5), _monitoringCts.Token);
-                }
+                // Wait before next check
+                await Task.Delay(TimeSpan.FromSeconds(30), cancellationToken);
             }
         }
-        finally
+        catch (OperationCanceledException)
         {
-            _logger.LogInformation("Node monitoring stopped");
+            logger.LogInformation("Node monitoring stopped");
         }
-    }
-
-    public void StopMonitoring()
-    {
-        _monitoringCts?.Cancel();
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in node monitoring");
+        }
     }
 }
