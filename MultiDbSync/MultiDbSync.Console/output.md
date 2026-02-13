@@ -15,15 +15,16 @@ EF ENTITY: MultiDbSync.Domain.Entities.OrderItem
 Automated CI/CD Demo - High Volume Data Operations
 
 
-Creating 10000 products ---------------------------------------- 100% 00:00:00
+Creating 10,000 products ---------------------------------------- 100% 00:00:00
 
-√ Created 10000 products
+√ Created 10,000 products
 
+Phase 2: Analyzing data...
 ┌─Database Statistics───────────────────────────┐
 │ ┌───────────────────────┬───────────────────┐ │
 │ │        Metric         │       Value       │ │
 │ ├───────────────────────┼───────────────────┤ │
-│ │    Total Products     │       10000       │ │
+│ │    Total Products     │      10,000       │ │
 │ │   Total Stock Units   │     2,491,867     │ │
 │ │       Avg Price       │     $1,006.06     │ │
 │ │ Total Inventory Value │ $2,507,703,798.74 │ │
@@ -35,11 +36,11 @@ Products by Category:
 ┌─────────────┬───────┬─────────────────┬───────────┐
 │ Category    │ Count │ Total Value     │ Avg Stock │
 ├─────────────┼───────┼─────────────────┼───────────┤
-│ Electronics │ 2039  │ $516,811,566.49 │ 247       │
-│ Peripherals │ 2017  │ $517,486,749.00 │ 256       │
-│ Software    │ 2006  │ $502,771,823.60 │ 247       │
-│ Accessories │ 2002  │ $490,548,192.32 │ 249       │
-│ Components  │ 1936  │ $480,085,467.33 │ 247       │
+│ Electronics │ 2,039 │ $516,811,566.49 │ 247       │
+│ Peripherals │ 2,017 │ $517,486,749.00 │ 256       │
+│ Software    │ 2,006 │ $502,771,823.60 │ 247       │
+│ Accessories │ 2,002 │ $490,548,192.32 │ 249       │
+│ Components  │ 1,936 │ $480,085,467.33 │ 247       │
 └─────────────┴───────┴─────────────────┴───────────┘
 
 Phase 3: Performing bulk stock updates...
@@ -61,7 +62,7 @@ Phase 5: Removing discontinued products...
 │ ┌────────────────┬───────────┬───────────┬────────┐ │
 │ │ Metric         │ Before    │ After     │ Change │ │
 │ ├────────────────┼───────────┼───────────┼────────┤ │
-│ │ Total Products │ 10000     │ 9995      │ -5     │ │
+│ │ Total Products │ 10,000    │ 9,995     │ -5     │ │
 │ │ Total Stock    │ 2,484,904 │ 2,484,904 │ +0     │ │
 │ └────────────────┴───────────┴───────────┴────────┘ │
 └─────────────────────────────────────────────────────┘
@@ -85,7 +86,6 @@ Sample Products (Top 10 by Value):
 √ Automated demo completed successfully!
 All operations logged and synchronized across nodes.
 
-D:\DEV\personal\cqrstest\MultiDbSync\MultiDbSync.Console\bin\Debug\net10.0\MultiDbSync.Console.exe (process 10576) exited with code 0 (0x0).
+D:\DEV\personal\cqrstest\MultiDbSync\MultiDbSync.Console\bin\Debug\net10.0\MultiDbSync.Console.exe (process 17740) exited with code 0 (0x0).
 To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
 Press any key to close this window . . .
-
