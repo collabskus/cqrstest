@@ -13,6 +13,7 @@ namespace MultiDbSync.Console;
 internal sealed class Program(string[] args)
 {
     private static readonly string DatabasePath = Path.Combine(AppContext.BaseDirectory, "databases");
+    private static readonly int productCount = 10_000;
     private readonly bool _isAutomated = args.Any(a => a is "--demo" or "--automated" or "--ci");
     internal static readonly string[] categoriesArray = ["Electronics", "Accessories", "Components", "Peripherals", "Software"];
     internal static readonly string[] adjectivesArray = ["Premium", "Budget", "Professional", "Gaming", "Wireless", "RGB", "Compact", "Ultra"];
@@ -175,9 +176,9 @@ internal sealed class Program(string[] args)
                 var adjectives = adjectivesArray;
                 var products = productsArray;
 
-                var createTask = ctx.AddTask("[yellow]Creating 100 products[/]", maxValue: 100);
+                var createTask = ctx.AddTask($"[yellow]Creating {productCount} products[/]", maxValue: 100);
 
-                for (int i = 0; i < 1_000; i++)
+                for (int i = 0; i < productCount; i++)
                 {
                     var adjective = adjectives[random.Next(adjectives.Length)];
                     var product = products[random.Next(products.Length)];
@@ -200,7 +201,7 @@ internal sealed class Program(string[] args)
                 }
             });
 
-        AnsiConsole.MarkupLine("[green]✓ Created 100 products[/]\n");
+        AnsiConsole.MarkupLine($"[green]✓ Created {productCount} products[/]\n");
 
         // Phase 2: Statistics
         var productsResult = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
