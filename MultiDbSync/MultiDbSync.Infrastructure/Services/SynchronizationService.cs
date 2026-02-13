@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using MultiDbSync.Domain.Entities;
 using MultiDbSync.Domain.Interfaces;
 using MultiDbSync.Infrastructure.Data;
-using MultiDbSync.Infrastructure.Repositories;
 
 namespace MultiDbSync.Infrastructure.Services;
 

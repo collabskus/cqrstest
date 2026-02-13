@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using MultiDbSync.Application.CQRS;
 using MultiDbSync.Application.Commands;
 using MultiDbSync.Application.Queries;
 
