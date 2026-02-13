@@ -12,9 +12,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         string databasePath)
     {
-        services.AddSingleton(_ => new MultiDbContextFactory(
-            "Data Source=",
-            databasePath));
+        services.AddSingleton(_ => new MultiDbContextFactory(databasePath));
 
         services.AddSingleton<MultiDbContext>(sp =>
         {
