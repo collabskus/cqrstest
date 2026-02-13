@@ -81,6 +81,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
       - name: Publish for ${{ matrix.runtime }}
+        shell: bash
         run: |
           dotnet publish ${{ env.CONSOLE_PROJECT }} \
             --configuration Release \
