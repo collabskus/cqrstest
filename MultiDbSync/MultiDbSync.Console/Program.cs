@@ -1,11 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MultiDbSync.Application;
 using MultiDbSync.Application.Commands;
 using MultiDbSync.Application.Queries;
 using MultiDbSync.Domain.Entities;
-using MultiDbSync.Domain.ValueObjects;
 using MultiDbSync.Infrastructure;
 using MultiDbSync.Infrastructure.Data;
 using Spectre.Console;
