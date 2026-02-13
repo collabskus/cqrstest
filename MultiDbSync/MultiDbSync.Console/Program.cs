@@ -181,13 +181,17 @@ internal sealed class Program(string[] args)
         ConcurrentQueue<Guid> writtenProductIds,
         ConcurrentBag<TimeSpan> writeLatencies)
     {
-        using var scope = serviceProvider.CreateScope();
-        var commandHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
-
         int localWrites = 0;
 
         for (int i = 0; i < productsToCreate; i++)
         {
+            // Create a new scope for each product to avoid DbContext threading issues
+            using var scope = serviceProvider.CreateScope();
+            var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
+            await using var context = factory.CreateDbContext("node1"); // Write to primary
+
+            var repository = new Infrastructure.Repositories.ProductRepository(context);
+
             var adjective = ProductDataGenerator.AdjectivesArray[Random.Shared.Next(ProductDataGenerator.AdjectivesArray.Length)];
             var product = ProductDataGenerator.ProductsArray[Random.Shared.Next(ProductDataGenerator.ProductsArray.Length)];
             var category = ProductDataGenerator.CategoriesArray[Random.Shared.Next(ProductDataGenerator.CategoriesArray.Length)];
@@ -195,11 +199,10 @@ internal sealed class Program(string[] args)
             var price = Math.Round((decimal)(Random.Shared.NextDouble() * 1900 + 100), 2);
             var stock = Random.Shared.Next(0, 500);
 
-            var cmd = new CreateProductCommand(
+            var productEntity = new Product(
                 name,
                 $"High-quality {product.ToLower()} with advanced features",
-                price,
-                "USD",
+                new Domain.ValueObjects.Money(price, "USD"),
                 stock,
                 category
             );
@@ -207,32 +210,29 @@ internal sealed class Program(string[] args)
             var sw = Stopwatch.StartNew();
             try
             {
-                var result = await commandHandler.HandleAsync(cmd);
+                await repository.AddAsync(productEntity);
                 sw.Stop();
 
-                if (result.IsSuccess && result.Data is not null)
+                writeLatencies.Add(sw.Elapsed);
+                localWrites++;
+
+                writtenProductIds.Enqueue(productEntity.Id);
+
+                if (localWrites % 25 == 0)
                 {
-                    writeLatencies.Add(sw.Elapsed);
-                    localWrites++;
-
-                    writtenProductIds.Enqueue(result.Data.Id);
-
-                    if (localWrites % 25 == 0)
-                    {
-                        AnsiConsole.MarkupLine($"[dim][Writer {threadId}] Progress: {localWrites} products created[/]");
-                    }
+                    AnsiConsole.MarkupLine($"[dim]Writer {threadId}: Progress {localWrites} products created[/]");
                 }
             }
             catch (Exception ex)
             {
-                AnsiConsole.MarkupLine($"[red][Writer {threadId}] Error: {ex.Message}[/]");
+                AnsiConsole.MarkupLine($"[red]Writer {threadId} Error: {ex.Message}[/]");
             }
 
             // Small delay to simulate realistic write patterns
             await Task.Delay(Random.Shared.Next(10, 30));
         }
 
-        AnsiConsole.MarkupLine($"[green][Writer {threadId}] Completed {productsToCreate} products[/]");
+        AnsiConsole.MarkupLine($"[green]Writer {threadId}: Completed {productsToCreate} products[/]");
         return localWrites;
     }
 
@@ -245,20 +245,6 @@ internal sealed class Program(string[] args)
         Task allWritesComplete,
         ConcurrentBag<TimeSpan> readLatencies)
     {
-        using var scope = serviceProvider.CreateScope();
-
-        // Get factory and create context for specific replica node
-        var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
-        await using var context = factory.CreateDbContext(nodeId);
-
-        // Create query handlers for this specific node
-        var getByIdHandler = new GetProductByIdQueryHandler(
-            new Infrastructure.Repositories.ProductRepository(context));
-        var getAllHandler = new GetAllProductsQueryHandler(
-            new Infrastructure.Repositories.ProductRepository(context));
-        var searchHandler = new GetProductsByCategoryQueryHandler(
-            new Infrastructure.Repositories.ProductRepository(context));
-
         int localReads = 0;
         int consecutiveEmptyReads = 0;
         const int maxConsecutiveEmptyReads = 50;
@@ -279,6 +265,13 @@ internal sealed class Program(string[] args)
 
             consecutiveEmptyReads = 0;
 
+            // Create a new scope for each read to avoid DbContext threading issues
+            using var scope = serviceProvider.CreateScope();
+            var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
+            await using var context = factory.CreateDbContext(nodeId);
+
+            var repository = new Infrastructure.Repositories.ProductRepository(context);
+
             try
             {
                 // Distribute read patterns: 50% by ID, 30% list all, 20% search by category
@@ -288,8 +281,7 @@ internal sealed class Program(string[] args)
                 {
                     // Read by ID from replica
                     var sw = Stopwatch.StartNew();
-                    var query = new GetProductByIdQuery(productId);
-                    var result = await getByIdHandler.HandleAsync(query);
+                    var product = await repository.GetByIdAsync(productId);
                     sw.Stop();
 
                     readLatencies.Add(sw.Elapsed);
@@ -299,8 +291,7 @@ internal sealed class Program(string[] args)
                 {
                     // List all products from replica
                     var sw = Stopwatch.StartNew();
-                    var query = new GetAllProductsQuery();
-                    var result = await getAllHandler.HandleAsync(query);
+                    var products = await repository.GetAllAsync();
                     sw.Stop();
 
                     readLatencies.Add(sw.Elapsed);
@@ -313,8 +304,7 @@ internal sealed class Program(string[] args)
                     var category = categories[Random.Shared.Next(categories.Length)];
 
                     var sw = Stopwatch.StartNew();
-                    var query = new GetProductsByCategoryQuery(category);
-                    var result = await searchHandler.HandleAsync(query);
+                    var products = await repository.GetByCategoryAsync(category);
                     sw.Stop();
 
                     readLatencies.Add(sw.Elapsed);
@@ -323,19 +313,19 @@ internal sealed class Program(string[] args)
 
                 if (localReads % 200 == 0)
                 {
-                    AnsiConsole.MarkupLine($"[dim][Reader {threadId}@{nodeId}] Progress: {localReads} reads[/]");
+                    AnsiConsole.MarkupLine($"[dim]Reader {threadId}@{nodeId}: Progress {localReads} reads[/]");
                 }
             }
             catch (Exception ex)
             {
-                AnsiConsole.MarkupLine($"[red][Reader {threadId}@{nodeId}] Error: {ex.Message}[/]");
+                AnsiConsole.MarkupLine($"[red]Reader {threadId}@{nodeId} Error: {ex.Message}[/]");
             }
 
             // Small delay between reads
             await Task.Delay(Random.Shared.Next(3, 10));
         }
 
-        AnsiConsole.MarkupLine($"[cyan][Reader {threadId}@{nodeId}] Completed {localReads} reads[/]");
+        AnsiConsole.MarkupLine($"[cyan]Reader {threadId}@{nodeId}: Completed {localReads} reads[/]");
         return localReads;
     }
 
