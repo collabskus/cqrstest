@@ -51,12 +51,6 @@ jobs:
             runtime: win-arm64
             display-name: 'Windows ARM64'
           
-          # macOS Intel (x64)
-          - os: macos-13
-            arch: x64
-            runtime: osx-x64
-            display-name: 'macOS Intel'
-          
           # macOS Apple Silicon (ARM64)
           - os: macos-latest
             arch: arm64
