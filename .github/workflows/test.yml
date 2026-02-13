@@ -33,23 +33,11 @@ jobs:
             runtime: linux-x64
             display-name: 'Linux x64'
           
-          # Linux ARM64 (GitHub-hosted runners available)
-          - os: ubuntu-latest-arm
-            arch: arm64
-            runtime: linux-arm64
-            display-name: 'Linux ARM64'
-          
           # Windows x64
           - os: windows-latest
             arch: x64
             runtime: win-x64
             display-name: 'Windows x64'
-          
-          # Windows ARM64 (GitHub-hosted runners available)
-          - os: windows-latest-arm
-            arch: arm64
-            runtime: win-arm64
-            display-name: 'Windows ARM64'
           
           # macOS Apple Silicon (ARM64)
           - os: macos-latest

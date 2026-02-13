@@ -1,6 +1,6 @@
 ================================================================================
 GIT-TRACKED FILES DUMP
-Generated: 2026-02-13 08:51:08
+Generated: 2026-02-13 09:06:58
 Total tracked: 47 | Processed: 46 | Skipped: 1
 ================================================================================
 
@@ -269,7 +269,7 @@ jobs:
 
 ================================================================================
 FILE: .github/workflows/test.yml
-SIZE: 9.16 KB
+SIZE: 8.77 KB
 ================================================================================
 name: Cross-Platform Integration Tests
 
@@ -306,23 +306,11 @@ jobs:
             runtime: linux-x64
             display-name: 'Linux x64'
           
-          # Linux ARM64 (GitHub-hosted runners available)
-          - os: ubuntu-latest-arm
-            arch: arm64
-            runtime: linux-arm64
-            display-name: 'Linux ARM64'
-          
           # Windows x64
           - os: windows-latest
             arch: x64
             runtime: win-x64
             display-name: 'Windows x64'
-          
-          # Windows ARM64 (GitHub-hosted runners available)
-          - os: windows-latest-arm
-            arch: arm64
-            runtime: win-arm64
-            display-name: 'Windows ARM64'
           
           # macOS Apple Silicon (ARM64)
           - os: macos-latest
