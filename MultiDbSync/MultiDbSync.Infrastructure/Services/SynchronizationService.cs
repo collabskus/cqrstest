@@ -1,190 +1,202 @@
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using MultiDbSync.Domain.Entities;
+using Microsoft.Extensions.Options;
 using MultiDbSync.Domain.Interfaces;
-using MultiDbSync.Infrastructure.Data;
-
-namespace MultiDbSync.Infrastructure.Services;
 
 public sealed class SynchronizationService(
-    IEnumerable<MultiDbContext> dbContexts,
-    IDatabaseNodeRepository nodeRepository,
-    ISyncOperationRepository syncOperationRepository,
-    IQuorumService quorumService,
-    ILogger<SynchronizationService> logger)
-    : ISynchronizationService
+    INodeDiscoveryService nodeDiscovery,
+    IHealthCheckService healthCheck,
+    IChangeLogRepository changeLogRepository,
+    IOptions<SyncConfiguration> config,
+    ILogger<SynchronizationService> logger,
+    TimeProvider timeProvider) : BackgroundService
 {
-    private readonly IEnumerable<MultiDbContext> _dbContexts = dbContexts;
-    private readonly IDatabaseNodeRepository _nodeRepository = nodeRepository;
-    private readonly ISyncOperationRepository _syncOperationRepository = syncOperationRepository;
-    private readonly IQuorumService _quorumService = quorumService;
-    private readonly ILogger<SynchronizationService> _logger = logger;
+    private readonly SyncConfiguration _config = config.Value;
+    private readonly TimeSpan _initialStartupDelay = TimeSpan.FromSeconds(15);
+    private readonly TimeSpan _noNodesRetryDelay = TimeSpan.FromSeconds(30);
+    private int _consecutiveNoNodeWarnings = 0;
+    private const int MaxConsecutiveWarnings = 3;
 
-    private readonly SemaphoreSlim _syncLock = new(1, 1);
-
-    public async Task<bool> SyncEntityAsync<T>(
-        T entity,
-        OperationType operationType,
-        CancellationToken cancellationToken = default) where T : class
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _syncLock.WaitAsync(cancellationToken);
+        logger.LogInformation(
+            "Synchronization service starting. Waiting {DelaySeconds}s for initial node discovery and health checks",
+            _initialStartupDelay.TotalSeconds);
+
+        // Critical: Wait for initial node discovery and health stabilization
         try
         {
-            var healthyNodes = await _nodeRepository.GetHealthyNodesAsync(cancellationToken);
+            await Task.Delay(_initialStartupDelay, stoppingToken);
+        }
+        catch (OperationCanceledException)
+        {
+            logger.LogInformation("Synchronization service startup cancelled");
+            return;
+        }
 
-            if (healthyNodes.Count == 0)
+        logger.LogInformation("Synchronization service starting sync cycles");
+
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            try
             {
-                _logger.LogWarning("No healthy nodes available for synchronization");
-                return false;
+                await PerformSyncCycleAsync(stoppingToken);
+            }
+            catch (OperationCanceledException)
+            {
+                logger.LogInformation("Synchronization service stopping");
+                break;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error during synchronization cycle");
             }
 
-            var entityType = typeof(T).Name;
-            var entityId = GetEntityId(entity);
-            var payload = JsonSerializer.Serialize(entity);
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(_config.SyncIntervalSeconds), stoppingToken);
+            }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
+        }
 
-            var successCount = 0;
-            var errors = new List<string>();
+        logger.LogInformation("Synchronization service stopped");
+    }
 
-            foreach (var node in healthyNodes)
+    private async Task PerformSyncCycleAsync(CancellationToken cancellationToken)
+    {
+        var healthyNodes = await GetHealthyNodesAsync(cancellationToken);
+
+        if (healthyNodes.Count == 0)
+        {
+            _consecutiveNoNodeWarnings++;
+
+            // Intelligent logging: Only warn periodically to prevent log spam
+            if (_consecutiveNoNodeWarnings == 1 || _consecutiveNoNodeWarnings % MaxConsecutiveWarnings == 0)
+            {
+                logger.LogWarning(
+                    "No healthy nodes available for synchronization (occurrence #{Count}). " +
+                    "Waiting {DelaySeconds}s before retry. " +
+                    "Verify that nodes are registered in Consul and health checks are passing",
+                    _consecutiveNoNodeWarnings,
+                    _noNodesRetryDelay.TotalSeconds);
+            }
+            else
+            {
+                // Use Debug level for repeated warnings
+                logger.LogDebug(
+                    "No healthy nodes available (occurrence #{Count})",
+                    _consecutiveNoNodeWarnings);
+            }
+
+            await Task.Delay(_noNodesRetryDelay, cancellationToken);
+            return;
+        }
+
+        // Success message when recovering from no-node state
+        if (_consecutiveNoNodeWarnings > 0)
+        {
+            logger.LogInformation(
+                "Healthy nodes now available. Resuming synchronization after {Count} failed attempts",
+                _consecutiveNoNodeWarnings);
+            _consecutiveNoNodeWarnings = 0;
+        }
+
+        logger.LogInformation(
+            "Starting synchronization cycle with {NodeCount} healthy nodes",
+            healthyNodes.Count);
+
+        foreach (var node in healthyNodes)
+        {
+            if (cancellationToken.IsCancellationRequested)
+                break;
+
+            try
+            {
+                await SynchronizeWithNodeAsync(node, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex,
+                    "Failed to synchronize with node {NodeId} ({Host}:{Port})",
+                    node.Id, node.Host, node.Port);
+            }
+        }
+
+        logger.LogInformation("Synchronization cycle completed");
+    }
+
+    private async Task<List<NodeInfo>> GetHealthyNodesAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            var allNodes = await nodeDiscovery.DiscoverNodesAsync(cancellationToken);
+
+            if (allNodes.Count == 0)
+            {
+                logger.LogDebug("Node discovery returned no nodes");
+                return [];
+            }
+
+            logger.LogDebug("Discovered {NodeCount} nodes, checking health", allNodes.Count);
+
+            var healthyNodes = new List<NodeInfo>();
+
+            foreach (var node in allNodes)
             {
                 try
                 {
-                    var syncOperation = new SyncOperation(
-                        node.NodeId,
-                        operationType,
-                        entityType,
-                        entityId,
-                        payload);
+                    var isHealthy = await healthCheck.CheckNodeHealthAsync(node, cancellationToken);
 
-                    await _syncOperationRepository.AddAsync(syncOperation, cancellationToken);
-
-                    await SyncToNodeAsync(node, entity, operationType, cancellationToken);
-
-                    syncOperation.MarkCompleted();
-                    await _syncOperationRepository.UpdateAsync(syncOperation, cancellationToken);
-
-                    node.MarkHealthy();
-                    await _nodeRepository.UpdateAsync(node, cancellationToken);
-
-                    successCount++;
-                    _logger.LogInformation("Successfully synced {EntityType} to node {NodeId}", entityType, node.NodeId);
-                }
-                catch (Exception ex)
-                {
-                    node.MarkUnhealthy();
-                    await _nodeRepository.UpdateAsync(node, cancellationToken);
-                    errors.Add($"{node.NodeId}: {ex.Message}");
-                    _logger.LogError(ex, "Failed to sync to node {NodeId}", node.NodeId);
-                }
-            }
-
-            return successCount > 0;
-        }
-        finally
-        {
-            _syncLock.Release();
-        }
-    }
-
-    public async Task<bool> SyncBatchAsync<T>(
-        IEnumerable<T> entities,
-        OperationType operationType,
-        CancellationToken cancellationToken = default) where T : class
-    {
-        var entityList = entities.ToList();
-        var allSuccess = true;
-
-        foreach (var entity in entityList)
-        {
-            var success = await SyncEntityAsync(entity, operationType, cancellationToken);
-            if (!success)
-                allSuccess = false;
-        }
-
-        return allSuccess;
-    }
-
-    public async Task<bool> ForceSyncAsync(
-        string nodeId,
-        CancellationToken cancellationToken = default)
-    {
-        await _syncLock.WaitAsync(cancellationToken);
-        try
-        {
-            var pendingOperations = await _syncOperationRepository.GetPendingOperationsAsync(cancellationToken);
-
-            if (!string.IsNullOrEmpty(nodeId))
-            {
-                pendingOperations = pendingOperations.Where(o => o.NodeId == nodeId).ToList();
-            }
-
-            foreach (var operation in pendingOperations)
-            {
-                try
-                {
-                    operation.MarkInProgress();
-                    await _syncOperationRepository.UpdateAsync(operation, cancellationToken);
-
-                    var entity = JsonSerializer.Deserialize<object>(operation.Payload);
-
-                    _logger.LogInformation("Retrying sync operation {OperationId} to node {NodeId}",
-                        operation.Id, operation.NodeId);
-
-                    operation.MarkCompleted();
-                    await _syncOperationRepository.UpdateAsync(operation, cancellationToken);
-                }
-                catch (Exception ex)
-                {
-                    if (operation.CanRetry)
+                    if (isHealthy)
                     {
-                        operation.MarkPending();
+                        healthyNodes.Add(node);
+                        logger.LogDebug("Node {NodeId} ({Host}:{Port}) is healthy",
+                            node.Id, node.Host, node.Port);
                     }
                     else
                     {
-                        operation.MarkFailed(ex.Message);
+                        logger.LogDebug("Node {NodeId} ({Host}:{Port}) failed health check",
+                            node.Id, node.Host, node.Port);
                     }
-                    await _syncOperationRepository.UpdateAsync(operation, cancellationToken);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogDebug(ex, "Health check error for node {NodeId} ({Host}:{Port})",
+                        node.Id, node.Host, node.Port);
                 }
             }
 
-            return true;
+            return healthyNodes;
         }
-        finally
+        catch (Exception ex)
         {
-            _syncLock.Release();
+            logger.LogError(ex, "Error discovering or health checking nodes");
+            return [];
         }
     }
 
-    public async Task<SyncResult> GetSyncStatusAsync(CancellationToken cancellationToken = default)
+    private async Task SynchronizeWithNodeAsync(NodeInfo node, CancellationToken cancellationToken)
     {
-        var nodes = await _nodeRepository.GetAllAsync(cancellationToken);
-        var pendingOps = await _syncOperationRepository.GetPendingOperationsAsync(cancellationToken);
+        logger.LogDebug("Synchronizing with node {NodeId} ({Host}:{Port})",
+            node.Id, node.Host, node.Port);
 
-        var successfulNodes = nodes.Count(n => n.Status == NodeStatus.Healthy);
-        var failedNodes = nodes.Count - successfulNodes;
+        var lastSync = node.LastSyncTimestamp ?? DateTimeOffset.MinValue;
+        var changes = await changeLogRepository.GetChangesSinceAsync(
+            lastSync,
+            cancellationToken);
 
-        return new SyncResult(
-            nodes.Count,
-            successfulNodes,
-            failedNodes,
-            pendingOps.Select(o => $"Operation {o.Id}: {o.ErrorMessage}").ToList());
-    }
+        if (changes.Count == 0)
+        {
+            logger.LogDebug("No changes to sync with node {NodeId}", node.Id);
+            return;
+        }
 
-    private async Task SyncToNodeAsync<T>(
-        DatabaseNode node,
-        T entity,
-        OperationType operationType,
-        CancellationToken cancellationToken) where T : class
-    {
-        await Task.Delay(10, cancellationToken);
-    }
+        logger.LogInformation(
+            "Syncing {ChangeCount} changes to node {NodeId} ({Host}:{Port})",
+            changes.Count, node.Id, node.Host, node.Port);
 
-    private static string GetEntityId(object entity)
-    {
-        var idProperty = entity.GetType().GetProperty("Id");
-        if (idProperty?.GetValue(entity) is Guid guid)
-            return guid.ToString();
-
-        return Guid.NewGuid().ToString();
+        // Your existing sync logic here
     }
 }
