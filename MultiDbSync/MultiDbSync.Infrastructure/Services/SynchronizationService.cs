@@ -1,6 +1,10 @@
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MultiDbSync.Domain.Entities;
 using MultiDbSync.Domain.Interfaces;
+
+namespace MultiDbSync.Infrastructure.Services;
 
 public sealed class SynchronizationService(
     INodeDiscoveryService nodeDiscovery,
@@ -119,15 +123,15 @@ public sealed class SynchronizationService(
             catch (Exception ex)
             {
                 logger.LogError(ex,
-                    "Failed to synchronize with node {NodeId} ({Host}:{Port})",
-                    node.Id, node.Host, node.Port);
+                    "Failed to synchronize with node {NodeId}",
+                    node.NodeId);
             }
         }
 
         logger.LogInformation("Synchronization cycle completed");
     }
 
-    private async Task<List<NodeInfo>> GetHealthyNodesAsync(CancellationToken cancellationToken)
+    private async Task<List<DatabaseNode>> GetHealthyNodesAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -141,30 +145,28 @@ public sealed class SynchronizationService(
 
             logger.LogDebug("Discovered {NodeCount} nodes, checking health", allNodes.Count);
 
-            var healthyNodes = new List<NodeInfo>();
+            var healthyNodes = new List<DatabaseNode>();
 
             foreach (var node in allNodes)
             {
                 try
                 {
-                    var isHealthy = await healthCheck.CheckNodeHealthAsync(node, cancellationToken);
+                    var health = await healthCheck.CheckNodeHealthAsync(node.NodeId, cancellationToken);
 
-                    if (isHealthy)
+                    if (health.IsHealthy)
                     {
                         healthyNodes.Add(node);
-                        logger.LogDebug("Node {NodeId} ({Host}:{Port}) is healthy",
-                            node.Id, node.Host, node.Port);
+                        logger.LogDebug("Node {NodeId} is healthy", node.NodeId);
                     }
                     else
                     {
-                        logger.LogDebug("Node {NodeId} ({Host}:{Port}) failed health check",
-                            node.Id, node.Host, node.Port);
+                        logger.LogDebug("Node {NodeId} failed health check: {Reason}",
+                            node.NodeId, health.Message);
                     }
                 }
                 catch (Exception ex)
                 {
-                    logger.LogDebug(ex, "Health check error for node {NodeId} ({Host}:{Port})",
-                        node.Id, node.Host, node.Port);
+                    logger.LogDebug(ex, "Health check error for node {NodeId}", node.NodeId);
                 }
             }
 
@@ -177,26 +179,27 @@ public sealed class SynchronizationService(
         }
     }
 
-    private async Task SynchronizeWithNodeAsync(NodeInfo node, CancellationToken cancellationToken)
+    private async Task SynchronizeWithNodeAsync(DatabaseNode node, CancellationToken cancellationToken)
     {
-        logger.LogDebug("Synchronizing with node {NodeId} ({Host}:{Port})",
-            node.Id, node.Host, node.Port);
+        logger.LogDebug("Synchronizing with node {NodeId}", node.NodeId);
 
-        var lastSync = node.LastSyncTimestamp ?? DateTimeOffset.MinValue;
+        var lastSync = node.LastHeartbeat;
         var changes = await changeLogRepository.GetChangesSinceAsync(
             lastSync,
             cancellationToken);
 
         if (changes.Count == 0)
         {
-            logger.LogDebug("No changes to sync with node {NodeId}", node.Id);
+            logger.LogDebug("No changes to sync with node {NodeId}", node.NodeId);
             return;
         }
 
         logger.LogInformation(
-            "Syncing {ChangeCount} changes to node {NodeId} ({Host}:{Port})",
-            changes.Count, node.Id, node.Host, node.Port);
+            "Syncing {ChangeCount} changes to node {NodeId}",
+            changes.Count, node.NodeId);
 
-        // Your existing sync logic here
+        // TODO: Implement actual synchronization logic here
+        // This is where you would send the changes to the node
+        await Task.CompletedTask;
     }
 }
