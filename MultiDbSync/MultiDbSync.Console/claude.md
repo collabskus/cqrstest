@@ -1,3 +1,11 @@
+In the ci mode, 
+I am thinking that in addition to the writes, 
+we should have multiple other threads 
+that are trying to read product information 
+while the writing is going 
+like multiple readers to really demonstrate 
+this cqrs action and its benefits 
+I have added the latest source code in dump.txt 
 always closely read the dump.txt as it has the FULL Source code. 
 never skim it, 
 never search it, 
