@@ -66,11 +66,12 @@ internal sealed class Program(string[] args)
     {
         AnsiConsole.MarkupLine("[bold underline cyan1]CI Mode: CQRS Load Simulation with Concurrent Readers[/]\n");
 
-        const int numberOfProducts = 100;
+        // Use settings from appsettings.json
+        var numberOfProducts = demoSettings.ProductCount;
         const int writeThreads = 3;
         const int readThreads = 5;
         const int readsPerWrite = 10;
-        const int totalExpectedReads = numberOfProducts * readsPerWrite;
+        var totalExpectedReads = numberOfProducts * readsPerWrite;
 
         // Configuration display
         var configTable = new Table()

@@ -1,6 +1,6 @@
 ================================================================================
 GIT-TRACKED FILES DUMP
-Generated: 2026-02-13 11:08:47
+Generated: 2026-02-13 11:10:24
 Total tracked: 47 | Processed: 46 | Skipped: 1
 ================================================================================
 
@@ -2297,7 +2297,7 @@ internal static class ProductDisplayHelper
 
 ================================================================================
 FILE: MultiDbSync/MultiDbSync.Console/Program.cs
-SIZE: 19.12 KB
+SIZE: 19.18 KB
 ================================================================================
 using Microsoft.Extensions.DependencyInjection;
 using MultiDbSync.Application.Commands;
@@ -2367,11 +2367,12 @@ internal sealed class Program(string[] args)
     {
         AnsiConsole.MarkupLine("[bold underline cyan1]CI Mode: CQRS Load Simulation with Concurrent Readers[/]\n");
 
-        const int numberOfProducts = 100;
+        // Use settings from appsettings.json
+        var numberOfProducts = demoSettings.ProductCount;
         const int writeThreads = 3;
         const int readThreads = 5;
         const int readsPerWrite = 10;
-        const int totalExpectedReads = numberOfProducts * readsPerWrite;
+        var totalExpectedReads = numberOfProducts * readsPerWrite;
 
         // Configuration display
         var configTable = new Table()
@@ -2999,7 +3000,7 @@ SIZE: 1.75 KB
 
 ================================================================================
 FILE: MultiDbSync/MultiDbSync.Console/claude.md
-SIZE: 20.27 KB
+SIZE: 20.94 KB
 ================================================================================
 and now this 
   __  __           _   _     _   ____    _       ____
@@ -3316,6 +3317,16 @@ this is good but now you have completely gotten rid of the usage of productcount
 }
 ```
 remember we did some refactoring to clean up the code and make the program cs smaller. please don't introduce regressions 
+
+You're absolutely right! I need to use the `DemoSettings` from `appsettings.json` instead of hardcoding values. Let me fix that:Perfect! Now the `Program.cs` uses `demoSettings.ProductCount` from your `appsettings.json` configuration. 
+
+With the default setting of `"ProductCount": 10000`, the CI mode will now:
+- Create **10,000 products** (instead of the hardcoded 100)
+- Perform **100,000 reads** (10,000 × 10)
+- Distribute writes across 3 writer threads
+- Distribute reads across 5 reader threads reading from 3 replica nodes
+
+This maintains your original architecture where the product count is configurable via `appsettings.json`, just like in the `AutomatedDemo.cs` file.
 
 
 ================================================================================

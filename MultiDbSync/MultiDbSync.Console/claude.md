@@ -313,3 +313,13 @@ this is good but now you have completely gotten rid of the usage of productcount
 }
 ```
 remember we did some refactoring to clean up the code and make the program cs smaller. please don't introduce regressions 
+
+You're absolutely right! I need to use the `DemoSettings` from `appsettings.json` instead of hardcoding values. Let me fix that:Perfect! Now the `Program.cs` uses `demoSettings.ProductCount` from your `appsettings.json` configuration. 
+
+With the default setting of `"ProductCount": 10000`, the CI mode will now:
+- Create **10,000 products** (instead of the hardcoded 100)
+- Perform **100,000 reads** (10,000 × 10)
+- Distribute writes across 3 writer threads
+- Distribute reads across 5 reader threads reading from 3 replica nodes
+
+This maintains your original architecture where the product count is configurable via `appsettings.json`, just like in the `AutomatedDemo.cs` file.
