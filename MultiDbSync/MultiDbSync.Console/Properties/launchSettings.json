@@ -2,7 +2,7 @@
   "profiles": {
     "MultiDbSync.Console": {
       "commandName": "Project",
-      "commandLineArgs": ""
+      "commandLineArgs": "--ci"
     }
   }
 }
