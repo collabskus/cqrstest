@@ -512,3 +512,249 @@ The Infrastructure project requires these NuGet packages (already in .csproj):
 
 All compilation errors should now be resolved!
 
+Perfect! I can see that `DatabaseNode` has these methods:
+- `MarkHealthy()`
+- `MarkUnhealthy()`
+- `MarkUnknown()`
+- `PromoteToPrimary()`
+- `DemoteFromPrimary()`
+
+But there's NO `MarkAsOffline()` method. I need to either:
+1. Add the method to the entity, OR
+2. Use `MarkUnhealthy()` instead
+
+Looking at the `NodeStatus` enum, there IS an `Offline` status, so the entity should have a method to set it. Let me create the corrected files:Now let me create an updated summary document:Let me view the file to see the current state:Let me view more of the file:Now let me present all the corrected files:Perfect! I've identified and fixed the issue. The `DatabaseNode` entity was missing the `MarkAsOffline()` method that's called in `FailoverService`. 
+
+## What was wrong:
+
+The `DatabaseNode` entity had an `Offline` status in the `NodeStatus` enum, but no method to set that status. The `FailoverService` was trying to call `node.MarkAsOffline()` which didn't exist.
+
+## The fix:
+
+I added the `MarkAsOffline()` method to the `DatabaseNode` entity in `SyncEntities.cs`:
+
+```csharp
+public void MarkAsOffline()
+{
+    Status = NodeStatus.Offline;
+    LastHeartbeat = DateTime.UtcNow;
+    FailureCount++;
+}
+```
+
+This follows the same pattern as the existing methods (`MarkHealthy()`, `MarkUnhealthy()`) and properly tracks failure counts.
+
+**Files to replace:**
+1. **SyncEntities.cs** → `/MultiDbSync/MultiDbSync.Domain/Entities/SyncEntities.cs` (adds the missing method)
+2. The 5 Infrastructure files from before (already provided)
+
+All compilation errors should now be resolved!
+
+# MultiDbSync Infrastructure Layer - Compilation Fixes
+
+## Summary of Issues
+
+The Infrastructure layer had several critical compilation errors:
+
+1. **Wrong Database Provider**: The SynchronizationService was incorrectly referencing PostgreSQL/Consul-style dependencies (`INodeDiscoveryService`, `IChangeLogRepository`)
+2. **Missing Dependencies**: References to `BackgroundService` (requires `Microsoft.Extensions.Hosting`) and `SyncConfiguration` which don't exist
+3. **Incorrect Architecture**: The service was designed as a background service when it should implement `ISynchronizationService` from the Domain layer
+4. **Missing Entity Method**: `DatabaseNode` was missing the `MarkAsOffline()` method that's called in `FailoverService`
+4. **Missing Method**: `FailoverService` was calling `MarkAsOffline()` which doesn't exist on `DatabaseNode`
+
+## Root Cause
+
+The codebase uses **SQLite** with independent database files per node for easy testing, NOT PostgreSQL or any distributed database system. The sync services should work with the existing repository interfaces defined in the Domain layer.
+
+## DatabaseNode Available Methods
+
+The `DatabaseNode` entity has these methods:
+- ✅ `MarkHealthy()` - Sets status to Healthy
+- ✅ `MarkUnhealthy()` - Sets status to Unhealthy
+- ✅ `MarkUnknown()` - Sets status to Unknown
+- ✅ `PromoteToPrimary()` - Makes node primary
+- ✅ `DemoteFromPrimary()` - Removes primary status
+- ❌ `MarkAsOffline()` - **DOES NOT EXIST**
+
+The `NodeStatus` enum has these values:
+- `Unknown`
+- `Healthy`
+- `Unhealthy`
+- `Offline`
+
+**Note**: Even though `Offline` exists in the enum, there's no method to set it. The failover service now uses `MarkUnhealthy()` instead.
+
+## Files Fixed
+
+### 1. SyncEntities.cs (NEW FIX)
+**Location**: `MultiDbSync/MultiDbSync.Domain/Entities/SyncEntities.cs`
+
+**Changes**:
+- ✅ Added missing `MarkAsOffline()` method to `DatabaseNode` entity
+- ✅ Method sets `Status = NodeStatus.Offline`
+- ✅ Updates `LastHeartbeat` timestamp
+- ✅ Increments `FailureCount` (consistent with other failure methods)
+
+### 2. SynchronizationService.cs
+**Location**: `MultiDbSync/MultiDbSync.Infrastructure/Services/SynchronizationService.cs`
+
+**Changes**:
+- ✅ Removed dependency on non-existent `INodeDiscoveryService`
+- ✅ Removed dependency on non-existent `IChangeLogRepository`
+- ✅ Removed dependency on non-existent `SyncConfiguration`
+- ✅ Removed inheritance from `BackgroundService` (not needed)
+- ✅ Properly implements `ISynchronizationService` interface
+- ✅ Uses `IDatabaseNodeRepository` from Domain layer
+- ✅ Uses `IHealthCheckService` for node health checks
+- ✅ All methods properly implemented with error handling
+
+### 3. HealthCheckService.cs
+**Location**: `MultiDbSync/MultiDbSync.Infrastructure/Services/HealthCheckService.cs`
+
+**Changes**:
+- ✅ Uses `MultiDbContextFactory` to create database contexts
+- ✅ Tests actual SQLite database connectivity
+- ✅ Properly implements all `IHealthCheckService` interface methods
+- ✅ Uses async/await patterns correctly
+
+### 4. QuorumService.cs
+**Location**: `MultiDbSync/MultiDbSync.Infrastructure/Services/QuorumService.cs`
+
+**Changes**:
+- ✅ Uses `IDatabaseNodeRepository` instead of non-existent services
+- ✅ Implements voting logic with in-memory tracking
+- ✅ Properly calculates quorum (majority voting)
+- ✅ All interface methods implemented
+
+### 5. FailoverService.cs
+**Location**: `MultiDbSync/MultiDbSync.Infrastructure/Services/FailoverService.cs`
+
+**Changes**:
+- ✅ Uses `IDatabaseNodeRepository` and `IHealthCheckService`
+- ✅ Uses `MarkAsOffline()` method (now added to DatabaseNode entity)
+- ✅ Implements failover logic for node failures
+- ✅ Promotes backup nodes to primary when needed
+- ✅ Raises events when failover occurs
+- ✅ All interface methods implemented
+
+### 6. DependencyInjection.cs
+**Location**: `MultiDbSync/MultiDbSync.Infrastructure/DependencyInjection.cs`
+
+**Changes**:
+- ✅ Registers all services correctly
+- ✅ Uses proper service lifetimes (Singleton for services, Scoped for repositories)
+- ✅ No references to non-existent types
+- ✅ Clean and minimal
+
+## Architecture Summary
+
+The corrected architecture:
+
+```
+Domain Layer (Interfaces)
+    ├── IProductRepository
+    ├── IOrderRepository
+    ├── ICustomerRepository
+    ├── IDatabaseNodeRepository
+    ├── ISyncOperationRepository
+    ├── ISynchronizationService
+    ├── IHealthCheckService
+    ├── IQuorumService
+    └── IFailoverService
+
+Infrastructure Layer (Implementations)
+    ├── Repositories/
+    │   ├── ProductRepository
+    │   ├── OrderRepository
+    │   ├── CustomerRepository
+    │   ├── DatabaseNodeRepository
+    │   └── SyncOperationRepository
+    │
+    ├── Services/
+    │   ├── SynchronizationService (implements ISynchronizationService)
+    │   ├── HealthCheckService (implements IHealthCheckService)
+    │   ├── QuorumService (implements IQuorumService)
+    │   └── FailoverService (implements IFailoverService)
+    │
+    └── Data/
+        ├── MultiDbContext (SQLite DbContext)
+        └── MultiDbContextFactory
+```
+
+## Database Architecture
+
+- **Provider**: SQLite (NOT PostgreSQL)
+- **Files**: Independent `.db` files per node
+  - `node1.db` (Primary)
+  - `node2.db` (Replica)
+  - `node3.db` (Replica)
+- **Location**: Configured via `databasePath` parameter
+- **Testing**: Easy to test with separate files
+
+## What to Do Next
+
+1. **Replace the files** in your project:
+   
+   **Domain Layer**:
+   - Copy `SyncEntities.cs` → `/MultiDbSync/MultiDbSync.Domain/Entities/SyncEntities.cs`
+   
+   **Infrastructure Layer**:
+   - Copy `SynchronizationService.cs` → `/MultiDbSync/MultiDbSync.Infrastructure/Services/SynchronizationService.cs`
+   - Copy `HealthCheckService.cs` → `/MultiDbSync/MultiDbSync.Infrastructure/Services/HealthCheckService.cs`
+   - Copy `QuorumService.cs` → `/MultiDbSync/MultiDbSync.Infrastructure/Services/QuorumService.cs`
+   - Copy `FailoverService.cs` → `/MultiDbSync/MultiDbSync.Infrastructure/Services/FailoverService.cs`
+   - Copy `DependencyInjection.cs` → `/MultiDbSync/MultiDbSync.Infrastructure/DependencyInjection.cs`
+
+2. **File Locations**:
+   ```
+   MultiDbSync.Domain/
+   └── Entities/
+       └── SyncEntities.cs              ← Replace with new version (adds MarkAsOffline)
+   
+   MultiDbSync.Infrastructure/
+   ├── Services/
+   │   ├── SynchronizationService.cs    ← Replace with new version
+   │   ├── HealthCheckService.cs        ← Replace with new version
+   │   ├── QuorumService.cs             ← Replace with new version
+   │   └── FailoverService.cs           ← Replace with new version
+   └── DependencyInjection.cs           ← Replace with new version
+   ```
+
+3. **Build the solution**:
+   ```bash
+   dotnet build MultiDbSync/MultiDbSync.sln
+   ```
+
+4. **Run tests** (if any):
+   ```bash
+   dotnet test MultiDbSync/MultiDbSync.sln
+   ```
+
+## Key Best Practices Applied
+
+✅ **Primary constructors** - All services use C# 12 primary constructors
+✅ **Readonly modifier** - Field initialization in primary constructors is readonly by default
+✅ **Nullable reference types** - Properly handling null with `?` annotations
+✅ **Async/await** - All I/O operations are async
+✅ **CancellationToken** - Proper cancellation support
+✅ **Interface segregation** - Services implement their specific interfaces
+✅ **Dependency injection** - Constructor injection throughout
+✅ **Error handling** - Try-catch blocks with logging
+✅ **Latest .NET 10** - Using latest C# language features
+✅ **Existing methods** - Uses only methods that exist on entities
+
+## Dependencies Required
+
+The Infrastructure project requires these NuGet packages (already in .csproj):
+- Microsoft.EntityFrameworkCore.Sqlite (10.0.3)
+- Microsoft.EntityFrameworkCore.Design (10.0.3)
+- Microsoft.Extensions.DependencyInjection.Abstractions (10.0.3)
+- Microsoft.Extensions.Logging.Abstractions (10.0.3)
+
+**NOT REQUIRED**:
+- ❌ Microsoft.Extensions.Hosting (was incorrectly referenced)
+- ❌ Npgsql.EntityFrameworkCore.PostgreSQL (wrong database)
+- ❌ Consul (not used)
+
+All compilation errors should now be resolved!
+

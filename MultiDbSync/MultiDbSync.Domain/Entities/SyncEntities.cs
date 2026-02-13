@@ -51,6 +51,13 @@ public sealed class DatabaseNode
         Status = NodeStatus.Unknown;
     }
 
+    public void MarkAsOffline()
+    {
+        Status = NodeStatus.Offline;
+        LastHeartbeat = DateTime.UtcNow;
+        FailureCount++;
+    }
+
     public void PromoteToPrimary()
     {
         IsPrimary = true;

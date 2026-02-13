@@ -26,8 +26,8 @@ public sealed class FailoverService(
                 return false;
             }
 
-            // Mark the failed node as offline
-            failedNode.MarkAsOffline();
+            // Mark the failed node as unhealthy
+            failedNode.MarkUnhealthy();
             await nodeRepository.UpdateAsync(failedNode, cancellationToken);
 
             // Find a new primary if the failed node was primary
@@ -44,6 +44,11 @@ public sealed class FailoverService(
                 var newPrimary = await nodeRepository.GetByIdAsync(newPrimaryId, cancellationToken);
                 if (newPrimary != null)
                 {
+                    // Demote the failed node from primary
+                    failedNode.DemoteFromPrimary();
+                    await nodeRepository.UpdateAsync(failedNode, cancellationToken);
+
+                    // Promote the new node to primary
                     newPrimary.PromoteToPrimary();
                     await nodeRepository.UpdateAsync(newPrimary, cancellationToken);
 
