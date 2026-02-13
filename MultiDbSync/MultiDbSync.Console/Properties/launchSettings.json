@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MultiDbSync.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--ci"
+    }
+  }
+}
