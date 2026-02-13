@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MultiDbSync.Application;
@@ -13,11 +14,10 @@ namespace MultiDbSync.Console;
 internal sealed class Program(string[] args)
 {
     private static readonly string DatabasePath = Path.Combine(AppContext.BaseDirectory, "databases");
-    private static readonly int productCount = 10_000;
     private readonly bool _isAutomated = args.Any(a => a is "--demo" or "--automated" or "--ci");
-    internal static readonly string[] categoriesArray = ["Electronics", "Accessories", "Components", "Peripherals", "Software"];
-    internal static readonly string[] adjectivesArray = ["Premium", "Budget", "Professional", "Gaming", "Wireless", "RGB", "Compact", "Ultra"];
-    internal static readonly string[] productsArray = ["Laptop", "Monitor", "Keyboard", "Mouse", "Headset", "Webcam", "Microphone", "Cable"];
+    internal static readonly string[] CategoriesArray = ["Electronics", "Accessories", "Components", "Peripherals", "Software"];
+    internal static readonly string[] AdjectivesArray = ["Premium", "Budget", "Professional", "Gaming", "Wireless", "RGB", "Compact", "Ultra"];
+    internal static readonly string[] ProductsArray = ["Laptop", "Monitor", "Keyboard", "Mouse", "Headset", "Webcam", "Microphone", "Cable"];
 
     static async Task<int> Main(string[] args)
     {
@@ -37,8 +37,20 @@ internal sealed class Program(string[] args)
                 Directory.CreateDirectory(DatabasePath);
             }
 
+            // Load configuration
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            var demoSettings = configuration.GetSection("Demo").Get<DemoSettings>()
+                ?? throw new InvalidOperationException("Demo settings are not configured in appsettings.json");
+
             // 1. Setup Dependency Injection
             var services = new ServiceCollection();
+
+            // Add configuration
+            services.AddSingleton(demoSettings);
 
             // Add Logging
             services.AddLogging(configure => configure.AddConsole().SetMinimumLevel(LogLevel.Warning));
@@ -55,7 +67,7 @@ internal sealed class Program(string[] args)
             // 3. Run Demo
             if (_isAutomated)
             {
-                await RunAutomatedDemoAsync(serviceProvider);
+                await RunAutomatedDemoAsync(serviceProvider, demoSettings);
             }
             else
             {
@@ -116,7 +128,6 @@ internal sealed class Program(string[] args)
     {
         using var scope = serviceProvider.CreateScope();
         var createProductHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
-        var updateStockHandler = scope.ServiceProvider.GetRequiredService<UpdateProductStockCommandHandler>();
         var getAllProductsHandler = scope.ServiceProvider.GetRequiredService<GetAllProductsQueryHandler>();
 
         AnsiConsole.MarkupLine("[bold underline cyan1]Interactive Demo[/]\n");
@@ -147,10 +158,9 @@ internal sealed class Program(string[] args)
         await DisplayProductsAsync(getAllProductsHandler);
     }
 
-    private static async Task RunAutomatedDemoAsync(IServiceProvider serviceProvider)
+    private static async Task RunAutomatedDemoAsync(IServiceProvider serviceProvider, DemoSettings settings)
     {
         using var scope = serviceProvider.CreateScope();
-        var factory = scope.ServiceProvider.GetRequiredService<MultiDbContextFactory>();
         var createProductHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
         var updateStockHandler = scope.ServiceProvider.GetRequiredService<UpdateProductStockCommandHandler>();
         var updatePriceHandler = scope.ServiceProvider.GetRequiredService<UpdateProductPriceCommandHandler>();
@@ -159,7 +169,7 @@ internal sealed class Program(string[] args)
 
         AnsiConsole.MarkupLine("[bold underline cyan1]Automated CI/CD Demo - High Volume Data Operations[/]\n");
 
-        var random = new Random(42); // Fixed seed for reproducibility
+        var random = new Random(settings.RandomSeed);
 
         // Phase 1: Bulk Product Creation
         await AnsiConsole.Progress()
@@ -172,13 +182,13 @@ internal sealed class Program(string[] args)
                 new SpinnerColumn())
             .StartAsync(async ctx =>
             {
-                var categories = categoriesArray;
-                var adjectives = adjectivesArray;
-                var products = productsArray;
+                var categories = CategoriesArray;
+                var adjectives = AdjectivesArray;
+                var products = ProductsArray;
 
-                var createTask = ctx.AddTask($"[yellow]Creating {productCount} products[/]", maxValue: 100);
+                var createTask = ctx.AddTask($"[yellow]Creating {settings.ProductCount:N0} products[/]", maxValue: 100);
 
-                for (int i = 0; i < productCount; i++)
+                for (var i = 0; i < settings.ProductCount; i++)
                 {
                     var adjective = adjectives[random.Next(adjectives.Length)];
                     var product = products[random.Next(products.Length)];
@@ -189,7 +199,7 @@ internal sealed class Program(string[] args)
 
                     var cmd = new CreateProductCommand(
                         name,
-                        $"High-quality {product.ToLower()} for professional use",
+                        $"High-quality {product.ToLower()} with advanced features",
                         price,
                         "USD",
                         stock,
@@ -197,177 +207,187 @@ internal sealed class Program(string[] args)
                     );
 
                     await createProductHandler.HandleAsync(cmd);
-                    createTask.Increment(1);
+
+                    if ((i + 1) % (settings.ProductCount / 100) == 0 || i == settings.ProductCount - 1)
+                    {
+                        var progress = (double)(i + 1) / settings.ProductCount * 100;
+                        createTask.Value = progress;
+                    }
                 }
             });
 
-        AnsiConsole.MarkupLine($"[green]✓ Created {productCount} products[/]\n");
+        AnsiConsole.MarkupLine($"[green]✓ Created {settings.ProductCount:N0} products[/]\n");
 
-        // Phase 2: Statistics
-        var productsResult = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
+        // Phase 2: Query and Display Statistics
+        AnsiConsole.MarkupLine("[bold yellow]Phase 2: Analyzing data...[/]");
 
-        if (productsResult.IsSuccess && productsResult.Data is not null)
+        var result = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
+
+        if (!result.IsSuccess || result.Data is null)
         {
-            var allProducts = productsResult.Data;
+            AnsiConsole.MarkupLine($"[red]Failed to retrieve products: {result.ErrorMessage}[/]");
+            return;
+        }
 
-            var statsTable = new Table()
+        var allProducts = result.Data;
+
+        var statsTable = new Table()
+            .Border(TableBorder.Rounded)
+            .BorderColor(Color.Grey);
+
+        statsTable.AddColumn(new TableColumn("[bold]Metric[/]").Centered());
+        statsTable.AddColumn(new TableColumn("[bold]Value[/]").Centered());
+
+        statsTable.AddRow("Total Products", $"[cyan]{allProducts.Count:N0}[/]");
+        statsTable.AddRow("Total Stock Units", $"[cyan]{allProducts.Sum(p => p.StockQuantity):N0}[/]");
+        statsTable.AddRow("Avg Price", $"[green]${allProducts.Average(p => p.Price.Amount):N2}[/]");
+        statsTable.AddRow("Total Inventory Value", $"[green]${allProducts.Sum(p => p.Price.Amount * p.StockQuantity):N2}[/]");
+        statsTable.AddRow("Categories", $"[yellow]{allProducts.Select(p => p.Category).Distinct().Count()}[/]");
+
+        AnsiConsole.Write(
+            new Panel(statsTable)
+                .Header("[bold cyan1]Database Statistics[/]")
+                .BorderColor(Color.Cyan1)
+        );
+
+        // Category breakdown
+        AnsiConsole.MarkupLine("\n[bold underline]Products by Category:[/]");
+        var categoryTable = new Table();
+        categoryTable.AddColumn("Category");
+        categoryTable.AddColumn("Count");
+        categoryTable.AddColumn("Total Value");
+        categoryTable.AddColumn("Avg Stock");
+
+        var byCategory = allProducts
+            .GroupBy(p => p.Category)
+            .OrderByDescending(g => g.Count());
+
+        foreach (var group in byCategory)
+        {
+            categoryTable.AddRow(
+                group.Key,
+                $"[cyan]{group.Count():N0}[/]",
+                $"[green]${group.Sum(p => p.Price.Amount * p.StockQuantity):N2}[/]",
+                $"{group.Average(p => p.StockQuantity):N0}"
+            );
+        }
+
+        AnsiConsole.Write(categoryTable);
+
+        // Phase 3: Bulk Updates
+        AnsiConsole.MarkupLine("\n[bold yellow]Phase 3: Performing bulk stock updates...[/]");
+
+        await AnsiConsole.Progress()
+            .AutoClear(false)
+            .StartAsync(async ctx =>
+            {
+                var updateTask = ctx.AddTask("[yellow]Updating stock levels[/]", maxValue: settings.StockUpdateCount);
+
+                foreach (var product in allProducts.Take(settings.StockUpdateCount))
+                {
+                    var newStock = random.Next(50, 200);
+                    var updateCmd = new UpdateProductStockCommand(product.Id, newStock);
+                    await updateStockHandler.HandleAsync(updateCmd);
+                    updateTask.Increment(1);
+                }
+            });
+
+        AnsiConsole.MarkupLine($"[green]✓ Updated {settings.StockUpdateCount:N0} product stock levels[/]\n");
+
+        // Phase 4: Price adjustments
+        AnsiConsole.MarkupLine("[bold yellow]Phase 4: Adjusting prices...[/]");
+
+        await AnsiConsole.Progress()
+            .AutoClear(false)
+            .StartAsync(async ctx =>
+            {
+                var priceTask = ctx.AddTask("[yellow]Applying price changes[/]", maxValue: settings.PriceUpdateCount);
+
+                foreach (var product in allProducts.Take(settings.PriceUpdateCount))
+                {
+                    var newPrice = Math.Round(product.Price.Amount * (decimal)(random.NextDouble() * 0.4 + 0.8), 2);
+                    var updateCmd = new UpdateProductPriceCommand(product.Id, newPrice, "USD");
+                    await updatePriceHandler.HandleAsync(updateCmd);
+                    priceTask.Increment(1);
+                }
+            });
+
+        AnsiConsole.MarkupLine($"[green]✓ Updated {settings.PriceUpdateCount:N0} product prices[/]\n");
+
+        // Phase 5: Sample deletions
+        AnsiConsole.MarkupLine("[bold yellow]Phase 5: Removing discontinued products...[/]");
+
+        var toDelete = allProducts
+            .Where(p => p.StockQuantity == 0)
+            .Take(settings.DeleteCount)
+            .ToList();
+
+        foreach (var product in toDelete)
+        {
+            var deleteCmd = new DeleteProductCommand(product.Id);
+            await deleteProductHandler.HandleAsync(deleteCmd);
+        }
+
+        AnsiConsole.MarkupLine($"[green]✓ Removed {toDelete.Count} discontinued products[/]\n");
+
+        // Final Statistics
+        var finalResult = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
+
+        if (finalResult.IsSuccess && finalResult.Data is not null)
+        {
+            var finalProducts = finalResult.Data;
+
+            var comparison = new Table()
                 .Border(TableBorder.Rounded)
-                .BorderColor(Color.Grey);
+                .BorderColor(Color.Green);
 
-            statsTable.AddColumn(new TableColumn("[bold]Metric[/]").Centered());
-            statsTable.AddColumn(new TableColumn("[bold]Value[/]").Centered());
+            comparison.AddColumn("[bold]Metric[/]");
+            comparison.AddColumn("[bold]Before[/]");
+            comparison.AddColumn("[bold]After[/]");
+            comparison.AddColumn("[bold]Change[/]");
 
-            statsTable.AddRow("Total Products", $"[cyan]{allProducts.Count}[/]");
-            statsTable.AddRow("Total Stock Units", $"[cyan]{allProducts.Sum(p => p.StockQuantity):N0}[/]");
-            statsTable.AddRow("Avg Price", $"[green]${allProducts.Average(p => p.Price.Amount):N2}[/]");
-            statsTable.AddRow("Total Inventory Value", $"[green]${allProducts.Sum(p => p.Price.Amount * p.StockQuantity):N2}[/]");
-            statsTable.AddRow("Categories", $"[yellow]{allProducts.Select(p => p.Category).Distinct().Count()}[/]");
-
-            AnsiConsole.Write(
-                new Panel(statsTable)
-                    .Header("[bold cyan1]Database Statistics[/]")
-                    .BorderColor(Color.Cyan1)
+            comparison.AddRow(
+                "Total Products",
+                $"{allProducts.Count:N0}",
+                $"[cyan]{finalProducts.Count:N0}[/]",
+                $"[red]{finalProducts.Count - allProducts.Count:+0;-#}[/]"
             );
 
-            // Category breakdown
-            AnsiConsole.MarkupLine("\n[bold underline]Products by Category:[/]");
-            var categoryTable = new Table();
-            categoryTable.AddColumn("Category");
-            categoryTable.AddColumn("Count");
-            categoryTable.AddColumn("Total Value");
-            categoryTable.AddColumn("Avg Stock");
+            comparison.AddRow(
+                "Total Stock",
+                $"{allProducts.Sum(p => p.StockQuantity):N0}",
+                $"[cyan]{finalProducts.Sum(p => p.StockQuantity):N0}[/]",
+                $"[green]{finalProducts.Sum(p => p.StockQuantity) - allProducts.Sum(p => p.StockQuantity):+#,0;-#,0}[/]"
+            );
 
-            var byCategory = allProducts
-                .GroupBy(p => p.Category)
-                .OrderByDescending(g => g.Count());
-
-            foreach (var group in byCategory)
-            {
-                categoryTable.AddRow(
-                    group.Key,
-                    $"[cyan]{group.Count()}[/]",
-                    $"[green]${group.Sum(p => p.Price.Amount * p.StockQuantity):N2}[/]",
-                    $"{group.Average(p => p.StockQuantity):N0}"
-                );
-            }
-
-            AnsiConsole.Write(categoryTable);
-
-            // Phase 3: Bulk Updates
-            AnsiConsole.MarkupLine("\n[bold yellow]Phase 3: Performing bulk stock updates...[/]");
-
-            await AnsiConsole.Progress()
-                .AutoClear(false)
-                .StartAsync(async ctx =>
-                {
-                    var updateTask = ctx.AddTask("[yellow]Updating stock levels[/]", maxValue: 50);
-
-                    foreach (var product in allProducts.Take(50))
-                    {
-                        var newStock = random.Next(50, 200);
-                        var updateCmd = new UpdateProductStockCommand(product.Id, newStock);
-                        await updateStockHandler.HandleAsync(updateCmd);
-                        updateTask.Increment(1);
-                    }
-                });
-
-            AnsiConsole.MarkupLine("[green]✓ Updated 50 product stock levels[/]\n");
-
-            // Phase 4: Price adjustments
-            AnsiConsole.MarkupLine("[bold yellow]Phase 4: Adjusting prices...[/]");
-
-            await AnsiConsole.Progress()
-                .AutoClear(false)
-                .StartAsync(async ctx =>
-                {
-                    var priceTask = ctx.AddTask("[yellow]Applying price changes[/]", maxValue: 30);
-
-                    foreach (var product in allProducts.Take(30))
-                    {
-                        var newPrice = Math.Round(product.Price.Amount * (decimal)(random.NextDouble() * 0.4 + 0.8), 2);
-                        var updateCmd = new UpdateProductPriceCommand(product.Id, newPrice, "USD");
-                        await updatePriceHandler.HandleAsync(updateCmd);
-                        priceTask.Increment(1);
-                    }
-                });
-
-            AnsiConsole.MarkupLine("[green]✓ Updated 30 product prices[/]\n");
-
-            // Phase 5: Sample deletions
-            AnsiConsole.MarkupLine("[bold yellow]Phase 5: Removing discontinued products...[/]");
-
-            var toDelete = allProducts
-                .Where(p => p.StockQuantity == 0)
-                .Take(5)
-                .ToList();
-
-            foreach (var product in toDelete)
-            {
-                var deleteCmd = new DeleteProductCommand(product.Id);
-                await deleteProductHandler.HandleAsync(deleteCmd);
-            }
-
-            AnsiConsole.MarkupLine($"[green]✓ Removed {toDelete.Count} discontinued products[/]\n");
-
-            // Final Statistics
-            var finalResult = await getAllProductsHandler.HandleAsync(new GetAllProductsQuery());
-
-            if (finalResult.IsSuccess && finalResult.Data is not null)
-            {
-                var finalProducts = finalResult.Data;
-
-                var comparison = new Table()
-                    .Border(TableBorder.Rounded)
-                    .BorderColor(Color.Green);
-
-                comparison.AddColumn("[bold]Metric[/]");
-                comparison.AddColumn("[bold]Before[/]");
-                comparison.AddColumn("[bold]After[/]");
-                comparison.AddColumn("[bold]Change[/]");
-
-                comparison.AddRow(
-                    "Total Products",
-                    $"{allProducts.Count}",
-                    $"[cyan]{finalProducts.Count}[/]",
-                    $"[red]{finalProducts.Count - allProducts.Count:+0;-#}[/]"
-                );
-
-                comparison.AddRow(
-                    "Total Stock",
-                    $"{allProducts.Sum(p => p.StockQuantity):N0}",
-                    $"[cyan]{finalProducts.Sum(p => p.StockQuantity):N0}[/]",
-                    $"[green]{finalProducts.Sum(p => p.StockQuantity) - allProducts.Sum(p => p.StockQuantity):+#,0;-#,0}[/]"
-                );
-
-                AnsiConsole.Write(
-                    new Panel(comparison)
-                        .Header("[bold green]Before & After Comparison[/]")
-                        .BorderColor(Color.Green)
-                );
-            }
-
-            // Sample data display
-            AnsiConsole.MarkupLine("\n[bold underline]Sample Products (Top 10 by Value):[/]");
-            var sampleTable = new Table();
-            sampleTable.AddColumn("Name");
-            sampleTable.AddColumn("Category");
-            sampleTable.AddColumn("Price");
-            sampleTable.AddColumn("Stock");
-            sampleTable.AddColumn("Value");
-
-            foreach (var p in finalResult.Data!.OrderByDescending(p => p.Price.Amount * p.StockQuantity).Take(10))
-            {
-                sampleTable.AddRow(
-                    p.Name.Length > 30 ? p.Name[..27] + "..." : p.Name,
-                    p.Category,
-                    $"${p.Price.Amount:N2}",
-                    p.StockQuantity.ToString(),
-                    $"[green]${p.Price.Amount * p.StockQuantity:N2}[/]"
-                );
-            }
-
-            AnsiConsole.Write(sampleTable);
+            AnsiConsole.Write(
+                new Panel(comparison)
+                    .Header("[bold green]Before & After Comparison[/]")
+                    .BorderColor(Color.Green)
+            );
         }
+
+        // Sample data display
+        AnsiConsole.MarkupLine("\n[bold underline]Sample Products (Top 10 by Value):[/]");
+        var sampleTable = new Table();
+        sampleTable.AddColumn("Name");
+        sampleTable.AddColumn("Category");
+        sampleTable.AddColumn("Price");
+        sampleTable.AddColumn("Stock");
+        sampleTable.AddColumn("Value");
+
+        foreach (var p in finalResult.Data!.OrderByDescending(p => p.Price.Amount * p.StockQuantity).Take(10))
+        {
+            sampleTable.AddRow(
+                p.Name.Length > 30 ? p.Name[..27] + "..." : p.Name,
+                p.Category,
+                $"${p.Price.Amount:N2}",
+                p.StockQuantity.ToString(),
+                $"[green]${p.Price.Amount * p.StockQuantity:N2}[/]"
+            );
+        }
+
+        AnsiConsole.Write(sampleTable);
 
         AnsiConsole.MarkupLine("\n[bold green]✓ Automated demo completed successfully![/]");
         AnsiConsole.MarkupLine("[dim]All operations logged and synchronized across nodes.[/]");
