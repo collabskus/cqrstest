@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MultiDbSync.Application.Commands;
 using MultiDbSync.Application.Queries;
+using MultiDbSync.Domain.Entities;
 using MultiDbSync.Infrastructure.Data;
 using Spectre.Console;
 using System.Collections.Concurrent;
@@ -103,7 +104,7 @@ internal sealed class Program(string[] args)
         var totalWrites = 0;
 
         // Start write tasks (writes go to primary node1)
-        var writeTasks = new List<Task>();
+        var writeTasks = new List<Task<int>>();
         for (int i = 0; i < writeThreads; i++)
         {
             int threadId = i;
@@ -113,19 +114,18 @@ internal sealed class Program(string[] args)
 
             var task = Task.Run(async () =>
             {
-                await ExecuteWriterThreadAsync(
+                return await ExecuteWriterThreadAsync(
                     serviceProvider,
                     threadId,
                     productsPerThread,
                     writtenProductIds,
-                    writeLatencies,
-                    ref totalWrites);
+                    writeLatencies);
             });
             writeTasks.Add(task);
         }
 
         // Start read tasks (reads distributed across replicas)
-        var readTasks = new List<Task>();
+        var readTasks = new List<Task<int>>();
         var replicaNodes = new[] { "node1", "node2", "node3" };
 
         for (int i = 0; i < readThreads; i++)
@@ -138,26 +138,27 @@ internal sealed class Program(string[] args)
 
             var task = Task.Run(async () =>
             {
-                await ExecuteReaderThreadAsync(
+                return await ExecuteReaderThreadAsync(
                     serviceProvider,
                     threadId,
                     nodeId,
                     readsPerThread,
                     writtenProductIds,
                     allWritesComplete.Task,
-                    readLatencies,
-                    ref totalReads);
+                    readLatencies);
             });
             readTasks.Add(task);
         }
 
         // Wait for all writes to complete
-        await Task.WhenAll(writeTasks);
+        var writeResults = await Task.WhenAll(writeTasks);
+        totalWrites = writeResults.Sum();
         allWritesComplete.SetResult(true);
         AnsiConsole.MarkupLine("\n[green]✓ All write operations completed[/]");
 
         // Wait for all reads to complete
-        await Task.WhenAll(readTasks);
+        var readResults = await Task.WhenAll(readTasks);
+        totalReads = readResults.Sum();
         AnsiConsole.MarkupLine("[cyan]✓ All read operations completed[/]");
 
         stopwatch.Stop();
@@ -173,16 +174,17 @@ internal sealed class Program(string[] args)
             readLatencies);
     }
 
-    private static async Task ExecuteWriterThreadAsync(
+    private static async Task<int> ExecuteWriterThreadAsync(
         IServiceProvider serviceProvider,
         int threadId,
         int productsToCreate,
         ConcurrentQueue<Guid> writtenProductIds,
-        ConcurrentBag<TimeSpan> writeLatencies,
-        ref int totalWrites)
+        ConcurrentBag<TimeSpan> writeLatencies)
     {
         using var scope = serviceProvider.CreateScope();
         var commandHandler = scope.ServiceProvider.GetRequiredService<CreateProductCommandHandler>();
+
+        int localWrites = 0;
 
         for (int i = 0; i < productsToCreate; i++)
         {
@@ -211,13 +213,13 @@ internal sealed class Program(string[] args)
                 if (result.IsSuccess && result.Data is not null)
                 {
                     writeLatencies.Add(sw.Elapsed);
-                    var currentWrites = Interlocked.Increment(ref totalWrites);
+                    localWrites++;
 
                     writtenProductIds.Enqueue(result.Data.Id);
 
-                    if (currentWrites % 25 == 0)
+                    if (localWrites % 25 == 0)
                     {
-                        AnsiConsole.MarkupLine($"[dim][Writer {threadId}] Progress: {currentWrites} products created[/]");
+                        AnsiConsole.MarkupLine($"[dim][Writer {threadId}] Progress: {localWrites} products created[/]");
                     }
                 }
             }
@@ -231,17 +233,17 @@ internal sealed class Program(string[] args)
         }
 
         AnsiConsole.MarkupLine($"[green][Writer {threadId}] Completed {productsToCreate} products[/]");
+        return localWrites;
     }
 
-    private static async Task ExecuteReaderThreadAsync(
+    private static async Task<int> ExecuteReaderThreadAsync(
         IServiceProvider serviceProvider,
         int threadId,
         string nodeId,
         int targetReads,
         ConcurrentQueue<Guid> writtenProductIds,
         Task allWritesComplete,
-        ConcurrentBag<TimeSpan> readLatencies,
-        ref int totalReads)
+        ConcurrentBag<TimeSpan> readLatencies)
     {
         using var scope = serviceProvider.CreateScope();
 
@@ -292,7 +294,6 @@ internal sealed class Program(string[] args)
 
                     readLatencies.Add(sw.Elapsed);
                     localReads++;
-                    Interlocked.Increment(ref totalReads);
                 }
                 else if (readType < 80)
                 {
@@ -304,7 +305,6 @@ internal sealed class Program(string[] args)
 
                     readLatencies.Add(sw.Elapsed);
                     localReads++;
-                    Interlocked.Increment(ref totalReads);
                 }
                 else
                 {
@@ -319,7 +319,6 @@ internal sealed class Program(string[] args)
 
                     readLatencies.Add(sw.Elapsed);
                     localReads++;
-                    Interlocked.Increment(ref totalReads);
                 }
 
                 if (localReads % 200 == 0)
@@ -337,6 +336,7 @@ internal sealed class Program(string[] args)
         }
 
         AnsiConsole.MarkupLine($"[cyan][Reader {threadId}@{nodeId}] Completed {localReads} reads[/]");
+        return localReads;
     }
 
     private static int PrintStatistics(
