@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using MultiDbSync.Domain.Entities;
 using MultiDbSync.Domain.Interfaces;
 
 namespace MultiDbSync.Infrastructure.Services;
