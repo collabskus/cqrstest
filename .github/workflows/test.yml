@@ -139,8 +139,6 @@ jobs:
             runtime: linux-x64
           - os: windows-latest
             runtime: win-x64
-          - os: macos-13
-            runtime: osx-x64
           - os: macos-latest
             runtime: osx-arm64
     
