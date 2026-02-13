@@ -1,99 +1,160 @@
-#requires -Version 7.0
+#Requires -Version 7.0
 
 <#
 .SYNOPSIS
-    Dumps all git-tracked files into a single text file for LLM analysis
-.DESCRIPTION
-    Creates llm/dump.txt containing all files that are:
-    - In the git index (tracked)
-    - Not deleted in the working copy
-    - Not ignored by .gitignore
-    Excludes bin/, obj/, and other git-ignored files automatically
+    Exports all git-tracked text files into a single dump file for LLM context.
 #>
 
+[CmdletBinding()]
 param(
-    [string]$RepoPath = ".",
-    [string]$OutputFile = "llm/dump.txt"
+    [Parameter()]
+    [string]$OutputFile = "llm/dump.txt",
+    
+    [Parameter()]
+    [int]$MaxFileSizeKB = 1024
 )
 
-# Ensure we're in a git repository
-Push-Location $RepoPath
-try {
-    $isGitRepo = git rev-parse --is-inside-work-tree 2>$null
-    if ($isGitRepo -ne "true") {
-        Write-Error "Not a git repository: $RepoPath"
-        exit 1
-    }
+$ErrorActionPreference = 'Stop'
 
-    # Create output directory if it doesn't exist
+function Test-IsBinaryFile {
+    param([string]$FilePath)
+    
+    $binaryExtensions = @(
+        '.exe', '.dll', '.pdb', '.suo', '.user', 
+        '.png', '.jpg', '.jpeg', '.gif', '.ico', '.bmp', '.svg',
+        '.zip', '.7z', '.tar', '.gz', '.rar',
+        '.pdf', '.doc', '.docx', '.xls', '.xlsx',
+        '.bin', '.dat', '.db', '.cache'
+    )
+    
+    $extension = [System.IO.Path]::GetExtension($FilePath).ToLower()
+    if ($binaryExtensions -contains $extension) {
+        return $true
+    }
+    
+    try {
+        $bytes = [System.IO.File]::ReadAllBytes($FilePath)
+        if ($bytes.Length -eq 0) { return $false }
+        
+        $sampleSize = [Math]::Min(8192, $bytes.Length)
+        $nullBytes = 0
+        
+        for ($i = 0; $i -lt $sampleSize; $i++) {
+            if ($bytes[$i] -eq 0) {
+                $nullBytes++
+                if ($nullBytes -gt 3) { return $true }
+            }
+        }
+        return $false
+    }
+    catch {
+        return $true
+    }
+}
+
+try {
+    Write-Host "`nFetching git-tracked files..." -ForegroundColor Blue
+    
+    $gitFiles = git ls-files
+    if (-not $gitFiles) {
+        throw "No git-tracked files found"
+    }
+    
+    Write-Host "Found $($gitFiles.Count) tracked files" -ForegroundColor Green
+    
     $outputDir = Split-Path $OutputFile -Parent
     if ($outputDir -and -not (Test-Path $outputDir)) {
         New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
-        Write-Host "Created directory: $outputDir" -ForegroundColor Green
     }
-
-    # Get all files that are:
-    # 1. Tracked by git (in the index)
-    # 2. Exist in the working directory (not deleted)
-    $trackedFiles = git ls-files | Where-Object {
-        Test-Path $_
+    
+    $outputFileFullPath = if (Test-Path $OutputFile) {
+        (Get-Item $OutputFile).FullName
+    } else {
+        $null
     }
-
-    if ($trackedFiles.Count -eq 0) {
-        Write-Warning "No tracked files found"
-        exit 0
-    }
-
-    Write-Host "Found $($trackedFiles.Count) tracked files" -ForegroundColor Cyan
-
-    # Create the dump file
-    $dumpContent = @()
-    $processedCount = 0
-    $skippedCount = 0
-
-    foreach ($file in $trackedFiles) {
-        # Get absolute path
-        $fullPath = Resolve-Path $file -ErrorAction SilentlyContinue
+    
+    $processedFiles = @()
+    $skippedFiles = @()
+    $currentPath = (Get-Location).Path
+    
+    foreach ($file in $gitFiles) {
+        $fullPath = Join-Path $currentPath $file
         
-        if (-not $fullPath -or -not (Test-Path $fullPath)) {
-            $skippedCount++
+        if (-not (Test-Path $fullPath)) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Not found' }
             continue
         }
-
-        # Try to read the file as text
+        
+        if ($outputFileFullPath -and (Get-Item $fullPath).FullName -eq $outputFileFullPath) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Output file' }
+            continue
+        }
+        
+        $fileSizeKB = [Math]::Round((Get-Item $fullPath).Length / 1KB, 2)
+        if ($fileSizeKB -gt $MaxFileSizeKB) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = "Too large ($fileSizeKB KB)" }
+            continue
+        }
+        
+        if (Test-IsBinaryFile $fullPath) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Binary' }
+            continue
+        }
+        
+        $processedFiles += [PSCustomObject]@{
+            File = $file
+            FullPath = $fullPath
+            SizeKB = $fileSizeKB
+        }
+        
+        Write-Host "  ✓ $file" -ForegroundColor Green
+    }
+    
+    Write-Host "`nGenerating dump file..." -ForegroundColor Blue
+    
+    $content = [System.Text.StringBuilder]::new()
+    [void]$content.AppendLine("=" * 80)
+    [void]$content.AppendLine("GIT-TRACKED FILES DUMP")
+    [void]$content.AppendLine("Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')")
+    [void]$content.AppendLine("Total tracked: $($gitFiles.Count) | Processed: $($processedFiles.Count) | Skipped: $($skippedFiles.Count)")
+    [void]$content.AppendLine("=" * 80)
+    [void]$content.AppendLine()
+    
+    foreach ($fileInfo in $processedFiles) {
         try {
-            $content = Get-Content -Path $file -Raw -ErrorAction Stop
+            [void]$content.AppendLine()
+            [void]$content.AppendLine("=" * 80)
+            [void]$content.AppendLine("FILE: $($fileInfo.File)")
+            [void]$content.AppendLine("SIZE: $($fileInfo.SizeKB) KB")
+            [void]$content.AppendLine("=" * 80)
             
-            # Add file separator and content
-            $dumpContent += "=" * 80
-            $dumpContent += "FILE: $file"
-            $dumpContent += "=" * 80
-            $dumpContent += $content
-            $dumpContent += "`n`n"
-            
-            $processedCount++
-            Write-Host "  ✓ $file" -ForegroundColor Gray
+            $fileContent = Get-Content -Path $fileInfo.FullPath -Raw -ErrorAction Stop
+            [void]$content.AppendLine($fileContent)
         }
         catch {
-            # Skip binary files or files that can't be read as text
-            Write-Host "  ✗ Skipped (binary or unreadable): $file" -ForegroundColor Yellow
-            $skippedCount++
+            Write-Warning "Failed to read: $($fileInfo.File)"
+            [void]$content.AppendLine("ERROR: Could not read file")
         }
     }
-
-    # Write to output file
-    $dumpContent | Out-File -FilePath $OutputFile -Encoding UTF8 -Force
-
-    Write-Host "`n" + ("=" * 80) -ForegroundColor Green
+    
+    $content.ToString() | Set-Content -Path $OutputFile -Encoding UTF8 -NoNewline
+    
+    $dumpSizeMB = [Math]::Round((Get-Item $OutputFile).Length / 1MB, 2)
+    
+    Write-Host "`n$('=' * 80)" -ForegroundColor Cyan
     Write-Host "✓ Dump created successfully!" -ForegroundColor Green
     Write-Host "  Output: $OutputFile" -ForegroundColor Cyan
-    Write-Host "  Processed: $processedCount files" -ForegroundColor Cyan
-    Write-Host "  Skipped: $skippedCount files" -ForegroundColor Cyan
+    Write-Host "  Processed: $($processedFiles.Count) files" -ForegroundColor Green
+    Write-Host "  Skipped: $($skippedFiles.Count) files" -ForegroundColor Yellow
+    Write-Host "  Size: $dumpSizeMB MB" -ForegroundColor Cyan
+    Write-Host "$('=' * 80)" -ForegroundColor Cyan
     
-    $outputFileInfo = Get-Item $OutputFile
-    Write-Host "  Size: $([math]::Round($outputFileInfo.Length / 1MB, 2)) MB" -ForegroundColor Cyan
-    Write-Host ("=" * 80) -ForegroundColor Green
+    if ($skippedFiles.Count -gt 0) {
+        Write-Host "`nSkipped files:" -ForegroundColor Yellow
+        $skippedFiles | Format-Table -AutoSize
+    }
 }
-finally {
-    Pop-Location
+catch {
+    Write-Host "`n✗ Error: $($_.Exception.Message)" -ForegroundColor Red
+    exit 1
 }

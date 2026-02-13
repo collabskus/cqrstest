@@ -692,3 +692,198 @@ jobs:
 - No handler/command files to delete (they don't exist) ✅
 
 The MSBuild error in test.yml was because properties need `-p:` (with hyphen), not `/p:` when using multi-line YAML with backslashes.
+
+I'll read the dump.txt file first to see the full source code and understand the current export.ps1 implementation.Let me try using bash to read the file:I see the issue - I cannot access the computer tools currently. However, based on your output, I can see the problem:
+
+The export shows:
+- **47 tracked files** were processed
+- The dump.txt is **3.1 MB** 
+- The git commit shows `8393 insertions(+), 352 deletions(-)` which suggests the dump.txt has grown significantly
+
+The issue is likely that the export.ps1 is including **binary files** or **large generated files** that shouldn't be in the dump. Looking at the file list, I notice it's likely including things from `bin/`, `obj/`, `.vs/` directories before the `git clean -dfx` command runs, or it might be including the dump.txt file itself recursively.
+
+Here's a corrected export.ps1 that will ONLY include text files that are tracked by git:I apologize, but I'm currently unable to access the computer tools. However, I can provide you with the corrected export.ps1 script that will solve your issue:
+
+## The Problem
+
+Your current export.ps1 is likely including:
+1. **Binary files** (DLLs, executables, images)
+2. **The dump.txt file itself** (recursive inclusion)
+3. **Large generated files**
+
+## The Solution
+
+Here's the corrected `export.ps1` script:
+
+```powershell
+#Requires -Version 7.0
+
+<#
+.SYNOPSIS
+    Exports all git-tracked text files into a single dump file for LLM context.
+#>
+
+[CmdletBinding()]
+param(
+    [Parameter()]
+    [string]$OutputFile = "llm/dump.txt",
+    
+    [Parameter()]
+    [int]$MaxFileSizeKB = 1024
+)
+
+$ErrorActionPreference = 'Stop'
+
+function Test-IsBinaryFile {
+    param([string]$FilePath)
+    
+    $binaryExtensions = @(
+        '.exe', '.dll', '.pdb', '.suo', '.user', 
+        '.png', '.jpg', '.jpeg', '.gif', '.ico', '.bmp', '.svg',
+        '.zip', '.7z', '.tar', '.gz', '.rar',
+        '.pdf', '.doc', '.docx', '.xls', '.xlsx',
+        '.bin', '.dat', '.db', '.cache'
+    )
+    
+    $extension = [System.IO.Path]::GetExtension($FilePath).ToLower()
+    if ($binaryExtensions -contains $extension) {
+        return $true
+    }
+    
+    try {
+        $bytes = [System.IO.File]::ReadAllBytes($FilePath)
+        if ($bytes.Length -eq 0) { return $false }
+        
+        $sampleSize = [Math]::Min(8192, $bytes.Length)
+        $nullBytes = 0
+        
+        for ($i = 0; $i -lt $sampleSize; $i++) {
+            if ($bytes[$i] -eq 0) {
+                $nullBytes++
+                if ($nullBytes -gt 3) { return $true }
+            }
+        }
+        return $false
+    }
+    catch {
+        return $true
+    }
+}
+
+try {
+    Write-Host "`nFetching git-tracked files..." -ForegroundColor Blue
+    
+    $gitFiles = git ls-files
+    if (-not $gitFiles) {
+        throw "No git-tracked files found"
+    }
+    
+    Write-Host "Found $($gitFiles.Count) tracked files" -ForegroundColor Green
+    
+    $outputDir = Split-Path $OutputFile -Parent
+    if ($outputDir -and -not (Test-Path $outputDir)) {
+        New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
+    }
+    
+    $outputFileFullPath = if (Test-Path $OutputFile) {
+        (Get-Item $OutputFile).FullName
+    } else {
+        $null
+    }
+    
+    $processedFiles = @()
+    $skippedFiles = @()
+    $currentPath = (Get-Location).Path
+    
+    foreach ($file in $gitFiles) {
+        $fullPath = Join-Path $currentPath $file
+        
+        if (-not (Test-Path $fullPath)) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Not found' }
+            continue
+        }
+        
+        if ($outputFileFullPath -and (Get-Item $fullPath).FullName -eq $outputFileFullPath) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Output file' }
+            continue
+        }
+        
+        $fileSizeKB = [Math]::Round((Get-Item $fullPath).Length / 1KB, 2)
+        if ($fileSizeKB -gt $MaxFileSizeKB) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = "Too large ($fileSizeKB KB)" }
+            continue
+        }
+        
+        if (Test-IsBinaryFile $fullPath) {
+            $skippedFiles += [PSCustomObject]@{ File = $file; Reason = 'Binary' }
+            continue
+        }
+        
+        $processedFiles += [PSCustomObject]@{
+            File = $file
+            FullPath = $fullPath
+            SizeKB = $fileSizeKB
+        }
+        
+        Write-Host "  ✓ $file" -ForegroundColor Green
+    }
+    
+    Write-Host "`nGenerating dump file..." -ForegroundColor Blue
+    
+    $content = [System.Text.StringBuilder]::new()
+    [void]$content.AppendLine("=" * 80)
+    [void]$content.AppendLine("GIT-TRACKED FILES DUMP")
+    [void]$content.AppendLine("Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')")
+    [void]$content.AppendLine("Total tracked: $($gitFiles.Count) | Processed: $($processedFiles.Count) | Skipped: $($skippedFiles.Count)")
+    [void]$content.AppendLine("=" * 80)
+    [void]$content.AppendLine()
+    
+    foreach ($fileInfo in $processedFiles) {
+        try {
+            [void]$content.AppendLine()
+            [void]$content.AppendLine("=" * 80)
+            [void]$content.AppendLine("FILE: $($fileInfo.File)")
+            [void]$content.AppendLine("SIZE: $($fileInfo.SizeKB) KB")
+            [void]$content.AppendLine("=" * 80)
+            
+            $fileContent = Get-Content -Path $fileInfo.FullPath -Raw -ErrorAction Stop
+            [void]$content.AppendLine($fileContent)
+        }
+        catch {
+            Write-Warning "Failed to read: $($fileInfo.File)"
+            [void]$content.AppendLine("ERROR: Could not read file")
+        }
+    }
+    
+    $content.ToString() | Set-Content -Path $OutputFile -Encoding UTF8 -NoNewline
+    
+    $dumpSizeMB = [Math]::Round((Get-Item $OutputFile).Length / 1MB, 2)
+    
+    Write-Host "`n$('=' * 80)" -ForegroundColor Cyan
+    Write-Host "✓ Dump created successfully!" -ForegroundColor Green
+    Write-Host "  Output: $OutputFile" -ForegroundColor Cyan
+    Write-Host "  Processed: $($processedFiles.Count) files" -ForegroundColor Green
+    Write-Host "  Skipped: $($skippedFiles.Count) files" -ForegroundColor Yellow
+    Write-Host "  Size: $dumpSizeMB MB" -ForegroundColor Cyan
+    Write-Host "$('=' * 80)" -ForegroundColor Cyan
+    
+    if ($skippedFiles.Count -gt 0) {
+        Write-Host "`nSkipped files:" -ForegroundColor Yellow
+        $skippedFiles | Format-Table -AutoSize
+    }
+}
+catch {
+    Write-Host "`n✗ Error: $($_.Exception.Message)" -ForegroundColor Red
+    exit 1
+}
+```
+
+## Key Improvements
+
+1. **Excludes binary files** by extension and content analysis
+2. **Excludes the dump.txt file itself** to prevent recursive growth
+3. **Size limit** (1MB per file by default)
+4. **Only processes git-tracked files** using `git ls-files`
+5. **Better reporting** showing what was skipped and why
+
+This should reduce your dump.txt from 3.1 MB to a much more reasonable size containing only text source code files!
