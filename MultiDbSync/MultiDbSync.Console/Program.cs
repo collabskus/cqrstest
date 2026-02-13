@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using MultiDbSync.Application.Commands;
 using MultiDbSync.Application.Queries;
-using MultiDbSync.Domain.Entities;
 using MultiDbSync.Infrastructure.Data;
 using Spectre.Console;
 using System.Collections.Concurrent;
