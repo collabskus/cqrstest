@@ -1,6 +1,6 @@
 ================================================================================
 GIT-TRACKED FILES DUMP
-Generated: 2026-02-13 09:57:08
+Generated: 2026-02-13 10:03:41
 Total tracked: 47 | Processed: 46 | Skipped: 1
 ================================================================================
 
@@ -2558,38 +2558,21 @@ SIZE: 1.7 KB
 
 ================================================================================
 FILE: MultiDbSync/MultiDbSync.Console/claude.md
-SIZE: 1.4 KB
+SIZE: 1.02 KB
 ================================================================================
-In the ci mode, 
-I am thinking that in addition to the writes, 
-we should have multiple other threads 
-that are trying to read product information 
-while the writing is going 
-like multiple readers to really demonstrate 
-this cqrs action and its benefits 
-I have added the latest source code in dump.txt 
-always closely read the dump.txt as it has the FULL Source code. 
-never skim it, 
-never search it, 
-never get portions of it. 
-always read the full dump.txt because you need the full context every time. 
-use your best judgment. 
-always use the latest dotnet standard and follow industry best practices. we want everything to be as perfect as possible. 
-don't assume just because code is a certain way, we want it that way. always use best practices like primary constructor, readonly modifier, and so on 
-please give clear and comprehensive answer if my assumptions are incorrect 
-and please read the full `dump.txt` and give your response based on that 
-don't skim it, don't search it, don't extract from it. 
-read the whole thing end to end. 
-take your time. 
-and then give me a response 
-the response must have FULL files for easy copy pasting. 
-please and thank you 
-avoid adding new nuget packages unless necessary 
-if we need to add nuget packages 
-avoid non-free nuget packages 
-so avoid things like MediatR
-always get the latest versions of nuget packages 
-and make the code work for that 
+Update the CI mode logic in MultiDbSync.Console to better demonstrate CQRS benefits. 
+
+Technical Requirements:
+1. Implement concurrent readers: In addition to the writing threads, implement multiple reading threads.
+2. Load simulation: For every 'n' products added, ensure the system performs at least '10 * n' total reads.
+3. Architecture: Closely follow the existing custom CQRS pattern in MultiDbSync.Application. Use modern .NET 10 standards, including Primary Constructors and the 'readonly' modifier where applicable.
+4. Dependencies: Avoid adding new NuGet packages. Specifically, do not use MediatR. If a package is strictly necessary, ensure it is free and the latest version.
+
+Processing Instructions:
+- Read 'dump.txt' in its entirety to understand the full context before responding. Do not skim or extract portions.
+- Provide the FULL content of all modified or new files for easy copy-pasting. 
+- If my architectural assumptions are incorrect based on the source, please provide a comprehensive explanation in your response.
+- 
 
 
 ================================================================================
