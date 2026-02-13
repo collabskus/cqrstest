@@ -154,6 +154,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
       - name: 📦 Publish self-contained executable
+        shell: bash
         run: |
           dotnet publish ${{ env.CONSOLE_PROJECT }} \
             --configuration Release \
